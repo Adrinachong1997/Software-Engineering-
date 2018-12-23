@@ -7,7 +7,7 @@
 <body>
     <H1>Retailer</H1>
 	<form>
-		<p>目前是第1周</p>
+		<p>目前是第0周</p>
         <p>消費者要求啤酒數量：6</p>
 		請輸入本週訂購的啤酒數量:<input type="text" name="num beer">
 		<input type="submit" value="Submit">
@@ -27,15 +27,15 @@
 
 	    </tr>
         <tr>
-            <td>1</td>
-            <td>4</td>
+            <td>0</td>
             <td>15</td>
-            <td>6</td>
-            <td>4</td>
-            <td>16</td>
-            <td>8</td>
-            <td>8</td>
-            <td>4</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
         </tr>
     </table>
 	<hr>
