@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: localhost
--- 產生時間： 2018 年 12 月 26 日 03:27
+-- 產生時間： 2018 年 12 月 26 日 04:20
 -- 伺服器版本: 10.1.37-MariaDB
 -- PHP 版本： 7.3.0
 
@@ -92,54 +92,31 @@ INSERT INTO `gamecycle` (`no`, `setno`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `stu_tel`
---
-
-CREATE TABLE `stu_tel` (
-  `no` int(11) NOT NULL,
-  `uid` char(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `sid` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `email` char(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `tel` int(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- 資料表的匯出資料 `stu_tel`
---
-
-INSERT INTO `stu_tel` (`no`, `uid`, `sid`, `email`, `tel`) VALUES
-(5, '陳浩鋐', '105213060', 's105213060@mail1.ncnu.edu.tw', 912345342),
-(6, '蕭泓恩', '105213014', 's105213014@mail1.ncnu.edu.tw', 912345365),
-(7, '宋晨', '105213057', 's105123057@mail1.ncnu.edu.tw', 982734534),
-(8, '香荏彬', '105213069', 's105213069@mail1.ncnu.edu.tw', 912342342),
-(9, '許中昱', '105213002', 's105213002@mail1.ncnu.edu.tw', 988745342),
-(10, '何宏歷', '105213075', 's105213075@mail1.ncnu.edu.tw', 912342341),
-(11, 'asd', '123', 'asd@ad', 123);
-
--- --------------------------------------------------------
-
---
 -- 資料表結構 `team`
 --
 
 CREATE TABLE `team` (
   `tno` int(11) NOT NULL,
-  `tname` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+  `tname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `uid1` int(11) NOT NULL,
+  `uid2` int(11) NOT NULL,
+  `uid3` int(11) NOT NULL,
+  `uid4` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 資料表的匯出資料 `team`
 --
 
-INSERT INTO `team` (`tno`, `tname`) VALUES
-(1, 'asd'),
-(2, 'asddd'),
-(3, 'asddd'),
-(4, 'asddd'),
-(5, 'asddd'),
-(6, '123'),
-(7, '123'),
-(8, '123');
+INSERT INTO `team` (`tno`, `tname`, `uid1`, `uid2`, `uid3`, `uid4`) VALUES
+(1, 'asd', 0, 0, 0, 0),
+(2, 'asddd', 0, 0, 0, 0),
+(3, 'asddd', 0, 0, 0, 0),
+(4, 'asddd', 0, 0, 0, 0),
+(5, 'asddd', 0, 0, 0, 0),
+(6, '123', 0, 0, 0, 0),
+(7, '123', 0, 0, 0, 0),
+(8, '123', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -161,8 +138,8 @@ CREATE TABLE `tgame` (
 --
 
 INSERT INTO `tgame` (`serno`, `tname`, `r1`, `r2`, `r3`, `r4`) VALUES
-(1, 'test', 1, 1, 0, 0),
-(2, 'test2', 1, 0, 0, 1);
+(1, 'test', 0, 1, 1, 0),
+(2, 'test2', 0, 1, 1, 0);
 
 --
 -- 已匯出資料表的索引
@@ -172,12 +149,6 @@ INSERT INTO `tgame` (`serno`, `tname`, `r1`, `r2`, `r3`, `r4`) VALUES
 -- 資料表索引 `gamecycle`
 --
 ALTER TABLE `gamecycle`
-  ADD PRIMARY KEY (`no`);
-
---
--- 資料表索引 `stu_tel`
---
-ALTER TABLE `stu_tel`
   ADD PRIMARY KEY (`no`);
 
 --
@@ -201,12 +172,6 @@ ALTER TABLE `tgame`
 --
 ALTER TABLE `gamecycle`
   MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=505;
-
---
--- 使用資料表 AUTO_INCREMENT `stu_tel`
---
-ALTER TABLE `stu_tel`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用資料表 AUTO_INCREMENT `team`
