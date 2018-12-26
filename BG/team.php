@@ -4,8 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
-        <title>五十期資料設定</title>
-        
+        <title>配隊</title>
         <style type="text/css">
          body {
             background-image: url(1.jpg);
@@ -14,7 +13,7 @@
             color:#080c0f;  
         }
         #main {
-            width: 450px;
+            width: 600px;
             margin: 140px auto;
             border: 10px #f0f8ff solid ;
             padding: 13px;            
@@ -61,36 +60,28 @@
         }
         </style>
     </head>
-	<body>
-	<?php
-	require('dbconfig.php');
-	//$no=$_POST['no'];
-	$setno=$_POST['setno'];
-	$sqlData=0;
-	if ($db) {
-		echo'<table id="main">',
-			'<tr><td colspan="2">',
-				'<font size="6">資料已新增</font>',
-			'</td></tr>',
-			'<tr><td colspan="2">',
-				'<a id="button" href="??.php">啟動競賽</a>',
-			'</td></tr>'
-			
-		;
-		
-		for($i = 0 ; $i < 50 ; $i++) {
-			$sqlData = $setno[$i];
-			$no = $i + 1;
-			$sql = "insert into gamecycle (no, setno) values (?,?)";
-			$stmt = mysqli_prepare($db, $sql); //prepare sql statement
-			mysqli_stmt_bind_param($stmt, "ii", $no, $sqlData); //bind parameters with variables
-			mysqli_stmt_execute($stmt);  //執行SQL
-		}
-	} else {
-		echo 'empty title, cannot insert.';
-	}
-	
-	?>	
-	</body>
+    <body>
+        <table id="main">
+            <form id="team" method="post" accept-charset="utf-8">
+                <tr>
+                    <td id="background"><font size="6">隊伍建立成功</font></td>
+                </tr>
+                <?php
+                require('dbconfig.php');
+                global $db;
+                $role=$_POST['role'];
+                $tname=$_POST['tname'];
+                if ($tname) {
+                    $sql1 = "insert into tgame (tname,r$role) values (?,?);";
+                    $stmt1 = mysqli_prepare($db, $sql1); 
+                    mysqli_stmt_bind_param($stmt1, "si",$tname,$role); 
+                    mysqli_stmt_execute($stmt1);  
+                    echo "room added.";
+                } else {
+                    echo "empty title, cannot insert.";
+                }
+                ?>
+            </form>
+        </table>
+    </body>
 </html>
-

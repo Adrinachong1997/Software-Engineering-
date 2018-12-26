@@ -84,31 +84,31 @@
                 while (	$rs = mysqli_fetch_assoc($result)) {
                     echo"<tr><td>" , $rs['tname'] ,
                         "</td><td>";
-                        if($rs['r1']==1) {
-                            echo "<input type='button' disabled='disabled' value=''>";
+                        if($rs['r1']!=0) {
+                            echo "<input type='button' disabled='disabled' value='已被選'>";
                         }else {
-                            echo "<input name='role' type='radio' id='r1' value='1' >";
+                            echo "<input name='role' type='radio' id='role' value='1;" . $rs['tname'] . "' >";
                         }
 
                         echo "</td><td>";
-                        if($rs['r2']==1) {
-                            echo "<input type='button' disabled='disabled' value=''>";
+                        if($rs['r2']!=0) {
+                            echo "<input type='button' disabled='disabled' value='已被選'>";
                         }else {
-                            echo "<input name='role' type='radio' id='r2' value='1' >";
+                            echo "<input name='role' type='radio' id='role' value='2;" . $rs['tname'] . "' >";
                         }
 
                         echo "</td><td>";
-                        if($rs['r3']==1) {
-                            echo "<input type='button' disabled='disabled' value='角色已被選擇'>";
+                        if($rs['r3']!=0) {
+                            echo "<input type='button' disabled='disabled' value='已被選'>";
                         }else {
-                            echo "<input name='role' type='radio' id='r3' value='1' >";
+                            echo "<input name='role' type='radio' id='role' value='3;" . $rs['tname'] . "' >";
                         }
 
                         echo "</td><td>";
-                        if($rs['r4']==1) {
-                            echo "<input type='button' disabled='disabled' value='角色已被選擇'>";
+                        if($rs['r4']!=0) {
+                            echo "<input type='button' disabled='disabled' value='已被選'>";
                         }else {
-                            echo "<input name='role' type='radio' id='r4' value='1' >";
+                            echo "<input name='role' type='radio' id='role' value='4;" . $rs['tname'] . "' >";
                         }
                         
                     
@@ -117,7 +117,14 @@
                 }
 
                 ?>
-<input type="submit" name="Submit" value="送出" />
-                </table>
-                </body>
-                </html>
+                <tr><td colspan="5"></td></tr>
+                <tr>
+                    <td colspan="5">
+                        <a id="button" href="nteam.php">建立隊伍</a>
+                        <input id="button" type="submit" name="Submit" value="送出" />
+                    </td>
+                </tr>
+            </form>
+        </table>
+    </body>
+</html>
