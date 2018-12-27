@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="keywords" content=" " />
+<meta name="description" content=" " />
+<title>註冊帳號</title>
+<script type="text/javascript">
+function Name(form){
+    var Email=form.mail.value;
+    if(Email.search("@")==-1){
+        alert("信箱格式錯誤");
+        form.mail.focus();
+        return false;
+    }else{
+        return true;
+    }
+}
+</script>
+</head>
+<body>
+    <div id = "content">
+    <h3>註冊帳號</h3>
+    <form method = "post" action = "enroll.php" enctype="multipart/form-data" onSubmit="return Name(this);">
+        <span>User ID：</span><input type = "text" name = "id" required placeholder = "Enter your ID here."></input>*<br/>
+        <span>Password：</span><input type = "password" name = "pwd" required></input>*<br/>
+        <span>E-mail：<input type = "e-mail" name = "mail"></span><br/>
+        上傳頭貼照片檔案 (gif, jpeg, pjpeg, png)：<br />
+            <input type="file" name="upload" id="upload" accept=".gif,.jpeg,.pjpeg,.png"/><br /><br />
+    <input type = "submit" value = "新增資料"></input>
+    <input type = "reset" value = "重新填寫"></input>
+    </form>
+    </div>
+    <br /><a href="preView.php">上一頁</a>
+</body>
+</html>
