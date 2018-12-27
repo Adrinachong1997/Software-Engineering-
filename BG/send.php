@@ -5,19 +5,19 @@
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
         <title>五十期資料設定</title>
-        
+
         <style type="text/css">
-         body {
+        body {
             background-image: url(1.jpg);
             background-attachment:fixed;
             font-size:20px;
-            color:#080c0f;  
+            color:#080c0f;
         }
         #main {
             width: 450px;
             margin: 140px auto;
             border: 10px #f0f8ff solid ;
-            padding: 13px;            
+            padding: 13px;
             background: #37322f86
         }
         table {
@@ -26,13 +26,13 @@
         }
         th ,td {
             border: 0px solid ;
-	        color:#f0f8ff;  
+	        color:#f0f8ff;
             text-align:center;
             background-color:#37322f86;
         }
-        input{           
+        input{
             font-size: 20px;
-            color:#666666; 
+            color:#666666;
         }
         select{
             width: 200px;
@@ -40,10 +40,10 @@
         }
         #background{
             background-color:#37322f86;
-            color:#f0f8ff;         
+            color:#f0f8ff;
         }
         #button{
-            background-color: #f8f4f4;   
+            background-color: #f8f4f4;
             padding: 1px 80px;
             text-align: center;
             display: inline-block;
@@ -75,9 +75,9 @@
 			'<tr><td colspan="2">',
 				'<a id="button" href="??.php">啟動競賽</a>',
 			'</td></tr>'
-			
+
 		;
-		
+
 		for($i = 0 ; $i < 50 ; $i++) {
 			$sqlData = $setno[$i];
 			$no = $i + 1;
@@ -89,8 +89,8 @@
 	} else {
 		echo 'empty title, cannot insert.';
 	}
-	
-	?>	
+
+	?>
 	</body>
 </html>
 

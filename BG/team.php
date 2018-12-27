@@ -6,17 +6,17 @@
         <meta name="description" content=" " />
         <title>配隊</title>
         <style type="text/css">
-         body {
+        body {
             background-image: url(1.jpg);
             background-attachment:fixed;
             font-size:20px;
-            color:#080c0f;  
+            color:#080c0f;
         }
         #main {
             width: 600px;
             margin: 140px auto;
             border: 10px #f0f8ff solid ;
-            padding: 13px;            
+            padding: 13px;
             background: #37322f86
         }
         table {
@@ -25,13 +25,13 @@
         }
         th ,td {
             border: 0px solid ;
-	        color:#f0f8ff;  
+	        color:#f0f8ff;
             text-align:center;
             background-color:#37322f86;
         }
-        input{           
+        input{
             font-size: 20px;
-            color:#666666; 
+            color:#666666;
         }
         select{
             width: 200px;
@@ -39,10 +39,10 @@
         }
         #background{
             background-color:#37322f86;
-            color:#f0f8ff;         
+            color:#f0f8ff;
         }
         #button{
-            background-color: #f8f4f4;   
+            background-color: #f8f4f4;
             padding: 1px 80px;
             text-align: center;
             display: inline-block;
@@ -73,14 +73,19 @@
                 $tname=$_POST['tname'];
                 if ($tname) {
                     $sql1 = "insert into tgame (tname,r$role) values (?,?);";
-                    $stmt1 = mysqli_prepare($db, $sql1); 
-                    mysqli_stmt_bind_param($stmt1, "si",$tname,$role); 
-                    mysqli_stmt_execute($stmt1);  
+                    $stmt1 = mysqli_prepare($db, $sql1);
+                    mysqli_stmt_bind_param($stmt1, "si",$tname,$role);
+                    mysqli_stmt_execute($stmt1);
                     echo "room added.";
                 } else {
                     echo "empty title, cannot insert.";
                 }
                 ?>
+                <tr>
+                    <td colspan="5">
+                        <a id="button" href="test.php">確認</a>
+                    </td>
+                </tr>
             </form>
         </table>
     </body>
