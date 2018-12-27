@@ -6,17 +6,17 @@
         <meta name="description" content=" " />
         <title>配隊</title>
         <style type="text/css">
-         body {
+        body {
             background-image: url(1.jpg);
             background-attachment:fixed;
             font-size:20px;
-            color:#080c0f;  
+            color:#080c0f;
         }
         #main {
             width: 600px;
             margin: 140px auto;
             border: 10px #f0f8ff solid ;
-            padding: 13px;            
+            padding: 13px;
             background: #37322f86
         }
         table {
@@ -25,13 +25,13 @@
         }
         th ,td {
             border: 0px solid ;
-	        color:#f0f8ff;  
+	        color:#f0f8ff;
             text-align:center;
             background-color:#37322f86;
         }
-        input{           
+        input{
             font-size: 20px;
-            color:#666666; 
+            color:#666666;
         }
         select{
             width: 200px;
@@ -39,10 +39,10 @@
         }
         #background{
             background-color:#37322f86;
-            color:#f0f8ff;         
+            color:#f0f8ff;
         }
         #button{
-            background-color: #f8f4f4;   
+            background-color: #f8f4f4;
             padding: 1px 80px;
             text-align: center;
             display: inline-block;
@@ -65,7 +65,7 @@
             <form id="team" method="post" action="update.php" accept-charset="utf-8">
                 <tr>
                     <td colspan="5" id="background"><font size="6">已存在的房間</font></td>
-                </tr>  
+                </tr>
                 <tr>
                     <td>團隊名稱</td>
                     <td>工廠</td>
@@ -79,7 +79,7 @@
                 $sql = "select * from tgame;";
                 $stmt = mysqli_prepare($db, $sql );
                 mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt); 
+                $result = mysqli_stmt_get_result($stmt);
 
                 while (	$rs = mysqli_fetch_assoc($result)) {
                     echo"<tr><td>" , $rs['tname'] ,
@@ -110,8 +110,8 @@
                         }else {
                             echo "<input name='role' type='radio' id='role' value='4;" . $rs['tname'] . "' >";
                         }
-                        
-                    
+
+
                     "</td></tr>";
 
                 }
