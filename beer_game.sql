@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2018 年 12 月 28 日 15:13
+-- 產生時間： 2018 年 12 月 30 日 11:13
 -- 伺服器版本: 10.1.37-MariaDB
 -- PHP 版本： 7.3.0
 
@@ -123,10 +123,10 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`cid`, `player_n`) VALUES
-(1, 'factory'),
-(2, 'distributor'),
-(3, 'wholesaler'),
-(4, 'retailer');
+(1, 'retailer'),
+(2, 'wholesaler'),
+(3, 'distributor'),
+(4, 'factory');
 
 -- --------------------------------------------------------
 
@@ -153,10 +153,7 @@ CREATE TABLE `player_record` (
 --
 
 INSERT INTO `player_record` (`id`, `cid`, `week`, `original_stock`, `expected_arrival`, `actual_arrival`, `orders`, `cost`, `acc_cost`, `demand`, `actual_shipment`) VALUES
-(1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+(1, 1, 1, 15, 0, 0, 2, 15, 0, 0, 0);
 
 -- --------------------------------------------------------
 
