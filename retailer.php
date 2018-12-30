@@ -1,6 +1,13 @@
 <?php
 require("dbconfig.php");
- 
+require("orderModel.php");
+require("playerModel.php");
+$result = updateweek();
+if ($rs = mysqli_fetch_assoc($result)) {
+	$week=$rs['week']; 
+}
+$cid = 4;
+$player_n = "retailer";
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,12 +16,16 @@ require("dbconfig.php");
 </head>
 
 <body>
-    <H1>Retailer</H1>
-	<form>
-		<p>目前是第周</p>
+    <H1><?php echo $player_n?></H1>
+	<form method="post" action="orderControl.php">
+		<p>目前是第<?php echo$week;?>周</p>
         <p>消費者要求啤酒數量：</p>
-		請輸入本週訂購的啤酒數量:<input type="text" name="num beer">
-		<input type="submit" value="Submit">
+		請輸入本週訂購的啤酒數量:
+		<input type = "hidden" name="week" value="updateweek"/>
+		<input type = "hidden" name="order" value="update"/>
+		<input type="text" name="sumbit">
+		<input type="submit"  value=" 下單 " />
+		<!--<input type="hidden" name="act" value="reset">-->
 	</form>
 	<hr>
     <table style="width: 100%">
@@ -31,10 +42,7 @@ require("dbconfig.php");
 
 	    </tr>
 		<?php
-		$sql = "select * from player_record where cid =4";
-		$stmt = mysqli_prepare($db, $sql);
-		mysqli_stmt_execute($stmt); //執行SQL
-		$result = mysqli_stmt_get_result($stmt);
+		$result = orderList();
 		while (	$rs = mysqli_fetch_assoc($result)) {
 			echo "<tr><td>" , $rs['week'] ,
 			"</td><td>" , $rs['original_stock'],
