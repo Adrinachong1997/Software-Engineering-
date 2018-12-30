@@ -1,5 +1,6 @@
 <?php
 require("dbconfig.php");
+require_once("orderModel.php");
 $sql = "select * from player_record,gamecycle";
 $stmt = mysqli_prepare($db, $sql);
 mysqli_stmt_execute($stmt); //執行SQL
@@ -38,10 +39,7 @@ if ($rs=mysqli_fetch_assoc($result)) {
 
 	    </tr>
 		<?php
-		$sql = "select * from player_record where cid =1";
-		$stmt = mysqli_prepare($db, $sql);
-		mysqli_stmt_execute($stmt); //執行SQL
-		$result = mysqli_stmt_get_result($stmt);
+		$result = orderList();
 		while (	$rs = mysqli_fetch_assoc($result)) {
 			echo "<tr><td>" , $rs['week'] ,
 			"</td><td>" , $rs['original_stock'],
