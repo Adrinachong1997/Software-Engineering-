@@ -36,12 +36,12 @@ function updateactual_shipment($order){
 	//mysqli_stmt_bind_param($stmt, "i",$order);
     mysqli_stmt_execute($stmt); 
 }
-function updateexpected_arrival($order,$week){
+/*function updateexpected_arrival($order,$week){
     global $db;
     if($week+2){
-    $sql = "UPDATE `player_record` SET `expected_arrival` = orders where week=(SELECT MAX(no)+2 FROM period)";
+    $sql = "UPDATE `player_record` SET `expected_arrival` = orders where week = (SELECT MAX(no)+2 FROM period)";
     }
     $stmt = mysqli_prepare($db, $sql);
 	mysqli_stmt_bind_param($stmt, "i",$week);
     mysqli_stmt_execute($stmt); 
-}
+}*/

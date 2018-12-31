@@ -14,7 +14,7 @@ switch($operation){
         updateOrder($order);
         getCurrentDemand();
         updateactual_shipment($order);
-        updateexpected_arrival($order,$week);
+        //updateexpected_arrival($order,$week);
         break;
     case "updateweek":
         updateweek();
