@@ -2,12 +2,6 @@
 require("dbconfig.php");
 require("orderModel.php");
 require("playerModel.php");
-$result = updateweek();
-if ($rs = mysqli_fetch_assoc($result)) {
-	$week=$rs['week']; 
-}
-$cid = 4;
-$player_n = "retailer";
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,17 +10,26 @@ $player_n = "retailer";
 </head>
 
 <body>
-    <H1><?php echo $player_n?></H1>
+    <H1>Retailer</H1>
 	<form method="post" action="orderControl.php">
-		<p>目前是第<?php echo$week;?>周</p>
+	<input type = "hidden" name="order" value="updateweek"/>
+		<p>目前是第<?php //sumbit后week+1
+		$result= weeklist();
+		while($rs=mysqli_fetch_assoc($result)){
+		echo $rs['no'];
+	}
+	?>周</p>
         <p>消費者要求啤酒數量：</p>
-		請輸入本週訂購的啤酒數量:
-		<input type = "hidden" name="week" value="updateweek"/>
+		請輸入本週訂購的啤酒數量:<?php?>
 		<input type = "hidden" name="order" value="update"/>
 		<input type="text" name="sumbit">
 		<input type="submit"  value=" 下單 " />
-		<!--<input type="hidden" name="act" value="reset">-->
+		 
 	</form>
+	<form method="post" action="orderControl.php">
+	<input type = "hidden" name="order" value="reset"/>
+    <input type = "submit" value = "重置"> 
+</form>
 	<hr>
     <table style="width: 100%">
 	    <tbody><tr>
