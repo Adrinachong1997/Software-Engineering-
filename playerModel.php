@@ -1,17 +1,17 @@
 <?php
 require("dbconfig.php");
-function updateweek() 
+function updatePeriod() 
 {
-    if($no>0){
+    // if($no>0){
     global $db;
     $sql = " UPDATE `period` SET `no` = no+1 where id = 1";
 	$stmt = mysqli_prepare($db, $sql);
-	mysqli_stmt_bind_param($stmt, "i",$id);
+	// mysqli_stmt_bind_param($stmt, "i",$id);
     mysqli_stmt_execute($stmt); 
-    return ;
-    }
+    // return ;
+    // }
 }
-function weeklist() 
+function getCurrentPeriod() 
 {
     global $db;
     $sql = "select * from period ";
@@ -31,4 +31,13 @@ function r_period()
 	$stmt = mysqli_prepare($db, $sql);
 	mysqli_stmt_execute($stmt); 
 	return;
+}
+function getCurrentDemand() 
+{
+    global $db;
+    $sql = "select * from gamecycle where no=(SELECT MAX(no) FROM period) ";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt); //執行SQL
+    $result = mysqli_stmt_get_result($stmt); 
+    return $result;
 }
