@@ -1,20 +1,23 @@
 <?php
 require_once("orderModel.php");
 require_once("playerModel.php");
-$order = $_POST["order"];
-$sumbit = (int)$_POST["sumbit"];
+$operation = $_POST["operation"];
+$order = (int)$_POST["order"];
 $no=(int)$_REQUEST["no"];
-switch($order){
+switch($operation){
     case "reset":
         r_playerrecord();
         r_period();
         break;
     case "update":
-        updateOrder($sumbit,$orders);
+        updatePeriod();
+        updateOrder($order);
+        getCurrentDemand();
         break;
     case "updateweek":
-    updateweek();
-    break;
+        updateweek();
+        break;
 }
 header("Location: retailer.php");
+
 ?>
