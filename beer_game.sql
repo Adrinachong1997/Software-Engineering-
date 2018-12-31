@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2018 年 12 月 30 日 11:13
+-- 產生時間： 2018 年 12 月 31 日 07:40
 -- 伺服器版本: 10.1.37-MariaDB
 -- PHP 版本： 7.3.0
 
@@ -97,15 +97,15 @@ INSERT INTO `gamecycle` (`no`, `setno`) VALUES
 
 CREATE TABLE `period` (
   `id` int(20) NOT NULL,
-  `week` int(20) NOT NULL
+  `no` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 資料表的匯出資料 `period`
 --
 
-INSERT INTO `period` (`id`, `week`) VALUES
-(1, 1);
+INSERT INTO `period` (`id`, `no`) VALUES
+(1, 0);
 
 -- --------------------------------------------------------
 
@@ -147,13 +147,6 @@ CREATE TABLE `player_record` (
   `demand` int(50) NOT NULL,
   `actual_shipment` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- 資料表的匯出資料 `player_record`
---
-
-INSERT INTO `player_record` (`id`, `cid`, `week`, `original_stock`, `expected_arrival`, `actual_arrival`, `orders`, `cost`, `acc_cost`, `demand`, `actual_shipment`) VALUES
-(1, 1, 1, 15, 0, 0, 2, 15, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -278,12 +271,6 @@ ALTER TABLE `player`
   ADD PRIMARY KEY (`cid`);
 
 --
--- 資料表索引 `player_record`
---
-ALTER TABLE `player_record`
-  ADD PRIMARY KEY (`id`);
-
---
 -- 資料表索引 `stu_tel`
 --
 ALTER TABLE `stu_tel`
@@ -322,12 +309,6 @@ ALTER TABLE `gamecycle`
 --
 ALTER TABLE `period`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- 使用資料表 AUTO_INCREMENT `player_record`
---
-ALTER TABLE `player_record`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表 AUTO_INCREMENT `stu_tel`
