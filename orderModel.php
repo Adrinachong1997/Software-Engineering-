@@ -8,8 +8,7 @@ require("dbconfig.php");
     return $result;
 }*/
 function updateOrder($sumbit,$orders){
-    global $db;
-    
+    global $db;   
     $sql = "INSERT INTO `player_record`(id,cid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
     values(1,1,1,15,0,0,?,15,0,0,0)";
 	$stmt = mysqli_prepare($db, $sql);
@@ -26,4 +25,11 @@ function orderList()
     mysqli_stmt_execute($stmt); //執行SQL
     $result = mysqli_stmt_get_result($stmt); 
     return $result;
+}
+function r_playerrecord(){//清除playerrecord資料庫
+    global $db;
+    $sql = "TRUNCATE TABLE player_record";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt); 
+	return;
 }
