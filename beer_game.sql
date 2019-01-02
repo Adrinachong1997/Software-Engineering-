@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2018 年 12 月 31 日 07:40
+-- 產生時間： 2019 年 01 月 02 日 11:35
 -- 伺服器版本: 10.1.37-MariaDB
 -- PHP 版本： 7.3.0
 
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `gamecycle` (
-  `no` int(11) NOT NULL,
-  `setno` int(11) NOT NULL
+  `week` int(11) NOT NULL,
+  `demand` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- 資料表的匯出資料 `gamecycle`
 --
 
-INSERT INTO `gamecycle` (`no`, `setno`) VALUES
+INSERT INTO `gamecycle` (`week`, `demand`) VALUES
 (1, 44),
 (2, 23),
 (3, 43),
@@ -97,15 +97,15 @@ INSERT INTO `gamecycle` (`no`, `setno`) VALUES
 
 CREATE TABLE `period` (
   `id` int(20) NOT NULL,
-  `no` int(20) NOT NULL
+  `week` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 資料表的匯出資料 `period`
 --
 
-INSERT INTO `period` (`id`, `no`) VALUES
-(1, 0);
+INSERT INTO `period` (`id`, `week`) VALUES
+(1, 4);
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ INSERT INTO `period` (`id`, `no`) VALUES
 --
 
 CREATE TABLE `player` (
-  `cid` int(20) NOT NULL,
+  `pid` int(20) NOT NULL,
   `player_n` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -122,11 +122,11 @@ CREATE TABLE `player` (
 -- 資料表的匯出資料 `player`
 --
 
-INSERT INTO `player` (`cid`, `player_n`) VALUES
-(1, 'retailer'),
-(2, 'wholesaler'),
-(3, 'distributor'),
-(4, 'factory');
+INSERT INTO `player` (`pid`, `player_n`) VALUES
+(1, 'factory'),
+(2, 'distributor'),
+(3, 'wholesaler'),
+(4, 'retailer');
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,8 @@ INSERT INTO `player` (`cid`, `player_n`) VALUES
 
 CREATE TABLE `player_record` (
   `id` int(20) NOT NULL,
-  `cid` int(20) NOT NULL,
+  `serno` int(20) NOT NULL,
+  `pid` int(20) NOT NULL,
   `week` int(20) NOT NULL,
   `original_stock` int(20) NOT NULL,
   `expected_arrival` int(50) NOT NULL,
@@ -144,9 +145,19 @@ CREATE TABLE `player_record` (
   `orders` int(50) NOT NULL,
   `cost` int(50) NOT NULL,
   `acc_cost` int(50) NOT NULL,
-  `demand` int(50) NOT NULL,
+  `demand` int(50) DEFAULT NULL,
   `actual_shipment` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 資料表的匯出資料 `player_record`
+--
+
+INSERT INTO `player_record` (`id`, `serno`, `pid`, `week`, `original_stock`, `expected_arrival`, `actual_arrival`, `orders`, `cost`, `acc_cost`, `demand`, `actual_shipment`) VALUES
+(1, 1, 4, 1, 15, 0, 0, 0, 15, 15, 44, 0),
+(2, 1, 4, 2, 15, 0, 0, 5, 15, 15, 23, 0),
+(3, 1, 4, 3, 15, 0, 0, 5, 15, 15, 43, 0),
+(4, 1, 4, 4, 15, 0, 0, 5, 15, 15, 32, 0);
 
 -- --------------------------------------------------------
 
@@ -256,7 +267,7 @@ INSERT INTO `user` (`id`, `password`, `mail`, `sort`) VALUES
 -- 資料表索引 `gamecycle`
 --
 ALTER TABLE `gamecycle`
-  ADD PRIMARY KEY (`no`);
+  ADD PRIMARY KEY (`week`);
 
 --
 -- 資料表索引 `period`
@@ -268,7 +279,13 @@ ALTER TABLE `period`
 -- 資料表索引 `player`
 --
 ALTER TABLE `player`
-  ADD PRIMARY KEY (`cid`);
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- 資料表索引 `player_record`
+--
+ALTER TABLE `player_record`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 資料表索引 `stu_tel`
@@ -302,13 +319,19 @@ ALTER TABLE `user`
 -- 使用資料表 AUTO_INCREMENT `gamecycle`
 --
 ALTER TABLE `gamecycle`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `week` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- 使用資料表 AUTO_INCREMENT `period`
 --
 ALTER TABLE `period`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表 AUTO_INCREMENT `player_record`
+--
+ALTER TABLE `player_record`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表 AUTO_INCREMENT `stu_tel`
