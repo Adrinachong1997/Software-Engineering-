@@ -2,19 +2,15 @@
 require("dbconfig.php");
 function updatePeriod() 
 {
-    // if($no>0){
     global $db;
-    $sql = " UPDATE `period` SET `no` = no+1 where id = 1";
+    $sql = " UPDATE `period` SET `week` = week+1 where id = 1";
 	$stmt = mysqli_prepare($db, $sql);
-	// mysqli_stmt_bind_param($stmt, "i",$id);
     mysqli_stmt_execute($stmt); 
-    // return ;
-    // }
 }
 function getCurrentPeriod() 
 {
     global $db;
-    $sql = "select * from period ";
+    $sql = "select * from period";
     $stmt = mysqli_prepare($db, $sql);
     //mysqli_stmt_bind_param($stmt, "ss", $id, $pwd);
     mysqli_stmt_execute($stmt); //執行SQL
@@ -27,17 +23,28 @@ function r_period()
     $sql = "TRUNCATE TABLE period";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt); 
-    $sql = "INSERT INTO period(`id`,`no`) values (1,0);";
+    $sql = "INSERT INTO period(`id`,`week`) values (1,0);";
 	$stmt = mysqli_prepare($db, $sql);
 	mysqli_stmt_execute($stmt); 
 	return;
 }
-function getCurrentDemand() 
+function getCurrentDemand($pid,$currWeek) 
 {
     global $db;
-    $sql = "select * from gamecycle where no=(SELECT MAX(no) FROM period) ";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt); //執行SQL
-    $result = mysqli_stmt_get_result($stmt); 
+    switch($pid){
+        case '4':
+            $sql = "SELECT demand FROM gamecycle WHERE week=(SELECT MAX(week) FROM period) ";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
+        case '3':
+            $sql = "SELECT orders AS demand FROM player_record WHERE pid=4 AND week = $currWeek";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
+    }
+    
     return $result;
 }
