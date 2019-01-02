@@ -4,8 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
-        <title>五十期資料設定</title>
-        
+        <title>新隊伍</title>
         <style type="text/css">
          body {
             background-image: url(1.jpg);
@@ -14,7 +13,7 @@
             color:#080c0f;  
         }
         #main {
-            width: 450px;
+            width: 600px;
             margin: 140px auto;
             border: 10px #f0f8ff solid ;
             padding: 13px;            
@@ -61,42 +60,40 @@
         }
         </style>
     </head>
-	<body>
-	<?php
-	require('dbconfig.php');
-	$setno=$_POST['setno'];
-    $sqlData=0;
-    
-    //把50期需求存入資料庫
-	if ($db) {echo'<table id="main" method="post" action="update.php">',
-        '<tr><td colspan="2">',
-            '<font size="6">資料已新增</font>',
-        '</td></tr>';
-        
-		for($i = 0 ; $i < 50 ; $i++) {
-			$sqlData = $setno[$i];
-			$no = $i + 1;
-			$sql = "insert into gamecycle (no, setno) values (?,?)";
-			$stmt = mysqli_prepare($db, $sql); 
-			mysqli_stmt_bind_param($stmt, "ii", $no, $sqlData); 
-			mysqli_stmt_execute($stmt);  
-		}
-	} else {
-		echo 'empty title, cannot insert.';
-	}
-	
-	?>	
+    <body>
         <table id="main">
-        
-        <!--啟動遊戲的按鈕 -->
-            <form id="setno" method="post" action="gstart.php" accept-charset="utf-8">
-                <tr><td colspan="2">
-                   
-                    <input name="button" type="submit" id="button" value="1" />
-                    
-                </td></tr>
+            <form id="team" method="post" action="team.php" accept-charset="utf-8">
+                <tr>
+                    <td colspan="5" id="background"><font size="6">隊伍配對</font></td>
+                </tr>       
+                <tr>
+                    <td>你的團隊名稱</td>
+                    <td>工廠</td>
+                    <td>大盤商</td>
+                    <td>批發商</td>
+                    <td>零售商</td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input name="tname" type="text" id="tname" /></label>
+                    </td>
+                    <td>
+                        <label><input name="role" type="radio" id="r1" value="1"/></label>
+                    </td>
+                    <td>
+                        <label><input name="role" type="radio" id="r2" value="1"/></label>
+                    </td>
+                    <td>
+                        <label><input name="role" type="radio" id="r3" value="1"/></label>
+                    </td>
+                    <td>
+                        <label><input name="role" type="radio" id="r4" value="1"/></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5"><input id="button" type="submit" value="儲存" /></td>
+                </tr>   
             </form>
         </table>
-	</body>
+    </body>
 </html>
-
