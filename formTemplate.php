@@ -4,12 +4,17 @@
     <input type = "hidden" name="operation" value="update"/>
     <p>目前是第
     <?php //從period撈目前週次
-        $result= getCurrentPeriod();
-        // 判断四个同时一起按submit，TODO
-        while($rs=mysqli_fetch_assoc($result)){
-            $currWeek = $rs['week']+1;
-            echo $currWeek;
-        }
+        // $result = getCurrentPeriod();
+        // // 判断四个同时一起按submit，TODO
+        // while($rs=mysqli_fetch_assoc($result)){
+        //     $currWeek = $rs['week']+1;
+        //     echo $currWeek;
+        // }
+
+        $result = countOrder($serno,$pid);
+        if($result == 1)
+        $currWeek = $result;
+        echo $currWeek;
     ?>
     周
     </p>
