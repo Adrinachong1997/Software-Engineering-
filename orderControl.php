@@ -15,7 +15,7 @@ $week = (int)$_REQUEST["week"];
 switch($operation){
     case "reset":
         r_period();
-        r_playerrecord($serno, $pid);
+        r_playerrecord($serno);
         break;
     case "update":
         updatePeriod();
