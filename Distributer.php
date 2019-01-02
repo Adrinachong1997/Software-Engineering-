@@ -13,7 +13,7 @@ if ($rs=mysqli_fetch_assoc($result)) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>  大盤商</title>
+	<title>大盤商</title>
 </head>
 
 <body>
