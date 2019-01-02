@@ -7,10 +7,12 @@
         <title>五十期資料設定</title>
         
         <script type="text/javascript">
+        
+        //隨機設定50期需求的函式
             function random() {
                 var r = document.getElementsByTagName('input');
                 for(i = 0 ; i < 50 ; i++) {
-    　              r[i].value=randomInput(1, 50);
+    　              r[i].value=randomInput(1, 20);
                 }
                 function randomInput(min, max) {
                     return parseInt(Math.random() * (max-min+1) + min);

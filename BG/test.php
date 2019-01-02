@@ -85,6 +85,7 @@
                 mysqli_stmt_execute($stmt);
                 $result = mysqli_stmt_get_result($stmt); 
 
+                //列出所有等待中隊伍及各角色選取情況
                 while (	$rs = mysqli_fetch_assoc($result)) {
                     echo"<tr><td>" , $rs['tname'] ,
                         "</td><td>";

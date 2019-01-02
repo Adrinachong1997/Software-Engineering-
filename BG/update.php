@@ -74,7 +74,7 @@
 
                 $role = $_POST['role'];
                 
-				$uid = $id ;//$rs['id'];
+				$uid = $id ;
 
 				$str_sec = explode(";",$role);
                 

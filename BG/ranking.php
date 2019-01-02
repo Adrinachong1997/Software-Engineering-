@@ -1,1 +1,1 @@
-$sql = "SELECT week,acc_cost FROM `player_record` WHERE week%4=0";
+//$sql = "SELECT week,acc_cost FROM `player_record` WHERE week%4=0";

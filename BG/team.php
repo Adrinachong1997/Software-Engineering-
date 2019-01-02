@@ -63,6 +63,8 @@
     </head>
     <body>
         <table id="main">
+            
+            <!--將新建的隊伍加入資料庫-->
             <form id="team" method="post" accept-charset="utf-8">
                 <tr>
                     <td id="background"><font size="6">隊伍建立成功</font></td>
