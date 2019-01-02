@@ -1,5 +1,14 @@
 <?php
 require("dbconfig.php");
+function countOrder($serno,$pid){
+    global $db;
+    $sql = "SELECT count(week) AS result FROM player_record WHERE pid= $pid AND serno = $serno";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['result'];
+}
 function insertOrder($serno,$pid,$order,$currWeek){
     global $db;
     $acc_cost = getAccCost($pid);
@@ -101,16 +110,25 @@ function getOrderList($serno,$pid)
     $result = mysqli_stmt_get_result($stmt); 
     return $result;
 }
-function r_playerrecord($serno,$pid){//清除playerrecord資料庫
+function r_playerrecord($serno){//清除playerrecord資料庫
     global $db;
     $sql = "TRUNCATE TABLE player_record";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);  
-    $sql = "INSERT INTO player_record 
-    (serno,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
-    values
-    ($serno,$pid,0,15,0,0,0,15,15,0,0)";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);  
+    // $sql = "INSERT INTO player_record 
+    //     (serno,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+    //     values
+    //     ($serno,4,0,15,0,0,0,15,15,0,0)";
+    //     $stmt = mysqli_prepare($db, $sql);
+    //     mysqli_stmt_execute($stmt);  
+    for($i = 4; $i > 0; $i--){
+        $sql = "INSERT INTO player_record 
+        (serno,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+        values
+        ($serno,($i),0,15,0,0,0,15,15,0,0)";
+        $stmt = mysqli_prepare($db, $sql);
+        mysqli_stmt_execute($stmt);  
+    }
+    
 	// return;
 }
