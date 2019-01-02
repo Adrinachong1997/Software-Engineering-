@@ -1,22 +1,23 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
-        <title>配隊</title>
+        <title>建立隊伍</title>
         <style type="text/css">
-        body {
+         body {
             background-image: url(1.jpg);
             background-attachment:fixed;
             font-size:20px;
-            color:#080c0f;
+            color:#080c0f;  
         }
         #main {
             width: 600px;
             margin: 140px auto;
             border: 10px #f0f8ff solid ;
-            padding: 13px;
+            padding: 13px;            
             background: #37322f86
         }
         table {
@@ -25,13 +26,13 @@
         }
         th ,td {
             border: 0px solid ;
-	        color:#f0f8ff;
+	        color:#f0f8ff;  
             text-align:center;
             background-color:#37322f86;
         }
-        input{
+        input{           
             font-size: 20px;
-            color:#666666;
+            color:#666666; 
         }
         select{
             width: 200px;
@@ -39,10 +40,10 @@
         }
         #background{
             background-color:#37322f86;
-            color:#f0f8ff;
+            color:#f0f8ff;         
         }
         #button{
-            background-color: #f8f4f4;
+            background-color: #f8f4f4;   
             padding: 1px 80px;
             text-align: center;
             display: inline-block;
@@ -60,18 +61,23 @@
         }
         </style>
     </head>
+    <?php
+require("userModel.php");
+$id=getCurrentUser();
+echo $id;
+?>
     <body>
         <table id="main">
             <form id="team" method="post" action="team.php" accept-charset="utf-8">
                 <tr>
                     <td colspan="5" id="background"><font size="6">隊伍配對</font></td>
-                </tr>
+                </tr>       
                 <tr>
                     <td>你的團隊名稱</td>
-                    <td>零售商</td>
-                    <td>批發商</td>
-                    <td>大盤商</td>
                     <td>工廠</td>
+                    <td>大盤商</td>
+                    <td>批發商</td>
+                    <td>零售商</td>
                 </tr>
                 <tr>
                     <td>
@@ -92,7 +98,7 @@
                 </tr>
                 <tr>
                     <td colspan="5"><input id="button" type="submit" value="儲存" /></td>
-                </tr>
+                </tr>   
             </form>
         </table>
     </body>
