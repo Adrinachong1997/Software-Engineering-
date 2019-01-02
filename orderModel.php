@@ -78,6 +78,12 @@ function getDemand($pid,$currWeek)
         case '3':
             $sql = "SELECT orders AS result FROM player_record WHERE pid=4 AND week = $currWeek";
             break;
+        case '2':
+            $sql = "SELECT orders AS result FROM player_record WHERE pid=3 AND week = $currWeek";
+            break;
+        case '1':
+            $sql = "SELECT orders AS result FROM player_record WHERE pid=2 AND week = $currWeek";
+            break;
     }
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);
