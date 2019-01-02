@@ -108,39 +108,3 @@ function r_playerrecord($serno,$pid){//清除playerrecord資料庫
     mysqli_stmt_execute($stmt);  
 	// return;
 }
-function getOriginalStock($week,$pid){
-    global $db;
-    $sql = "SELECT original_stock AS result FROM player_record WHERE week = ($week) AND pid = $pid";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    $rs = mysqli_fetch_assoc($result);
-    return $rs['result'];
-}
-
-function getActualArrival($week,$pid){
-    global $db;
-    $sql = "SELECT actual_arrival AS result FROM player_record WHERE week = ($week) AND pid = $pid";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    $rs = mysqli_fetch_assoc($result);
-    return $rs['result'];
-}
-
-function countactual_shipment($serno,$pid){//計算實際出貨
-    global $db;
-    $hand = $original_stok + $actual_arrival;    
-    if($hand >= $demand) {    //有足夠的貨
-        $actual_shipment = $demand;
-    } else if ($hand > 0) {    //有多少給多少
-        $actual_shipment= $hand;    
-    } else {    //沒有貨
-        $actual_shipment = 0;
-    } 
-    updateOrder($serno,$cid,);
-    $sql = "UPDATE `player_record` SET `actual_shipment` = original_stock";
-    $stmt = mysqli_prepare($db, $sql);
-	//mysqli_stmt_bind_param($stmt, "i",$order);
-    mysqli_stmt_execute($stmt); 
-}
