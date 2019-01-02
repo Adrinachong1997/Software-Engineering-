@@ -44,6 +44,18 @@ function getCurrentDemand($pid,$currWeek)
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
             break;
+        case '2':
+            $sql = "SELECT orders AS demand FROM player_record WHERE pid=3 AND week = $currWeek";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
+        case '1':
+            $sql = "SELECT orders AS demand FROM player_record WHERE pid=2 AND week = $currWeek";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
     }
     
     return $result;
