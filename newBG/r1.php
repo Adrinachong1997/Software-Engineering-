@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
-        <title>加入遊戲</title>
+        <title>r1</title>
         <style type="text/css">
          body {
             background-image: url(1.jpg);

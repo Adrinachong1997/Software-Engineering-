@@ -14,13 +14,11 @@ function login($id, $pwd)
         mysqli_stmt_execute($stmt); //執行SQL
         $result = mysqli_stmt_get_result($stmt); 
         $r=mysqli_fetch_assoc($result);
-
-        if($r) {
+     	if($r) {
 			$_SESSION['id'] = $r['id'];
             $_SESSION['sort'] = $r['sort'];
             return 1;
-        } 
-        
+        }  
         else {
             return 0;
         } 
@@ -31,14 +29,12 @@ function login($id, $pwd)
 //檢查是否管理員
 function checkAdmin($id, $pwd){
     global $db;
-
     $sql = "select * from user where id=? and password=?";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss", $id, $pwd);
         mysqli_stmt_execute($stmt); //執行SQL
         $result = mysqli_stmt_get_result($stmt); 
         $r=mysqli_fetch_assoc($result);
-
         if ($r['admin']==1){
             return 1;
         }

@@ -7,7 +7,7 @@ $pname = array(
     '2' => "Distributer.php",
     '3' => "wholesaler.php",
     '4' => "retailer.php");
-$serno = (int)$_POST["serno"];
+$tname = (int)$_POST["tname"];
 $pid = (int)$_POST["pid"];
 $operation = $_POST["operation"];
 $order = (int)$_POST["order"];
@@ -15,15 +15,14 @@ $week = (int)$_REQUEST["week"];
 switch($operation){
     case "reset":
         r_period();
-        r_playerrecord($serno);
+        r_playerrecord($tname);
+        r_status($tname,$week);
         break;
     case "update":
         updatePeriod();
-        insertOrder($serno,$pid,$order,$week);
+        insertOrder($tname,$pid,$order,$week);
         getCurrentDemand($pid,$week);
-        //updatexpected_arrival($serno,$cid,$week);
-        //updateactual_shipment($order);
-        //updateexpected_arrival($order,$week);
+        updateStatus($tname,$order,$pid,$week);
         break;
     
 }

@@ -5,25 +5,23 @@
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
-        <title>五十期資料設定</title>
-        
+        <title>五十期資料設定</title>    
         <script type="text/javascript">
             //隨機設定50期需求的函式
             function random() {
                 var r = document.getElementsByTagName('input');
                 for(i = 0 ; i < 50 ; i++) {
-    　              r[i].value=randomInput(1, 20);
+            　              r[i].value=randomInput(1, 20);
                 }
                 function randomInput(min, max) {
                     return parseInt(Math.random() * (max-min+1) + min);
                 }
-            }
+            }          
         </script>
         <style type="text/css">
         </style>
     </head>
     <body>
-
     <table id="main">
             <form id="setno" method="post" action="50thUpdate.php" accept-charset="utf-8">
                 <tr>

@@ -1,6 +1,6 @@
 <form method="post" action="orderControl.php">
     <input type = "hidden" name="pid" value=<?php echo $pid ?>/>
-    <input type = "hidden" name="serno" value=<?php echo $serno ?>/>
+    <input type = "hidden" name="tname" value=<?php echo $tname ?>/>
     <input type = "hidden" name="operation" value="update"/>
     <p>目前是第
     <?php //從period撈目前週次
@@ -11,7 +11,7 @@
         //     echo $currWeek;
         // }
 
-        $result = countOrder($serno,$pid);
+        $result = countOrder($tname,$pid);
         if($result == 1)
         $currWeek = $result;
         echo $currWeek;
@@ -32,7 +32,7 @@
     <input type ="submit" value=" 下單 " />
 </form>
 <form method="post" action="orderControl.php">
-    <input type = "hidden" name="serno" value=<?php echo $serno ?>/>
+    <input type = "hidden" name="tname" value=<?php echo $tname ?>/>
     <input type = "hidden" name="pid" value=<?php echo $pid ?>/>
     <input type = "hidden" name="operation" value="reset"/>
     <input type = "submit" value = "重置"> 
