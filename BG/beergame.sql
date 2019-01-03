@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- 主機: localhost
--- 產生時間： 2019 年 01 月 02 日 13:21
--- 伺服器版本: 10.1.37-MariaDB
--- PHP 版本： 7.3.0
+-- 主機: 127.0.0.1
+-- 產生時間： 2019 年 01 月 03 日 13:07
+-- 伺服器版本: 10.1.36-MariaDB
+-- PHP 版本： 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 資料庫： `test1`
+-- 資料庫： `beergame`
 --
 
 -- --------------------------------------------------------
@@ -29,15 +29,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `gamecycle` (
-  `no` int(11) NOT NULL,
-  `setno` int(11) NOT NULL
+  `week` int(11) NOT NULL,
+  `demand` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- 資料表的匯出資料 `gamecycle`
 --
 
-INSERT INTO `gamecycle` (`no`, `setno`) VALUES
+INSERT INTO `gamecycle` (`week`, `demand`) VALUES
 (1, 44),
 (2, 23),
 (3, 43),
@@ -92,49 +92,103 @@ INSERT INTO `gamecycle` (`no`, `setno`) VALUES
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `gstart`
+-- 資料表結構 `period`
 --
 
-CREATE TABLE `gstart` (
-  `go` int(11) NOT NULL
+CREATE TABLE `period` (
+  `id` int(20) NOT NULL,
+  `week` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 資料表的匯出資料 `gstart`
+-- 資料表的匯出資料 `period`
 --
 
-INSERT INTO `gstart` (`go`) VALUES
-(1);
+INSERT INTO `period` (`id`, `week`) VALUES
+(1, 4);
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `team`
+-- 資料表結構 `player`
 --
 
-CREATE TABLE `team` (
-  `tno` int(11) NOT NULL,
-  `tname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `uid1` int(11) NOT NULL,
-  `uid2` int(11) NOT NULL,
-  `uid3` int(11) NOT NULL,
-  `uid4` int(11) NOT NULL
+CREATE TABLE `player` (
+  `pid` int(20) NOT NULL,
+  `player_n` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 資料表的匯出資料 `team`
+-- 資料表的匯出資料 `player`
 --
 
-INSERT INTO `team` (`tno`, `tname`, `uid1`, `uid2`, `uid3`, `uid4`) VALUES
-(1, 'asd', 0, 0, 0, 0),
-(2, 'asddd', 0, 0, 0, 0),
-(3, 'asddd', 0, 0, 0, 0),
-(4, 'asddd', 0, 0, 0, 0),
-(5, 'asddd', 0, 0, 0, 0),
-(6, '123', 0, 0, 0, 0),
-(7, '123', 0, 0, 0, 0),
-(8, '123', 0, 0, 0, 0),
-(9, '123', 0, 2, 0, 0);
+INSERT INTO `player` (`pid`, `player_n`) VALUES
+(1, 'factory'),
+(2, 'distributor'),
+(3, 'wholesaler'),
+(4, 'retailer');
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `player_record`
+--
+
+CREATE TABLE `player_record` (
+  `id` int(20) NOT NULL,
+  `tname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `pid` int(20) NOT NULL,
+  `week` int(20) NOT NULL,
+  `original_stock` int(20) NOT NULL,
+  `expected_arrival` int(50) NOT NULL,
+  `actual_arrival` int(50) NOT NULL,
+  `orders` int(50) NOT NULL,
+  `cost` int(50) NOT NULL,
+  `acc_cost` int(50) NOT NULL,
+  `demand` int(50) DEFAULT NULL,
+  `actual_shipment` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 資料表的匯出資料 `player_record`
+--
+
+INSERT INTO `player_record` (`id`, `tname`, `pid`, `week`, `original_stock`, `expected_arrival`, `actual_arrival`, `orders`, `cost`, `acc_cost`, `demand`, `actual_shipment`) VALUES
+(5, 'TEST1', 1, 50, 0, 0, 0, 0, 0, 11, NULL, 0),
+(6, 'TEST1', 2, 50, 0, 0, 0, 0, 0, 39, NULL, 0),
+(7, 'TEST1', 3, 50, 0, 0, 0, 0, 0, 8, NULL, 0),
+(8, 'TEST1', 4, 50, 0, 0, 0, 0, 0, 7, NULL, 0),
+(9, '4', 1, 50, 0, 0, 0, 0, 0, 2, NULL, 0),
+(10, '4', 2, 50, 0, 0, 0, 0, 0, 23, NULL, 0),
+(11, '4', 3, 50, 0, 0, 0, 0, 0, 10, NULL, 0),
+(12, '4', 4, 50, 0, 0, 0, 0, 0, 3, NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `stu_tel`
+--
+
+CREATE TABLE `stu_tel` (
+  `no` int(11) NOT NULL,
+  `uid` char(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `sid` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` char(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tel` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- 資料表的匯出資料 `stu_tel`
+--
+
+INSERT INTO `stu_tel` (`no`, `uid`, `sid`, `email`, `tel`) VALUES
+(5, '陳浩鋐', '105213060', 's105213060@mail1.ncnu.edu.tw', 912345342),
+(6, '蕭泓恩', '105213014', 's105213014@mail1.ncnu.edu.tw', 912345365),
+(7, '宋晨', '105213057', 's105123057@mail1.ncnu.edu.tw', 982734534),
+(8, '香荏彬', '105213069', 's105213069@mail1.ncnu.edu.tw', 912342342),
+(9, '許中昱', '105213002', 's105213002@mail1.ncnu.edu.tw', 988745342),
+(10, '何宏歷', '105213075', 's105213075@mail1.ncnu.edu.tw', 912342341),
+(11, 'asd', '123', 'asd@ad', 123);
 
 -- --------------------------------------------------------
 
@@ -148,16 +202,17 @@ CREATE TABLE `tgame` (
   `r1` varchar(11) CHARACTER SET latin1 DEFAULT NULL,
   `r2` varchar(11) CHARACTER SET latin1 DEFAULT NULL,
   `r3` varchar(11) CHARACTER SET latin1 DEFAULT NULL,
-  `r4` varchar(11) CHARACTER SET latin1 DEFAULT NULL
+  `r4` varchar(11) CHARACTER SET latin1 DEFAULT NULL,
+  `totalcost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 資料表的匯出資料 `tgame`
 --
 
-INSERT INTO `tgame` (`serno`, `tname`, `r1`, `r2`, `r3`, `r4`) VALUES
-(20, 'TEST1', 'admin1', NULL, 'admin1', NULL),
-(21, '4', 'admin1', '1', NULL, NULL);
+INSERT INTO `tgame` (`serno`, `tname`, `r1`, `r2`, `r3`, `r4`, `totalcost`) VALUES
+(20, 'TEST1', 'admin1', NULL, 'admin1', NULL, 65),
+(21, '4', 'admin1', '1', '1', NULL, 38);
 
 -- --------------------------------------------------------
 
@@ -179,7 +234,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `password`, `mail`, `sort`) VALUES
 ('1', '1', '', 1),
 ('a', '1', '', 1),
-('admin1', '123', 'admin@admin.com', 1),
 ('b', 'a', '', 0),
 ('test', 'test', '', 1),
 ('test2', 'test2', '', 1),
@@ -193,13 +247,31 @@ INSERT INTO `user` (`id`, `password`, `mail`, `sort`) VALUES
 -- 資料表索引 `gamecycle`
 --
 ALTER TABLE `gamecycle`
-  ADD PRIMARY KEY (`no`);
+  ADD PRIMARY KEY (`week`);
 
 --
--- 資料表索引 `team`
+-- 資料表索引 `period`
 --
-ALTER TABLE `team`
-  ADD PRIMARY KEY (`tno`);
+ALTER TABLE `period`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `player`
+--
+ALTER TABLE `player`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- 資料表索引 `player_record`
+--
+ALTER TABLE `player_record`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 資料表索引 `stu_tel`
+--
+ALTER TABLE `stu_tel`
+  ADD PRIMARY KEY (`no`);
 
 --
 -- 資料表索引 `tgame`
@@ -221,13 +293,25 @@ ALTER TABLE `user`
 -- 使用資料表 AUTO_INCREMENT `gamecycle`
 --
 ALTER TABLE `gamecycle`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `week` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
--- 使用資料表 AUTO_INCREMENT `team`
+-- 使用資料表 AUTO_INCREMENT `period`
 --
-ALTER TABLE `team`
-  MODIFY `tno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+ALTER TABLE `period`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- 使用資料表 AUTO_INCREMENT `player_record`
+--
+ALTER TABLE `player_record`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- 使用資料表 AUTO_INCREMENT `stu_tel`
+--
+ALTER TABLE `stu_tel`
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- 使用資料表 AUTO_INCREMENT `tgame`
