@@ -8,6 +8,7 @@
         <title>加入遊戲</title>
         <style type="text/css">
         </style>
+        <meta http-equiv="refresh" content="5">
     </head>
     <body>
         <table id="main">
