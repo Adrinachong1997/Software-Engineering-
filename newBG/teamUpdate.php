@@ -16,7 +16,8 @@
 				<?php
 					//加入隊伍
 					require("gameModel.php");
-					updateTeam();
+                    updateTeam();
+                    gameStart();
 				?>
                 <tr>
                     <td colspan="2"><img src="1.gif" width="200" height="200"/></br>等待遊戲開始</td>
