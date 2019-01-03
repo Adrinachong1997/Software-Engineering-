@@ -15,6 +15,7 @@
                 <tr>
                     <td colspan="5" id="background"><img src="beer.gif" width="550" height="350"/></br><font size="6">BEER GAME</font></td>
                 </tr>  
+        
                 <tr>
                     <td>
                         <a id="button" href="enroll.html" >註冊</a>
