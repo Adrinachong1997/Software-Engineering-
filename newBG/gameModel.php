@@ -188,4 +188,37 @@ function roomDelete(){
 	}
 	header('Location: adminTeamList.php');
 }
+
+function gameStart(){
+    $str_sec = explode(";",$_SESSION['role']);
+    print_r($str_sec);
+    global $db;
+    $sql = "select r1,r2,r3,r4 from tgame where tname = ?";
+    $stmt = mysqli_prepare($db, $sql );
+    mysqli_stmt_bind_param($stmt, "s", $str_sec[1]);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    print_r($result);
+    while (	$rs = mysqli_fetch_assoc($result)) {
+        if ($rs['r1']!= NULL&&$rs['r2']!= NULL&&$rs['r3']!= NULL&&$rs['r4']!= NULL){
+            $sql = "update tgame set go = 1 where tname = ?";
+            $stmt = mysqli_prepare($db, $sql );
+            mysqli_stmt_bind_param($stmt, "s", $str_sec[1]);
+            mysqli_stmt_execute($stmt);
+
+            if ($str_sec[0] == 1) {
+                header('Location: r1.php');
+            }
+            else if ($str_sec[0] == 2) {
+                header('Location: r2.php');
+            }
+            else if ($str_sec[0] == 3) {
+                header('Location: r3.php');
+            }
+            else if ($str_sec[0] == 4) {
+                header('Location: r4.php');
+            }
+        }
+    }
+}
 ?>
