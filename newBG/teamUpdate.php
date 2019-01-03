@@ -25,8 +25,7 @@
 				$uid = $id ;//$rs['id'];
 
 				$str_sec = explode(";",$_SESSION['role']);
-				
-                       
+				    
 				echo '<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>',
 					"</tr><tr><td>",
                  "隊伍名稱</td><td>$str_sec[1]</td></tr>",
