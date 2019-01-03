@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="style.css" />
@@ -21,8 +20,7 @@
                         管理員 : <?php require("dbconfig.php");
                                 echo $_SESSION['id'];?></font>
                     </td>
-                </tr>
-                
+                </tr> 
                 <tr>
                     <td width="20px">團隊名稱</td>
                     <td width="20px">工廠</br>Factory</td>
@@ -30,56 +28,10 @@
                     <td width="20px">批發商</br>Wholesale</td>
                     <td width="20px">零售商</br>Retailer</td>
                     <td width="20px">房間刪除</td>
-
                 </tr> 
                 <?php
-                $sql = "select * from tgame;";
-                $stmt = mysqli_prepare($db, $sql );
-                mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt); 
-
-                while (	$rs = mysqli_fetch_assoc($result)) {
-                    echo"<tr><td>" , $rs['tname'] ,
-                        "</td><td>";
-                        if($rs['r1']!=NULL) {
-                            echo "<input type='button' disabled='disabled' value='已被選'>";
-                        }else {
-                            echo "<input type='button' disabled='disabled' value='未被選'>";
-                        }
-
-                        echo "</td><td>";
-                        if($rs['r2']!=NULL) {
-                            echo "<input type='button' disabled='disabled' value='已被選'>";
-                        }else {
-                            echo "<input type='button' disabled='disabled' value='未被選'>";
-                        }
-
-
-                        echo "</td><td>";
-                        if($rs['r3']!=NULL) {
-                            echo "<input type='button' disabled='disabled' value='已被選'>";
-                        }else {
-                            echo "<input type='button' disabled='disabled' value='未被選'>";
-                        }
-
-
-                        echo "</td><td>";
-                        if($rs['r4']!=NULL) {
-                            echo "<input type='button' disabled='disabled' value='已被選'>";
-                        }else {
-                            echo "<input type='button' disabled='disabled' value='未被選'>";
-                        }
-
-                        echo "</td><td>";
-
-                        $serno=$rs['serno'];
-                        echo "<a id='button' href='roomDelete.php?serno=$serno'>刪除</a>";
-                    
-                    echo "</td></tr>";
-                     
-
-                }
-
+                    require('gameModel.php');
+                    adminShowTeam()
                 ?>
                 <tr><td colspan="6"></td></tr>
                 <tr>
