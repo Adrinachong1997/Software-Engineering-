@@ -1,9 +1,80 @@
 <?php
 require("dbconfig.php");
-
-function countOrder($serno,$pid){
+function updateStatus($tname,$order,$pid,$week){
     global $db;
-    $sql = "SELECT count(week) AS result FROM player_record WHERE pid= $pid AND serno = $serno";
+    switch($pid){
+        case '4':
+        $sql = "UPDATE 
+                    `player_status`
+                SET 
+                    tname   = ($tname),
+                    week    = ($week),
+                    -- p1      = (0),
+                    -- p2      = (0),
+                    -- p3      = p3+1
+                    p4         = p4+1
+                -- `status`    = (0)
+                 WHERE 
+                    week = '$week'";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
+        case '3':
+        $sql = "UPDATE 
+                    `player_status`
+                SET 
+                    tname   = ($tname),
+                    week    = ($week),
+                    -- p1      = (0),   
+                    -- p2      = (0),
+                    p3      = p3+1
+                -- `status`    = (0)
+                  WHERE 
+                     week = '$week'";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
+        case '2':
+        $sql = "UPDATE 
+                    `player_status`
+                SET 
+                    tname   = ($tname),
+                    week    = ($week),
+                    -- p1      = (0),
+                    p2      = p2+1
+
+                -- `status`    = (0)
+                 WHERE 
+                    week = '$week'";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
+            case '1':
+            $sql = "UPDATE 
+                        `player_status`
+                    SET 
+                        tname   = ($tname),
+                        week    = ($week),
+                        p1      = p1+1
+                        -- p2      = (1),
+                        -- p3      = (1),
+                        -- p4      = (1),
+                    -- `status`    = `status` +1 
+                     WHERE 
+                        week = '$week'";
+                $stmt = mysqli_prepare($db, $sql);
+                mysqli_stmt_execute($stmt); //執行SQL
+                $result = mysqli_stmt_get_result($stmt); 
+                break;
+   }
+    return $result;
+}
+function countOrder($tname,$pid){
+    global $db;
+    $sql = "SELECT count(week) AS result FROM player_record WHERE pid= $pid AND tname = $tname";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
@@ -11,7 +82,7 @@ function countOrder($serno,$pid){
     return $rs['result'];
 
 }
-function insertOrder($serno,$pid,$order,$currWeek){
+function insertOrder($tname,$pid,$order,$currWeek){
     global $db;
     $acc_cost = getAccCost($pid);
     $original_stock = "15";
@@ -44,7 +115,7 @@ function insertOrder($serno,$pid,$order,$currWeek){
         $sql = "UPDATE 
                     `player_record`
                 SET 
-                    serno = ($serno),
+                    tname = ($tname),
                     original_stock = ($original_stock),
                     expected_arrival = ($expected_arrival),
                     actual_arrival = ($actual_arrival),
@@ -59,13 +130,13 @@ function insertOrder($serno,$pid,$order,$currWeek){
     } else {
         $sql = "INSERT INTO 
                     `player_record`
-                (serno,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+                (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
                 VALUES
-                ($serno,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
+                ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
     }
     echo $sql;
 	$stmt = mysqli_prepare($db, $sql);
-	mysqli_stmt_bind_param($stmt, "iii",$serno,$pid,$order);
+	mysqli_stmt_bind_param($stmt, "iii",$tname,$pid,$order);
     mysqli_stmt_execute($stmt); 
 }
 function getAccCost($pid)
@@ -102,46 +173,46 @@ function getDemand($pid,$currWeek)
     $rs = mysqli_fetch_assoc($result);
     return $rs['result'];
 }
-function getOrderList($serno,$pid) 
+function getOrderList($tname,$pid) 
 {
     global $db;
-    $sql = "SELECT * FROM player_record WHERE pid=? AND serno =?";
+    $sql = "SELECT * FROM player_record WHERE pid=? AND tname =?";
     $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_bind_param($stmt, "ii", $pid, $serno);
+    mysqli_stmt_bind_param($stmt, "ii", $pid, $tname);
     mysqli_stmt_execute($stmt); //執行SQL
     $result = mysqli_stmt_get_result($stmt); 
     return $result;
 }
-function r_playerrecord($serno){//清除playerrecord資料庫
+function r_playerrecord($tname){//清除playerrecord資料庫
     global $db;
     $sql = "TRUNCATE TABLE player_record";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);  
     // $sql = "INSERT INTO player_record 
-    //     (serno,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+    //     (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
     //     values
-    //     ($serno,4,0,15,0,0,0,15,15,0,0)";
+    //     ($tname,4,0,15,0,0,0,15,15,0,0)";
     //     $stmt = mysqli_prepare($db, $sql);
     //     mysqli_stmt_execute($stmt);  
     for($i = 4; $i > 0; $i--){
         $sql = "INSERT INTO player_record 
-        (serno,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+        (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
         values
-        ($serno,($i),0,15,0,0,0,15,15,0,0)";
+        ($tname,($i),0,15,0,0,0,15,15,0,0)";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_execute($stmt);  
     }
     
 	// return;
 }
-function r_status($serno,$week)
+function r_status($tname,$week)
 {
     global $db;
     $sql = "TRUNCATE TABLE player_status";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt); 
-    $sql ="INSERT INTO player_status (id,serno,week,p1,p2,p3,p4,`status`)
-    VALUES (1,($serno),($week)+1,0,0,0,0,0)";
+    $sql ="INSERT INTO player_status (id,tname,week,p1,p2,p3,p4,`status`)
+    VALUES (1,($tname),($week)+1,0,0,0,0,0)";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);  
     return;
