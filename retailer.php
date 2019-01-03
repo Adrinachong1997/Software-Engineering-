@@ -4,7 +4,7 @@ require("orderModel.php");
 require("playerModel.php");
 global $db;
 $pid=4;
-$serno=1;
+$tname=1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@ $serno=1;
 		</thead>
 		<tbody>
 			<?php
-				$result = getOrderList($serno,$pid);
+				$result = getOrderList($tname,$pid);
 				while (	$rs = mysqli_fetch_assoc($result)) {
 					echo 
 					"<tr>",
