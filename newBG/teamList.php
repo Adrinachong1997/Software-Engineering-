@@ -14,7 +14,7 @@
             <form id="team" method="post" action="teamUpdate.php" accept-charset="utf-8">
                 <tr>
                     <td colspan="5" id="background"><font size="6">已存在的房間</font></td>
-                </tr>  
+                </tr>
                 <tr>
                     <td colspan="5" id="background"><font size="4">
                         用戶名 : <?php require("dbconfig.php");

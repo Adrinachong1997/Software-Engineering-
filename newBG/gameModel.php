@@ -10,7 +10,7 @@ function ftyUpdate() {
             '<tr><td colspan="2">',
                 '<font size="6">資料已新增</font>',
             '</td></tr>';
-            
+
             for($i = 0 ; $i < 50 ; $i++) {
                 $sqlData = $setno[$i];
                 $no = $i + 1;
@@ -38,8 +38,8 @@ function showTeam(){
     $sql = "select * from tgame;";
     $stmt = mysqli_prepare($db, $sql );
     mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    while (	$rs = mysqli_fetch_assoc($result)) {    
+    $result = mysqli_stmt_get_result($stmt);
+    while (	$rs = mysqli_fetch_assoc($result)) {
         echo"<tr><td>" , $rs['tname'] ,
             "</td><td>";
             if($rs['r1']!=NULL) {
@@ -64,7 +64,7 @@ function showTeam(){
                 echo "<input type='button' disabled='disabled' value='已被選'>";
             }else {
                 echo "<input name='role' type='radio' id='role' value='4;" . $rs['tname'] . "' >";
-            }     
+            }
         "</td></tr>";
     }
 }
@@ -74,7 +74,7 @@ function adminShowTeam(){
     $sql = "select * from tgame;";
     $stmt = mysqli_prepare($db, $sql );
     mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
+    $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {
         echo"<tr><td>" , $rs['tname'] ,
             "</td><td>";
@@ -108,7 +108,7 @@ function adminShowTeam(){
     }
 }
 
-function createTeam(){   
+function createTeam(){
     require("userModel.php");
     //header('refresh: 5;url=""');
     $id = getCurrentUser();
@@ -117,9 +117,9 @@ function createTeam(){
     $tname=$_POST['tname'];
     if ($tname) {
         $sql1 = "insert into tgame (tname,r$role) values (?,?);";
-        $stmt1 = mysqli_prepare($db, $sql1); 
-        mysqli_stmt_bind_param($stmt1, "ss",$tname,$id); 
-        mysqli_stmt_execute($stmt1);  
+        $stmt1 = mysqli_prepare($db, $sql1);
+        mysqli_stmt_bind_param($stmt1, "ss",$tname,$id);
+        mysqli_stmt_execute($stmt1);
         echo "room added.";
     } else {
         echo "empty title, cannot insert.";
@@ -128,12 +128,14 @@ function createTeam(){
 
 function updateTeam(){
     global $db;
-    require('userModel.php');  
+    require('userModel.php');
     $id=getCurrentUser();
-    $role = $_POST['role'];
-    $_SESSION['role'] = $_POST['role'];   
+    if(isset($_POST['role'])){
+        $role = $_POST['role'];
+        $_SESSION['role'] = $_POST['role'];
+    }
     $uid = $id ;//$rs['id'];
-    $str_sec = explode(";",$_SESSION['role']);       
+    $str_sec = explode(";",$_SESSION['role']);
     echo '<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>',
         "</tr><tr><td>",
         "隊伍名稱</td><td>$str_sec[1]</td></tr>",
@@ -144,32 +146,32 @@ function updateTeam(){
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
         mysqli_stmt_execute($stmt); //執行SQL
-        $result = mysqli_stmt_get_result($stmt); 
-    } 
+        $result = mysqli_stmt_get_result($stmt);
+    }
     else if ($str_sec[0] == 2) {
         echo '<tr><td>角色</td><td>大盤商</td></tr>';
         $sql = "update tgame set r2 = ? where tname = ? ";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
         mysqli_stmt_execute($stmt); //執行SQL
-        $result = mysqli_stmt_get_result($stmt);  
-    } 
+        $result = mysqli_stmt_get_result($stmt);
+    }
     else if($str_sec[0] == 3) {
         echo '<tr><td>角色</td><td>批發商</td></tr>';
         $sql = "update tgame set r3 = ? where tname = ? ";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
         mysqli_stmt_execute($stmt); //執行SQL
-        $result = mysqli_stmt_get_result($stmt);     
-    } 
-    else if ($str_sec[0] == 4) {	
+        $result = mysqli_stmt_get_result($stmt);
+    }
+    else if ($str_sec[0] == 4) {
         echo '<tr><td>角色</td><td>零售商</td></tr>';
         $sql = "update tgame set r4 = ? where tname = ? ";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
         mysqli_stmt_execute($stmt); //執行SQL
-        $result = mysqli_stmt_get_result($stmt);      
-    } 
+        $result = mysqli_stmt_get_result($stmt);
+    }
     else {
         echo "cannot update!";
     }
