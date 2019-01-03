@@ -23,16 +23,16 @@
                 </tr>       
                 <tr>
                     <td>你的團隊名稱</td>
-                    <td>工廠Factory</td>
+                    <!-- <td>工廠Factory</td>
                     <td>大盤商Distributer</td>
                     <td>批發商Wholesale</td>
-                    <td>零售商Retailer</td>
+                    <td>零售商Retailer</td>-->
                 </tr>
                 <tr>
                     <td>
                         <label><input name="tname" type="text" id="tname" /></label>
                     </td>
-                    <td>
+                    <!-- <td>
                         <label><input name="role" type="radio" id="r1" value="1"/></label>
                     </td>
                     <td>
@@ -43,7 +43,7 @@
                     </td>
                     <td>
                         <label><input name="role" type="radio" id="r4" value="4"/></label>
-                    </td>
+                    </td>-->
                 </tr>
                 <tr>
                     <td colspan="5"><input id="button" type="submit" value="儲存" /></td>
