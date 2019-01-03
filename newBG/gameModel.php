@@ -111,18 +111,21 @@ function adminShowTeam(){
 function createTeam(){
     require("userModel.php");
     //header('refresh: 5;url=""');
-    $id = getCurrentUser();
+    //$id = getCurrentUser();
     global $db;
-    $role=$_POST['role'];
+    //$role=$_POST['role'];
     $tname=$_POST['tname'];
     if ($tname) {
-        $sql1 = "insert into tgame (tname,r$role) values (?,?);";
+        //$sql1 = "insert into tgame (tname,r$role) values (?,?);";
+        $sql1 = "insert into tgame (tname) values (?);";
         $stmt1 = mysqli_prepare($db, $sql1);
-        mysqli_stmt_bind_param($stmt1, "ss",$tname,$id);
+        mysqli_stmt_bind_param($stmt1, "s",$tname);
         mysqli_stmt_execute($stmt1);
         echo "room added.";
+        header('Location: teamList.php');
     } else {
         echo "empty title, cannot insert.";
+        header('Location: teamList.php');
     }
 }
 
@@ -220,5 +223,9 @@ function gameStart(){
             }
         }
     }
+}
+
+function creatrGameStart(){
+    $str_sec = explode(";",$_SESSION['role']);
 }
 ?>
