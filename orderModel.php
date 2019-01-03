@@ -1,5 +1,6 @@
 <?php
 require("dbconfig.php");
+
 function countOrder($serno,$pid){
     global $db;
     $sql = "SELECT count(week) AS result FROM player_record WHERE pid= $pid AND serno = $serno";
@@ -8,6 +9,7 @@ function countOrder($serno,$pid){
     $result = mysqli_stmt_get_result($stmt); 
     $rs = mysqli_fetch_assoc($result);
     return $rs['result'];
+
 }
 function insertOrder($serno,$pid,$order,$currWeek){
     global $db;
@@ -103,7 +105,7 @@ function getDemand($pid,$currWeek)
 function getOrderList($serno,$pid) 
 {
     global $db;
-    $sql = "select * from player_record where pid=? and serno =?";
+    $sql = "SELECT * FROM player_record WHERE pid=? AND serno =?";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_bind_param($stmt, "ii", $pid, $serno);
     mysqli_stmt_execute($stmt); //執行SQL
@@ -131,4 +133,16 @@ function r_playerrecord($serno){//清除playerrecord資料庫
     }
     
 	// return;
+}
+function r_status($serno,$week)
+{
+    global $db;
+    $sql = "TRUNCATE TABLE player_status";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt); 
+    $sql ="INSERT INTO player_status (id,serno,week,p1,p2,p3,p4,`status`)
+    VALUES (1,($serno),($week)+1,0,0,0,0,0)";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);  
+    return;
 }
