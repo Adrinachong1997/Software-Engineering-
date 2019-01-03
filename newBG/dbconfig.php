@@ -9,7 +9,7 @@
 
     function checkLogin() {
         //echo $_SESSION["uID"];
-        
+
         if ( ! isset($_SESSION["id"]) or $_SESSION["id"]=='') {
                 header("Location:loginView.php");
         }

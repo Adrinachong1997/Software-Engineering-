@@ -14,7 +14,7 @@
             <form id="team" method="post" action="teamUpdate.php" accept-charset="utf-8">
                 <tr>
                     <td colspan="5" id="background"><font size="6">已存在的房間</font></td>
-                </tr>  
+                </tr>
                 <tr>
                     <td colspan="5" id="background"><font size="4">
                         用戶名 : <?php require("dbconfig.php");
@@ -28,14 +28,14 @@
                     <td width="20px">批發商</br>Wholesale</td>
                     <td width="20px">零售商</br>Retailer</td>
                 </tr>
-                <?php  
+                <?php
                 $sql = "select * from tgame;";
                 $stmt = mysqli_prepare($db, $sql );
                 mysqli_stmt_execute($stmt);
-                $result = mysqli_stmt_get_result($stmt); 
-              
+                $result = mysqli_stmt_get_result($stmt);
+
                 while (	$rs = mysqli_fetch_assoc($result)) {
-                  
+
                     echo"<tr><td>" , $rs['tname'] ,
                         "</td><td>";
                         if($rs['r1']!=NULL) {
@@ -64,8 +64,6 @@
                         }else {
                             echo "<input name='role' type='radio' id='role' value='4;" . $rs['tname'] . "' >";
                         }
-                        
-                    
                     "</td></tr>";
 
                 }

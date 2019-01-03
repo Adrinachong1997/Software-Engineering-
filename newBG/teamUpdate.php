@@ -16,22 +16,20 @@
 				<?php
                 require('dbconfig.php');
                 require('userModel.php');
-				
+
                 $id=getCurrentUser();
-
-                $role = $_POST['role'];
-                
+                if (isset($_POST['role'])){
+					$role = $_POST['role'];
+					$_SESSION['role'] = $_POST['role'];
+				}
 				$uid = $id ;//$rs['id'];
+				$str_sec = explode(";",$_SESSION['role']);
 
-				$str_sec = explode(";",$role);
-				
-                       
 				echo '<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>',
 					"</tr><tr><td>",
-                 "隊伍名稱</td><td>$str_sec[1]</td></tr>",
-            
+                "隊伍名稱</td><td>$str_sec[1]</td></tr>",
+
 				print_r($str_sec);
-                
 
 				if ($str_sec[0] == 1) {
                     echo '<tr><td>角色</td><td>工廠</td></tr>';
@@ -39,40 +37,36 @@
 					$stmt = mysqli_prepare($db, $sql);
 					mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
                     mysqli_stmt_execute($stmt); //執行SQL
-                    $result = mysqli_stmt_get_result($stmt); 
-                 
+                    $result = mysqli_stmt_get_result($stmt);
 
-				} 
-
+				}
 				else if ($str_sec[0] == 2) {
                     echo '<tr><td>角色</td><td>大盤商</td></tr>';
 					$sql = "update tgame set r2 = ? where tname = ? ";
 					$stmt = mysqli_prepare($db, $sql);
 					mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
 					mysqli_stmt_execute($stmt); //執行SQL
-                    $result = mysqli_stmt_get_result($stmt); 
-              
-				} 
+                    $result = mysqli_stmt_get_result($stmt);
 
+				}
 				else if($str_sec[0] == 3) {
                     echo '<tr><td>角色</td><td>批發商</td></tr>';
 					$sql = "update tgame set r3 = ? where tname = ? ";
 					$stmt = mysqli_prepare($db, $sql);
 					mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
 					mysqli_stmt_execute($stmt); //執行SQL
-                    $result = mysqli_stmt_get_result($stmt); 
-                  
-				} 
+                    $result = mysqli_stmt_get_result($stmt);
 
-				else if ($str_sec[0] == 4) {	
+				}
+				else if ($str_sec[0] == 4) {
                     echo '<tr><td>角色</td><td>零售商</td></tr>';
 					$sql = "update tgame set r4 = ? where tname = ? ";
 					$stmt = mysqli_prepare($db, $sql);
 					mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
 					mysqli_stmt_execute($stmt); //執行SQL
-                    $result = mysqli_stmt_get_result($stmt); 
-                  
-				} 
+                    $result = mysqli_stmt_get_result($stmt);
+
+				}
 				else {
 					echo "cannot update!";
 				}
