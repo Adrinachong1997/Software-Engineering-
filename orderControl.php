@@ -16,14 +16,13 @@ switch($operation){
     case "reset":
         r_period();
         r_playerrecord($serno);
+        r_status($serno,$week);
         break;
     case "update":
         updatePeriod();
         insertOrder($serno,$pid,$order,$week);
         getCurrentDemand($pid,$week);
-        //updatexpected_arrival($serno,$cid,$week);
-        //updateactual_shipment($order);
-        //updateexpected_arrival($order,$week);
+        updateStatus($serno,$order,$pid,$week);
         break;
     
 }
