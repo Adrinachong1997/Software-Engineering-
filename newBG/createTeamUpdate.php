@@ -8,6 +8,7 @@
         <title>建立隊伍</title>
         <style type="text/css">
         </style>
+        
     </head>
     <body>
         <table id="main">
@@ -22,6 +23,7 @@
                     //創造隊伍
                     require("gameModel.php");
                     createTeam();
+                    //gameStart();
                 ?>
             </form>
         </table>
