@@ -20,10 +20,11 @@
                 $id=getCurrentUser();
 
                 $role = $_POST['role'];
-                
+				$_SESSION['role'] = $_POST['role'];
+				
 				$uid = $id ;//$rs['id'];
 
-				$str_sec = explode(";",$role);
+				$str_sec = explode(";",$_SESSION['role']);
 				
                        
 				echo '<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>',
