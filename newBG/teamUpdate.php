@@ -7,7 +7,8 @@
         <meta name="description" content=" " />
         <title>配隊成功！</title>
         <style type="text/css">
-        </style>
+		</style>
+		<meta http-equiv="refresh" content="5">
     </head>
     <body>
 		<table id="main">
@@ -15,7 +16,7 @@
 				<?php
                 require('dbconfig.php');
                 require('userModel.php');
-  
+				
                 $id=getCurrentUser();
 
                 $role = $_POST['role'];
@@ -23,6 +24,7 @@
 				$uid = $id ;//$rs['id'];
 
 				$str_sec = explode(";",$role);
+				
                        
 				echo '<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>',
 					"</tr><tr><td>",

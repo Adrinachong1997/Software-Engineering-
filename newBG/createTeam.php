@@ -17,16 +17,16 @@
     <body>
         <!-- 建立隊伍的介面-->
         <table id="main">
-            <form id="team" method="post" action="team.php" accept-charset="utf-8">
+            <form id="team" method="post" action="createTeamUpdate.php" accept-charset="utf-8">
                 <tr>
                     <td colspan="5" id="background"><font size="6">隊伍配對</font></td>
                 </tr>       
                 <tr>
                     <td>你的團隊名稱</td>
-                    <td>工廠</td>
-                    <td>大盤商</td>
-                    <td>批發商</td>
-                    <td>零售商</td>
+                    <td>工廠Factory</td>
+                    <td>大盤商Distributer</td>
+                    <td>批發商Wholesale</td>
+                    <td>零售商Retailer</td>
                 </tr>
                 <tr>
                     <td>

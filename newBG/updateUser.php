@@ -32,7 +32,7 @@
 				?>
 				<tr>
 					<td>
-						<a id="button" href="test.php">回遊戲大廳</a>
+						<a id="button" onclick="history.go(-2)">回遊戲大廳</a>
 					</td>
 				</tr>
 			</form>

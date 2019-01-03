@@ -13,8 +13,9 @@
         <table id="main">
             <form id="team" method="post" accept-charset="utf-8">
                 <tr>
-                    <td colspan="5" id="background"><img src="beer.gif" width="400" height="250"/></br><font size="6">BEER GAME</font></td>
+                    <td colspan="5" id="background"><img src="beer.gif" width="550" height="350"/></br><font size="6">BEER GAME</font></td>
                 </tr>  
+        
                 <tr>
                     <td>
                         <a id="button" href="enroll.html" >註冊</a>

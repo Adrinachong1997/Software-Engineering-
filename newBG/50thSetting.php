@@ -12,7 +12,7 @@
             function random() {
                 var r = document.getElementsByTagName('input');
                 for(i = 0 ; i < 50 ; i++) {
-    　              r[i].value=randomInput(1, 50);
+    　              r[i].value=randomInput(1, 20);
                 }
                 function randomInput(min, max) {
                     return parseInt(Math.random() * (max-min+1) + min);
@@ -25,7 +25,7 @@
     <body>
 
     <table id="main">
-            <form id="setno" method="post" action="send.php" accept-charset="utf-8">
+            <form id="setno" method="post" action="50thUpdate.php" accept-charset="utf-8">
                 <tr>
                     <td colspan="5" id="background"><font size="6">五十期資料設定</font></td>
                 </tr>       
@@ -128,6 +128,9 @@
                 <tr>
                     <td colspan="5"><input id="button" type="reset" value="重新填寫" /></td>
                 </tr>
+                <tr>
+                    <td colspan="5"><a id="button" href="50thDelete.php">刪除</a></td>;
+                    
                 </tr>
             </form>
   

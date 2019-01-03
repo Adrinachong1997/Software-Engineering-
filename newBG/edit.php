@@ -15,7 +15,7 @@
         </head>
         <body>
         <table id="main">
-            <form id="team" method="post" action="updateuser.php" enctype="multipart/form-data">
+            <form id="team" method="post" action="updateUser.php" enctype="multipart/form-data">
                 <tr>
                     <td colspan="2" id="background"><font size="6">編輯用戶資料</font></td>
                 </tr>

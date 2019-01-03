@@ -17,7 +17,7 @@
         $setno=$_POST['setno'];
         $sqlData=0;
         //把50期需求存入資料庫
-        if ($db) {echo'<table id="main" method="post" action="update.php">',
+        if ($db) {echo'<table id="main" method="post" >',
             '<tr><td colspan="2">',
                 '<font size="6">資料已新增</font>',
             '</td></tr>';
@@ -37,7 +37,7 @@
         ?>	
         <!--啟動遊戲的按鈕 -->
         <table id="main">
-            <form id="setno" method="post" action="gstart.php" accept-charset="utf-8">
+            <form id="setno" method="post" action="gameStart.php" accept-charset="utf-8">
                 <tr><td colspan="2"> 
                     <input name="button" type="submit" id="button" value="啟動遊戲" />    
                 </td></tr>

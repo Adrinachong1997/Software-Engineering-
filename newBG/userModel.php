@@ -5,7 +5,8 @@ function login($id, $pwd)
 {
     global $db;
     $_SESSION['id']=0;
-	$_SESSION['sort']='';
+    $_SESSION['sort']='';
+    $_SESSION['admin']='';
     if ($id> " ") {
         $sql = "select * from user where id=? and password=?";
         $stmt = mysqli_prepare($db, $sql);
@@ -13,15 +14,34 @@ function login($id, $pwd)
         mysqli_stmt_execute($stmt); //執行SQL
         $result = mysqli_stmt_get_result($stmt); 
         $r=mysqli_fetch_assoc($result);
+
         if($r) {
 			$_SESSION['id'] = $r['id'];
-			$_SESSION['sort'] = $r['sort'];
+            $_SESSION['sort'] = $r['sort'];
             return 1;
-        } else {
+        } 
+        
+        else {
             return 0;
         } 
     } 
     return 0;
+}
+
+//檢查是否管理員
+function checkAdmin($id, $pwd){
+    global $db;
+
+    $sql = "select * from user where id=? and password=?";
+        $stmt = mysqli_prepare($db, $sql);
+        mysqli_stmt_bind_param($stmt, "ss", $id, $pwd);
+        mysqli_stmt_execute($stmt); //執行SQL
+        $result = mysqli_stmt_get_result($stmt); 
+        $r=mysqli_fetch_assoc($result);
+
+        if ($r['admin']==1){
+            return 1;
+        }
 }
 
 function id_check($id) 

@@ -22,6 +22,7 @@
                 <?php
                 require('dbconfig.php');
                 require("userModel.php");
+                header('refresh: 5;url=""');
                 $id = getCurrentUser();
 
                 global $db;
