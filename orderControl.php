@@ -19,10 +19,11 @@ switch($operation){
         r_status($tname,$week);
         break;
     case "update":
-        updatePeriod();
+        updatePeriod($week);
         insertOrder($tname,$pid,$order,$week);
         getCurrentDemand($pid,$week);
         updateStatus($tname,$order,$pid,$week);
+        updataWeek($order,$tname,$week,$pid);
         break;
     
 }
