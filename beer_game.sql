@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2019 年 01 月 02 日 11:35
+-- 產生時間： 2019 年 01 月 04 日 03:22
 -- 伺服器版本: 10.1.37-MariaDB
 -- PHP 版本： 7.3.0
 
@@ -105,7 +105,7 @@ CREATE TABLE `period` (
 --
 
 INSERT INTO `period` (`id`, `week`) VALUES
-(1, 4);
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,7 @@ INSERT INTO `player` (`pid`, `player_n`) VALUES
 
 CREATE TABLE `player_record` (
   `id` int(20) NOT NULL,
-  `serno` int(20) NOT NULL,
+  `tname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `pid` int(20) NOT NULL,
   `week` int(20) NOT NULL,
   `original_stock` int(20) NOT NULL,
@@ -153,11 +153,35 @@ CREATE TABLE `player_record` (
 -- 資料表的匯出資料 `player_record`
 --
 
-INSERT INTO `player_record` (`id`, `serno`, `pid`, `week`, `original_stock`, `expected_arrival`, `actual_arrival`, `orders`, `cost`, `acc_cost`, `demand`, `actual_shipment`) VALUES
-(1, 1, 4, 1, 15, 0, 0, 0, 15, 15, 44, 0),
-(2, 1, 4, 2, 15, 0, 0, 5, 15, 15, 23, 0),
-(3, 1, 4, 3, 15, 0, 0, 5, 15, 15, 43, 0),
-(4, 1, 4, 4, 15, 0, 0, 5, 15, 15, 32, 0);
+INSERT INTO `player_record` (`id`, `tname`, `pid`, `week`, `original_stock`, `expected_arrival`, `actual_arrival`, `orders`, `cost`, `acc_cost`, `demand`, `actual_shipment`) VALUES
+(1, '1', 4, 1, 15, 0, 0, 5, 15, 15, 44, 15),
+(2, '1', 3, 0, 15, 0, 0, 0, 15, 15, 0, 0),
+(3, '1', 2, 0, 15, 0, 0, 0, 15, 15, 0, 0),
+(4, '1', 1, 0, 15, 0, 0, 0, 15, 15, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `player_status`
+--
+
+CREATE TABLE `player_status` (
+  `id` int(20) NOT NULL,
+  `tname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `week` int(20) NOT NULL,
+  `p1` int(20) NOT NULL,
+  `p2` int(20) NOT NULL,
+  `p3` int(20) NOT NULL,
+  `p4` int(20) NOT NULL,
+  `status` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 資料表的匯出資料 `player_status`
+--
+
+INSERT INTO `player_status` (`id`, `tname`, `week`, `p1`, `p2`, `p3`, `p4`, `status`) VALUES
+(1, '1', 1, 0, 0, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -288,6 +312,12 @@ ALTER TABLE `player_record`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `player_status`
+--
+ALTER TABLE `player_status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `stu_tel`
 --
 ALTER TABLE `stu_tel`
@@ -332,6 +362,12 @@ ALTER TABLE `period`
 --
 ALTER TABLE `player_record`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- 使用資料表 AUTO_INCREMENT `player_status`
+--
+ALTER TABLE `player_status`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表 AUTO_INCREMENT `stu_tel`
