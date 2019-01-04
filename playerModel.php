@@ -1,9 +1,9 @@
 <?php
 require("dbconfig.php");
-function updatePeriod() 
+function updatePeriod($week) 
 {
     global $db;
-    $sql = " UPDATE `period` SET `week` = week+1 where id = 1";
+    $sql = " UPDATE `period` SET `week` = $week where id = 1";
 	$stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt); 
 }
