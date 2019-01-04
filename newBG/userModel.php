@@ -39,7 +39,20 @@ function checkAdmin($id, $pwd){
             return 1;
         }
 }
+//取得目前玩家的隊名
+function get_tname($uid){
+    global $db;
+    
+        $sql = "select tname from tgame where r1=? or r2=? or r3=? or r4=?";
+        $stmt = mysqli_prepare($db, $sql);
+        mysqli_stmt_bind_param($stmt, "ssss", $uid, $uid, $uid, $uid);
+        mysqli_stmt_execute($stmt); //執行SQL
+        $result = mysqli_stmt_get_result($stmt); 
+        $r=mysqli_fetch_assoc($result);
+        return $r['tname'];
+         
 
+}
 function id_check($id) 
 {
     global $db;
