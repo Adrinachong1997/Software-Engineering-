@@ -8,6 +8,7 @@
         <title>建立隊伍</title>
         <style type="text/css">
         </style>
+        
     </head>
     <body>
         <table id="main">
@@ -18,26 +19,11 @@
                 <tr>
                     <td><img src="1.gif" width="200" height="200"/></br>等待遊戲開始</td>
                 </tr>
-                
                 <?php
-                require('dbconfig.php');
-                require("userModel.php");
-                header('refresh: 5;url=""');
-                $id = getCurrentUser();
-
-                global $db;
-             
-                $role=$_POST['role'];
-                $tname=$_POST['tname'];
-                if ($tname) {
-                    $sql1 = "insert into tgame (tname,r$role) values (?,?);";
-                    $stmt1 = mysqli_prepare($db, $sql1); 
-                    mysqli_stmt_bind_param($stmt1, "ss",$tname,$id); 
-                    mysqli_stmt_execute($stmt1);  
-                    echo "room added.";
-                } else {
-                    echo "empty title, cannot insert.";
-                }
+                    //創造隊伍
+                    require("gameModel.php");
+                    createTeam();
+                    //gameStart();
                 ?>
             </form>
         </table>

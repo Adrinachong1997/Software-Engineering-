@@ -1,3 +1,4 @@
+
 <?php
 require_once("dbconfig.php");
 
@@ -23,7 +24,6 @@ function login($id, $pwd)
     } 
     return 0;
 }
-
 function id_check($id) 
 {
     global $db;
@@ -41,24 +41,23 @@ function id_check($id)
         } 
 
 }
-
 function loginout() 
 {
+    session_start();
     session_destroy();
     unset($_SESSION['id']);
     return;
 }
-
 function getRole() 
 {
+    session_start();
     return $_SESSION['sort'];
 }
-
 function getCurrentUser() 
 {
+    session_start();
     return $_SESSION['id'];
 }
-
 function pic_upload($name){
     if($_FILES['upload']['name']!=""){
         $target_path = "uploadfiles/"; //指定上傳資料夾
@@ -71,7 +70,6 @@ function pic_upload($name){
         }
     } 
 }
-
 function pic_name($name){
     if(file_exists("uploadfiles/".$name.".png")){
         return $name;
