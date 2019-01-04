@@ -2,7 +2,7 @@
 <?php session_start();?>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link rel="stylesheet" type="text/css" href="loginView.css" />
         <meta charset="UTF-8"/>
         <title>登入遊戲</title>
         <style type="text/css">
