@@ -51,3 +51,14 @@ a{
     text-decoration: none;
     color: #000000;
 }
+
+#game{
+    background-color:#37322f86;  
+    color:#f0f8ff; 
+    padding: 1px 1px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    transition-duration: 0.2s;
+    border: 0px solid ;
+}
