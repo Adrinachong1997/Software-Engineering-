@@ -10,22 +10,22 @@
         //     $currWeek = $rs['week']+1;
         //     echo $currWeek;
         // }
-
         $result = countOrder($tname,$pid);
-        if($result == 1)
+        // if($result == 1)
         $currWeek = $result;
         echo $currWeek;
     ?>
     周
     </p>
-    <p>消費者上週要求的啤酒數量：
-    <?php //從gamecycle撈目前的消費者要去
-        $result= getCurrentDemand($pid,$currWeek);
-        if($rs=mysqli_fetch_assoc($result)){
-            echo $rs['demand'];
-        }
-    ?>
-    </p>
+    
+    <!-- <p>消費者上週要求的啤酒數量：
+      //從gamecycle撈目前的消費者要去 -->
+        <!--  $result= getCurrentDemand($pid,$currWeek);
+         if($rs=mysqli_fetch_assoc($result)){
+             echo $rs['demand'];
+         } -->
+    
+    </p> 
     請輸入本週訂購的啤酒數量:<?php ?>
     <input type = "hidden" name="week" value="<?php echo $currWeek ?>"/>
     <input type ="text" name="order">
