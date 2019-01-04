@@ -102,7 +102,17 @@ function countOrder($tname,$pid){
     return $rs['result'];
     // SELECT (week) AS result FROM player_status WHERE   tname = $tname
 }
-
+function validateStatus($tname,$week,$pid){
+    global $db;
+    $player = 'p'.$pid;
+    $sql = "SELECT $player AS result FROM player_status WHERE  tname = ? AND week = ?";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "ii",$tname,$week);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['result'];
+}
 function insertOrder($tname,$pid,$order,$currWeek){
     global $db;
     $acc_cost = getAccCost($pid);
@@ -149,13 +159,13 @@ function insertOrder($tname,$pid,$order,$currWeek){
                 WHERE 
                     pid = '$pid'";
     } else {
-        
+        if(validateStatus($tname,$currWeek,$pid)!=$currWeek){
             $sql = "INSERT INTO 
                         `player_record`
                     (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
                     VALUES
                     ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
-        
+        }
     }
     // echo validateStatus($tname,$currWeek,$pid);
     // echo $sql;
