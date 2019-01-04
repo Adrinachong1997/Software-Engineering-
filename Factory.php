@@ -12,7 +12,7 @@ $tname=1;
 	<title>工廠</title>
 </head>
 
-<body>hhhh
+<body>
     <H1>Factory</H1>
 	<?php include("formTemplate.php"); ?>
 	<hr>
