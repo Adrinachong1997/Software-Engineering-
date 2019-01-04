@@ -3,7 +3,7 @@ require_once("dbconfig.php");
 
 function ftyUpdate() {
         global $db;
-        $setno=$_POST['setno'];
+        $demand=$_POST['demand'];
         $sqlData=0;
         //把50期需求存入資料庫
         if ($db) {echo'<table id="main" method="post" >',
@@ -12,9 +12,9 @@ function ftyUpdate() {
             '</td></tr>';
 
             for($i = 0 ; $i < 50 ; $i++) {
-                $sqlData = $setno[$i];
+                $sqlData = $demand[$i];
                 $no = $i + 1;
-                $sql = "insert into gamecycle (no, setno) values (?,?)";
+                $sql = "insert into gamecycle (week, demand) values (?,?)";
                 $stmt = mysqli_prepare($db, $sql); //prepare sql statement
                 mysqli_stmt_bind_param($stmt, "ii", $no, $sqlData); //bind parameters with variables
                 mysqli_stmt_execute($stmt);  //執行SQL
@@ -26,9 +26,9 @@ function ftyUpdate() {
 
 function ftyDelete(){
     global $db;
-	$sql = "delete from gamecycle where setno";
+	$sql = "delete from gamecycle where demand";
 	$stmt = mysqli_prepare($db, $sql );
-	mysqli_stmt_bind_param($stmt, "i", $setno);
+	mysqli_stmt_bind_param($stmt, "i", $demand);
 	mysqli_stmt_execute($stmt);
 	header('Location: 50thSetting.php');
 }
