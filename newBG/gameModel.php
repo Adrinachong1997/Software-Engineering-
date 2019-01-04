@@ -40,7 +40,7 @@ function showTeam(){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {
-        echo"<tr><td>" , $rs['tname'] ,
+        echo"<tr><td>" , "<input id='game' type='button' disabled='disabled' value='　".$rs['tname']."　' >" ,
             "</td><td>";
             if($rs['r1']!=NULL) {
                 echo "<input type='button' disabled='disabled' value='已被選'>";
@@ -65,7 +65,13 @@ function showTeam(){
             }else {
                 echo "<input name='role' type='radio' id='role' value='4;" . $rs['tname'] . "' >";
             }
-        "</td></tr>";
+            echo"</td><td>";
+            if($rs['go']==1){
+                echo "<input id='game' type='button' disabled='disabled' value='已開始遊戲'>";
+            }else {
+                echo "<input id='game' type='button' disabled='disabled' value='可加入遊戲'>";
+            }
+            echo"</td></tr>";
     }
 }
 
@@ -76,7 +82,7 @@ function adminShowTeam(){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {
-        echo"<tr><td>" , $rs['tname'] ,
+        echo"<tr><td>" ,"<input id='game' type='button' disabled='disabled' value='　".$rs['tname']."　' >",
             "</td><td>";
             if($rs['r1']!=NULL) {
                 echo "<input type='button' disabled='disabled' value='已被選'>";
@@ -100,6 +106,12 @@ function adminShowTeam(){
                 echo "<input type='button' disabled='disabled' value='已被選'>";
             }else {
                 echo "<input type='button' disabled='disabled' value='未被選'>";
+            }
+            echo "</td><td>";
+            if($rs['go']==1){
+                echo "<input id='game' type='button' disabled='disabled' value='已開始遊戲'>";
+            }else {
+                echo "<input id='game' type='button' disabled='disabled' value='可加入遊戲'>";
             }
             echo "</td><td>";
             $serno=$rs['serno'];
