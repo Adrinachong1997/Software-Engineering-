@@ -69,9 +69,31 @@ function updateStatus($tname,$order,$pid,$week){
                 mysqli_stmt_execute($stmt); //執行SQL
                 $result = mysqli_stmt_get_result($stmt); 
                 break;
-   }
-    return $result;
+        }
+        $sql = "UPDATE player_status
+        SET `STATUS` =
+        (SELECT b.C 
+        FROM (SELECT IF((week=p4 AND week=p3 AND week=p2 AND week=p1),1,0) C 
+              FROM `player_status` 
+              WHERE tname =1)`b` 
+        WHERE tname=1)
+        ";
+        $stmt = mysqli_prepare($db, $sql);
+        mysqli_stmt_execute($stmt); //執行SQL
+        $result = mysqli_stmt_get_result($stmt); 
+        return $result;
 }
+// function judgeStatus($order,$pid,$week,$tname){
+//     global $db;
+//     if($pid == $week){
+//         $sql ="UPDATE player_status SET `status`=`status`+1 WHERE tname=$tname";
+    
+//             $stmt = mysqli_prepare($db, $sql);
+//             mysqli_stmt_execute($stmt); //執行SQL
+//             $result = mysqli_stmt_get_result($stmt); 
+//     }
+    
+// }
 function countOrder($tname,$pid){
     global $db;
     $sql = "SELECT count(week) AS result FROM player_record WHERE pid= $pid AND tname = $tname";
