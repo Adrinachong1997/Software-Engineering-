@@ -16,11 +16,11 @@
             //把50期需求存入資料庫
             ftyUpdate();
         ?>	
-        <!--啟動遊戲的按鈕 -->
+        <!--返回的按鈕 -->
         <table id="main">
-            <form id="setno" method="post" action="gameStart.php" accept-charset="utf-8">
+            <form id="demand" method="post"  accept-charset="utf-8">
                 <tr><td colspan="2"> 
-                    <input name="button" type="submit" id="button" value="啟動遊戲" />    
+                    <a id="button" href="adminTeamList.php">返回主頁</a>
                 </td></tr>
             </form>
         </table>
