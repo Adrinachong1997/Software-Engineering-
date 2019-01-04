@@ -1,4 +1,2 @@
-# Software-Engineering-NCNU
-
-## Let's do it
-A new repository to software engineering
+# Beer Game
+![image](https://github.com/Adrinachong1997/Software-Engineering-/blob/master/newBG/beer.gif)
