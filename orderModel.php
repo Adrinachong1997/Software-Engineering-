@@ -4,106 +4,105 @@ function updateStatus($tname,$order,$pid,$week){
     global $db;
     switch($pid){
         case '4':
-        $sql = "UPDATE 
-                    `player_status`
-                SET 
-                    tname   = ($tname),
-                    week    = ($week),
-                    -- p1      = (0),
-                    -- p2      = (0),
-                    -- p3      = p3+1
-                    p4         = p4+1
-                -- `status`    = (0)
-                 WHERE 
-                    week = '$week'";
+            $sql = "UPDATE 
+                        `player_status`
+                    SET 
+                        -- tname   = ($tname),
+                        -- week    = ($week),
+                        -- p1      = (0),
+                        -- p2      = (0),
+                        -- p3      = p3+1
+                        p4         = $week
+                    -- `status`    = (0)
+                    WHERE 
+                        tname = '$tname'";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
             break;
         case '3':
-        $sql = "UPDATE 
-                    `player_status`
-                SET 
-                    tname   = ($tname),
-                    week    = ($week),
-                    -- p1      = (0),   
-                    -- p2      = (0),
-                    p3      = p3+1
-                -- `status`    = (0)
-                  WHERE 
-                     week = '$week'";
+            $sql = "UPDATE 
+                        `player_status`
+                    SET 
+                        -- tname   = ($tname),
+                        -- week    = ($week),
+                        -- p1      = (0),
+                        -- p2      = (0),
+                        -- p3      = p3+1
+                        p3         = $week
+                    -- `status`    = (0)
+                    WHERE 
+                        tname = '$tname'";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
             break;
         case '2':
-        $sql = "UPDATE 
-                    `player_status`
-                SET 
-                    tname   = ($tname),
-                    week    = ($week),
-                    -- p1      = (0),
-                    p2      = p2+1
+            $sql = "UPDATE 
+                        `player_status`
+                    SET 
+                        -- tname   = ($tname),
+                        -- week    = ($week),
+                        -- p1      = (0),
+                        p2      = $week
 
-                -- `status`    = (0)
-                 WHERE 
-                    week = '$week'";
+                    -- `status`    = (0)
+                    WHERE 
+                        tname = '$tname'";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
             break;
-            case '1':
+        case '1':
             $sql = "UPDATE 
                         `player_status`
                     SET 
-                        tname   = ($tname),
-                        week    = ($week),
-                        p1      = p1+1
+                        -- tname   = ($tname),
+                        -- week    = ($week),
+                        p1      = $week
                         -- p2      = (1),
                         -- p3      = (1),
                         -- p4      = (1),
                     -- `status`    = `status` +1 
                      WHERE 
-                        week = '$week'";
-                $stmt = mysqli_prepare($db, $sql);
-                mysqli_stmt_execute($stmt); //執行SQL
-                $result = mysqli_stmt_get_result($stmt); 
-                break;
-        }
+                        tname = '$tname'";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt); //執行SQL
+            $result = mysqli_stmt_get_result($stmt); 
+            break;
+    }
+    // if($week==1){
         $sql = "UPDATE player_status
         SET `STATUS` =
         (SELECT b.C 
-        FROM (SELECT IF((week=p4 AND week=p3 AND week=p2 AND week=p1),1,0) C 
-              FROM `player_status` 
-              WHERE tname =1)`b` 
-        WHERE tname=1)
-        ";
+         FROM  (SELECT 
+                IF((p4 = week AND p3 = week AND p2 = week AND p1 = week),$week,`status`) C 
+            FROM `player_status` 
+            WHERE tname = '$tname')`b` 
+        WHERE tname=$tname)";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_execute($stmt); //執行SQL
-        $result = mysqli_stmt_get_result($stmt); 
-        return $result;
+    // }
 }
-// function judgeStatus($order,$pid,$week,$tname){
-//     global $db;
-//     if($pid == $week){
-//         $sql ="UPDATE player_status SET `status`=`status`+1 WHERE tname=$tname";
-    
-//             $stmt = mysqli_prepare($db, $sql);
-//             mysqli_stmt_execute($stmt); //執行SQL
-//             $result = mysqli_stmt_get_result($stmt); 
-//     }
-    
-// }
+function updataWeek($order,$tname,$week,$pid){
+    global $db;
+    $sql ="UPDATE player_status SET `week` = (SELECT a.c FROM(SELECT IF((`status`=$week) ,$week+1,$week)c FROM player_status WHERE tname=$tname)`a` WHERE tname=$tname)";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    return $result;
+}
 function countOrder($tname,$pid){
     global $db;
-    $sql = "SELECT count(week) AS result FROM player_record WHERE pid= $pid AND tname = $tname";
+    $sql = "SELECT week AS result FROM player_status WHERE  tname = $tname";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
     $rs = mysqli_fetch_assoc($result);
     return $rs['result'];
-
+    // SELECT (week) AS result FROM player_status WHERE   tname = $tname
 }
+
 function insertOrder($tname,$pid,$order,$currWeek){
     global $db;
     $acc_cost = getAccCost($pid);
@@ -150,13 +149,16 @@ function insertOrder($tname,$pid,$order,$currWeek){
                 WHERE 
                     pid = '$pid'";
     } else {
-        $sql = "INSERT INTO 
-                    `player_record`
-                (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
-                VALUES
-                ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
+        
+            $sql = "INSERT INTO 
+                        `player_record`
+                    (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+                    VALUES
+                    ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
+        
     }
-    echo $sql;
+    // echo validateStatus($tname,$currWeek,$pid);
+    // echo $sql;
 	$stmt = mysqli_prepare($db, $sql);
 	mysqli_stmt_bind_param($stmt, "iii",$tname,$pid,$order);
     mysqli_stmt_execute($stmt); 
