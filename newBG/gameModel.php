@@ -6,10 +6,14 @@ function ftyUpdate() {
         $demand=$_POST['demand'];
         $sqlData=0;
         //把50期需求存入資料庫
-        if ($db) {echo'<table id="main" method="post" >',
+        if ($db) {
+            echo
             '<tr><td colspan="2">',
                 '<font size="6">資料已新增</font>',
+            '</td></tr><tr><td>',
+                '<a id="button" href="adminTeamList.php">返回主頁</a>',
             '</td></tr>';
+
 
             for($i = 0 ; $i < 50 ; $i++) {
                 $sqlData = $demand[$i];
@@ -43,25 +47,25 @@ function showTeam(){
         echo"<tr><td>" , "<input id='game' type='button' disabled='disabled' value='　".$rs['tname']."　' >" ,
             "</td><td>";
             if($rs['r1']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
                 echo "<input name='role' type='radio' id='role' value='1;" . $rs['tname'] . "' >";
             }
             echo "</td><td>";
             if($rs['r2']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
                 echo "<input name='role' type='radio' id='role' value='2;" . $rs['tname'] . "' >";
             }
             echo "</td><td>";
             if($rs['r3']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
                 echo "<input name='role' type='radio' id='role' value='3;" . $rs['tname'] . "' >";
             }
             echo "</td><td>";
             if($rs['r4']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
                 echo "<input name='role' type='radio' id='role' value='4;" . $rs['tname'] . "' >";
             }
@@ -85,27 +89,27 @@ function adminShowTeam(){
         echo"<tr><td>" ,"<input id='game' type='button' disabled='disabled' value='　".$rs['tname']."　' >",
             "</td><td>";
             if($rs['r1']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
-                echo "<input type='button' disabled='disabled' value='未被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='未被選'>";
             }
             echo "</td><td>";
             if($rs['r2']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
-                echo "<input type='button' disabled='disabled' value='未被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='未被選'>";
             }
             echo "</td><td>";
             if($rs['r3']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
-                echo "<input type='button' disabled='disabled' value='未被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='未被選'>";
             }
             echo "</td><td>";
             if($rs['r4']!=NULL) {
-                echo "<input type='button' disabled='disabled' value='已被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='已被選'>";
             }else {
-                echo "<input type='button' disabled='disabled' value='未被選'>";
+                echo "<input id='game' type='button' disabled='disabled' value='未被選'>";
             }
             echo "</td><td>";
             if($rs['go']==1){
