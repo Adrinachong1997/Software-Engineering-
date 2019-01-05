@@ -113,6 +113,50 @@ function validateStatus($tname,$week,$pid){
     $rs = mysqli_fetch_assoc($result);
     return $rs['result'];
 }
+function countexpected_arrival($tname,$pid,$currWeek){
+    global $db;
+    switch ($pid){
+        case '4':
+            echo $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+        case '3':
+            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+        case '2':
+            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+        case '1':
+            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+    }
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['orders'];
+}
+function countactual_arrival($tname,$pid,$currWeek){
+    global $db;
+    switch ($pid){
+        case '4':
+            echo $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
+            break;
+        case '3':
+            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
+            break;
+        case '2':
+            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
+            break;
+        case '1':
+            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid) AND week =$currWeek-2";
+            break;
+    }
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['orders'];
+}
 function insertOrder($tname,$pid,$order,$currWeek){
     global $db;
     $acc_cost = getAccCost($pid);
@@ -120,15 +164,27 @@ function insertOrder($tname,$pid,$order,$currWeek){
     $expected_arrival = "0";
     $actual_arrival = "0";
     if($currWeek > 1){
-        $original_stock = "SELECT (abc.original_stock - abc.demand) FROM (SELECT original_stock,demand FROM `player_record` WHERE pid = $pid AND week = $currWeek - 1) as abc ";
-    } else if ($currWeek > 2) {
-        if($pid == 1){
-            $expected_arrival = "SELECT orders FROM player_record WHERE pid = $pid AND week = $currWeek - 2";
-            $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = $pid AND week = $currWeek - 2";
-        }
-        $expected_arrival = "SELECT orders FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
-        $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
+        echo "<br> curreweek > 1<br>";
+        echo $currWeek;
+        echo $original_stock = "SELECT (abc.original_stock - abc.demand) FROM (SELECT original_stock,demand FROM `player_record` WHERE pid = $pid AND week = $currWeek - 1) as abc ";
     }
+    if($currWeek>2){
+        echo $expected_arrival=countexpected_arrival($tname,$pid,$currWeek);
+        echo $actual_arrival=countexpected_arrival($tname,$pid,$currWeek);
+    }
+    
+    // else if($currWeek > 2){
+    //     echo $currWeek;
+    //     echo $pid;
+    //     if($pid == 1){
+    //         // echo $sql = "UPDATE player_record SET expected_arrival=(SELECT a.orders FROM(SELECT orders FROM player_record WHERE pid = 4 AND week = 3 - 2)`a` WHERE week=3)";
+    //         echo $expected_arrival = "SELECT orders FROM player_record WHERE pid = $pid AND week = $currWeek - 2";
+    //         echo $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = $pid AND week = $currWeek - 2";
+            
+    //     }
+    //     echo $expected_arrival = "SELECT orders FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
+    //     $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
+    // }
     $demand = getDemand($pid,$currWeek);
     if($original_stock > 0){
         $cost = $original_stock;
@@ -160,11 +216,16 @@ function insertOrder($tname,$pid,$order,$currWeek){
                     pid = '$pid'";
     } else {
         if(validateStatus($tname,$currWeek,$pid)!=$currWeek){
+            echo "asdasd";
+            // $sql = "INSERT INTO `player_record` (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment) VALUES ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
+            
             $sql = "INSERT INTO 
                         `player_record`
                     (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
                     VALUES
-                    ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
+                    ($tname,$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,$cost,($acc_cost),($demand),$actual_shipment)";
+            // $sql = "asd";
+            // echo $sql;
         }
     }
     // echo validateStatus($tname,$currWeek,$pid);
@@ -173,8 +234,7 @@ function insertOrder($tname,$pid,$order,$currWeek){
 	mysqli_stmt_bind_param($stmt, "iii",$tname,$pid,$order);
     mysqli_stmt_execute($stmt); 
 }
-function getAccCost($pid)
-{
+function getAccCost($pid){
     global $db;
     $sql = "SELECT SUM(cost) AS result FROM player_record WHERE pid= $pid ";
     $stmt = mysqli_prepare($db, $sql);
@@ -183,8 +243,7 @@ function getAccCost($pid)
     $rs = mysqli_fetch_assoc($result);
     return $rs['result'];
 }
-function getDemand($pid,$currWeek)
-{
+function getDemand($pid,$currWeek){
     global $db;
     switch ($pid){
         case '4':
@@ -207,8 +266,7 @@ function getDemand($pid,$currWeek)
     $rs = mysqli_fetch_assoc($result);
     return $rs['result'];
 }
-function getOrderList($tname,$pid) 
-{
+function getOrderList($tname,$pid) {
     global $db;
     $sql = "SELECT * FROM player_record WHERE pid=? AND tname =?";
     $stmt = mysqli_prepare($db, $sql);
