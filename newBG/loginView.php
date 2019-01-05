@@ -8,7 +8,7 @@
         <style type="text/css">
         #main {
             width: 500px;
-            margin: 160px auto;
+            margin: 60px auto;
         }
         table {
             width: 300px;
@@ -22,33 +22,42 @@
         <table id="main">
             <form id="team" method="post" action="loginControl.php">
                 <tr>
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="background"><img src="../newBG/image/beer.png" width="220" height="200"/></td>
+                </tr>
+                <tr>
                     <td colspan="2" id="background"><font size="6">登入遊戲</font></td>
                 </tr>
                 <tr>
-                    <td>  
-                        用戶名稱 :
-                    </td>
-                    <td>
-                        <input type="text" name="id">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        帳號密碼 : 
-                    </td>
-                    <td>
-                        <input type="password" name="pwd">
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input id="button" type="submit" value="確定"/> 
-                        <input id="button" type="reset" value="重填"/>
+                        <input type="text" name="id" placeholder = "請輸入帳號">
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <a id="button" href="preView.php">上一頁</a>
+                        <input type="password" name="pwd" placeholder = "請輸入密碼">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <a id="button" href="preView.php">返回主頁</a>
+                        <input id="button" type="reset" value="重新填寫"/>
+                        <input id="button" type="submit" value="登入"/> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     </td>
                 </tr>
             </form>

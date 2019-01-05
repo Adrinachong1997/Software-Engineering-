@@ -7,12 +7,14 @@ function ftyUpdate() {
         $sqlData=0;
         //把50期需求存入資料庫
         if ($db) {
+            echo"<tr><td> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</td></tr> ";
             echo
-            '<tr><td colspan="2">',
-                '<font size="6">資料已新增</font>',
+            '<tr><td>',
+                '<font size="6">資料已更新</font>',
             '</td></tr><tr><td>',
                 '<a id="button" href="adminTeamList.php">返回主頁</a>',
             '</td></tr>';
+            echo"<tr><td> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</td></tr> ";
 
 
             for($i = 0 ; $i < 50 ; $i++) {
@@ -44,6 +46,7 @@ function showTeam(){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {
+        echo"<tr><td colspan='6'><hr></td></tr> ";
         echo"<tr><td>" , "<input id='game' type='button' disabled='disabled' value='　".$rs['tname']."　' >" ,
             "</td><td>";
             if($rs['r1']!=NULL) {
@@ -86,6 +89,7 @@ function adminShowTeam(){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {
+        echo"<tr><td colspan='7'><hr></td></tr> ";
         echo"<tr><td>" ,"<input id='game' type='button' disabled='disabled' value='　".$rs['tname']."　' >",
             "</td><td>";
             if($rs['r1']!=NULL) {
@@ -155,14 +159,16 @@ function updateTeam(){
     }
     $uid = $id ;//$rs['id'];
     $str_sec = explode(";",$_SESSION['role']);
-    echo '<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>',
-        "</tr><tr><td>",
-        "用戶名稱</td><td>$uid</td></tr>",
-        "</tr><tr><td>",
-        "隊伍名稱</td><td>$str_sec[1]</td></tr>",
+    echo"<tr><td colspan='2'> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</td></tr> ";
+    echo'<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>';
+    echo"<tr><td colspan='2'> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</td></tr> ";
+    echo"</tr><tr><td id='r'>",
+        "用戶名稱→</td><td id='l'>⠀$uid</td></tr>",
+        "</tr><tr><td id='r'>",
+        "隊伍名稱→</td><td id='l'>⠀$str_sec[1]</td></tr>",
     print_r($str_sec);
     if ($str_sec[0] == 1) {
-        echo '<tr><td>角色</td><td>工廠</td></tr>';
+        echo '<tr><td id="r">所選角色→</td><td id="l">⠀工廠</td></tr>';
         $sql = "update tgame set r1 = ? where tname = ? ";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
@@ -170,7 +176,7 @@ function updateTeam(){
         $result = mysqli_stmt_get_result($stmt);
     }
     else if ($str_sec[0] == 2) {
-        echo '<tr><td>角色</td><td>大盤商</td></tr>';
+        echo '<tr><td id="r">所選角色→</td><td id="l">⠀大盤商</td></tr>';
         $sql = "update tgame set r2 = ? where tname = ? ";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
@@ -178,7 +184,7 @@ function updateTeam(){
         $result = mysqli_stmt_get_result($stmt);
     }
     else if($str_sec[0] == 3) {
-        echo '<tr><td>角色</td><td>批發商</td></tr>';
+        echo '<tr><td id="r">所選角色→</td><td id="l">⠀批發商</td></tr>';
         $sql = "update tgame set r3 = ? where tname = ? ";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
@@ -186,7 +192,7 @@ function updateTeam(){
         $result = mysqli_stmt_get_result($stmt);
     }
     else if ($str_sec[0] == 4) {
-        echo '<tr><td>角色</td><td>零售商</td></tr>';
+        echo '<tr><td id="r">所選角色→</td><td id="l">⠀零售商</td></tr>';
         $sql = "update tgame set r4 = ? where tname = ? ";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, "ss",$uid,$str_sec[1]);
@@ -245,5 +251,25 @@ function gameStart(){
 
 function creatrGameStart(){
     $str_sec = explode(";",$_SESSION['role']);
+}
+
+function hongpak(){
+    echo"<tr><td colspan='7'> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</td></tr> ";
+}
+
+function showIcon(){
+                        
+    require("userModel.php");
+                        
+    $id=getCurrentUser();
+    $img_name=pic_name($id);
+    $sql = "select * from user where id=?;";
+    $stmt = mysqli_prepare($db, $sql );
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+                            
+    if ($rs=mysqli_fetch_array($result)) {
+    echo $img_name;}
 }
 ?>

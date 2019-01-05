@@ -9,6 +9,14 @@
             <meta charset="UTF-8"/>
             <title>編輯用戶資料</title>
             <style type="text/css">
+            #main {
+            width: 800px;
+            margin: 70px auto;
+            }
+            table {
+                width: 500px;
+                height: 400px;
+            }
             </style>
             <script type="text/javascript">
             </script>
@@ -17,7 +25,11 @@
         <table id="main">
             <form id="team" method="post" action="updateUser.php" enctype="multipart/form-data">
                 <tr>
-                    <td colspan="2" id="background"><font size="6">編輯用戶資料</font></td>
+                    <td colspan="3"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr> 
+                <tr>
+                    <td colspan="3" id="background"><font size="6">編輯用戶資料 <hr></font></td>
                 </tr>
                 <?php
                     require("userModel.php");
@@ -33,40 +45,39 @@
                             
                 ?>
                 <tr>
-                    <td>
-                        <label>用戶名稱 : <input type="hidden" name="id" value="<?php echo $rs['id']; ?>" />
-                    </td>
+                    <td id="r">用戶名稱⠀⠀⠀<input type="hidden" name="id" value="<?php echo $rs['id']; ?>" /></td>
                     <td>
                         <?php echo $rs['id']; ?><br /></label>
                     </td>
+                    <td rowspan="3">
+                        目前個人照片</br></br><img src="uploadfiles/<?php echo $img_name;?>.png" width="40%"/>
+                    </td>
                 </tr>
                 <tr>
-                    <td>
-                        <label>新密碼 : 
-                    </td>
+                    <td id="r">新密碼⠀⠀⠀</td>
                     <td>
                         <input name="password" type="text" id="password" value="<?php echo $rs['password']; ?>" required /><br />
-                        </label>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        目前個人照片</br></br><img src="uploadfiles/<?php echo $img_name;?>.png" width="200" height="300"/>
-                    </td>
-                </tr>
-                <tr>
+                    <td id="r">更新個人照片⠀⠀⠀</td>
                     <td>
-                        <label>更新個人照片 : 
-                    </td>
-                    <td >
-                        <input type="file" name="upload" id="upload" accept=".gif,.jpeg,.pjpeg,.png"/><br />
+                        <input type="file" name="upload" id="file" accept=".gif,.jpeg,.pjpeg,.png"/><br />
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2">
-                        <input type="submit" name="Submit" value="送出" />
+                    <td colspan="3"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<hr>
+                    </td>
+                </tr> 
+                <tr>
+                    <td colspan="3">
+                        <input id="button" type="submit" name="Submit" value="送出" />
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="3"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr> 
         </form>
 
 <?php

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2019 年 01 月 05 日 11:13
+-- 產生時間： 2019 年 01 月 05 日 16:20
 -- 伺服器版本: 10.1.35-MariaDB
 -- PHP 版本： 7.2.9
 
@@ -105,7 +105,7 @@ CREATE TABLE `period` (
 --
 
 INSERT INTO `period` (`id`, `week`) VALUES
-(1, 0);
+(1, 17);
 
 -- --------------------------------------------------------
 
@@ -176,10 +176,10 @@ CREATE TABLE `player_record` (
 --
 
 INSERT INTO `player_record` (`id`, `tname`, `pid`, `week`, `original_stock`, `expected_arrival`, `actual_arrival`, `orders`, `cost`, `acc_cost`, `demand`, `actual_shipment`) VALUES
-(1, '1', 4, 0, 15, 0, 0, 0, 15, 15, 0, 0),
-(2, '1', 3, 0, 15, 0, 0, 0, 15, 15, 0, 0),
-(3, '1', 2, 0, 15, 0, 0, 0, 15, 15, 0, 0),
-(4, '1', 1, 0, 15, 0, 0, 0, 15, 15, 0, 0);
+(1, '1', 4, 1, 15, 0, 0, 52, 15, 15, 4, 4),
+(2, '1', 3, 1, 15, 0, 0, 1, 15, 15, 12, 12),
+(3, '1', 2, 1, 15, 0, 0, 52, 15, 15, 1, 1),
+(4, '1', 1, 1, 15, 0, 0, 12, 15, 15, 52, 15);
 
 -- --------------------------------------------------------
 
@@ -203,7 +203,7 @@ CREATE TABLE `player_status` (
 --
 
 INSERT INTO `player_status` (`id`, `tname`, `week`, `p1`, `p2`, `p3`, `p4`, `status`) VALUES
-(1, '1', 1, 0, 0, 0, 0, 0);
+(1, '1', 1, 5, 5, 2, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -221,7 +221,6 @@ CREATE TABLE `test` (
   `ontheway` int(11) NOT NULL,
   `readyin` int(11) NOT NULL,
   `ordered` int(11) NOT NULL,
-  `outofstock` int(11) NOT NULL,
   `cost` int(11) NOT NULL,
   `actual_shipment` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -230,20 +229,11 @@ CREATE TABLE `test` (
 -- 資料表的匯出資料 `test`
 --
 
-INSERT INTO `test` (`id`, `tname`, `pid`, `week`, `stock`, `demand`, `ontheway`, `readyin`, `ordered`, `outofstock`, `cost`, `actual_shipment`) VALUES
-(1, '1', 1, 1, 15, 4, 0, 0, 3, 0, 15, 0),
-(2, '1', 2, 1, 15, 3, 0, 0, 2, 0, 15, 0),
-(3, '1', 3, 1, 15, 2, 0, 0, 1, 0, 15, 0),
-(4, '1', 4, 1, 15, 1, 0, 0, 0, 0, 15, 0),
-(139, '1', 4, 2, 0, 5, 0, 0, 11, 0, 0, 0),
-(140, '1', 3, 2, 0, 6, 0, 0, 1, 0, 0, 0),
-(141, '1', 2, 2, 0, 7, 0, 0, 2, 0, 0, 0),
-(142, '1', 1, 2, 0, 8, 4, 0, 3, 0, 0, 0),
-(143, '1', 4, 3, 0, 12, 0, 0, 2, 0, 0, 0),
-(144, '1', 3, 3, 0, 52, 0, 0, 5, 0, 0, 0),
-(145, '1', 2, 3, 0, 12, 0, 0, 6, 0, 0, 0),
-(146, '1', 1, 3, 0, 2, 8, 4, 7, 0, 0, 0),
-(147, '1', 1, 4, 0, 12, 2, 8, 12, 0, 0, 0);
+INSERT INTO `test` (`id`, `tname`, `pid`, `week`, `stock`, `demand`, `ontheway`, `readyin`, `ordered`, `cost`, `actual_shipment`) VALUES
+(1, '1', 1, 1, 15, 0, 0, 0, 0, 15, 0),
+(2, '1', 2, 1, 15, 0, 0, 0, 0, 15, 0),
+(3, '1', 3, 1, 15, 0, 0, 0, 0, 15, 0),
+(4, '1', 4, 1, 15, 0, 0, 0, 0, 15, 0);
 
 -- --------------------------------------------------------
 
@@ -323,7 +313,7 @@ CREATE TABLE `week_changed` (
 --
 
 INSERT INTO `week_changed` (`no`, `tname`, `week`) VALUES
-(1, '1', 5);
+(1, '1', 1);
 
 --
 -- 已匯出資料表的索引
@@ -427,7 +417,7 @@ ALTER TABLE `player_status`
 -- 使用資料表 AUTO_INCREMENT `test`
 --
 ALTER TABLE `test`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=261;
 
 --
 -- 使用資料表 AUTO_INCREMENT `tgame`
@@ -439,7 +429,7 @@ ALTER TABLE `tgame`
 -- 使用資料表 AUTO_INCREMENT `week_changed`
 --
 ALTER TABLE `week_changed`
-  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

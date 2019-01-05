@@ -27,7 +27,7 @@
         <table id="main">
             <form id="team" method="post" action="createTeamUpdate.php" accept-charset="utf-8">
                 <tr>
-                    <td colspan="5" id="background"><font size="6">建立隊伍</font></td>
+                    <td id="background"><font size="6">建立隊伍</font></td>
                 </tr>       
                 <tr>
                     <td>你的團隊名稱</td>
@@ -54,7 +54,7 @@
                     </td>-->
                 </tr>
                 <tr>
-                    <td colspan="5"><input id="button" type="submit" value="儲存" /></td>
+                    <td><input id="button" type="submit" value="儲存" /></td>
                 </tr>   
             </form>
         </table>

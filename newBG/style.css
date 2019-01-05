@@ -15,6 +15,11 @@ body {
 table {
     width: 300px;
     height: 500px;
+    border-collapse: collapse;
+   	/*width: 770px; */	
+   	/*自動斷行*/
+   	word-wrap: break-word;
+   	table-layout: fixed;
 }
 th ,td {
     border: 0px solid ;
@@ -62,4 +67,14 @@ a{
     font-size: 20px;
     transition-duration: 0.2s;
     border: 0px solid ;
+}
+
+#file{
+    color:#f0f8ff; 
+}
+#l{
+    text-align:left;
+}
+#r{
+    text-align:right;
 }
