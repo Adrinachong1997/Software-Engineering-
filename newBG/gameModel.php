@@ -157,6 +157,8 @@ function updateTeam(){
     $str_sec = explode(";",$_SESSION['role']);
     echo '<tr><td colspan="2" id="background"><font size="6">成功加入隊伍</font></td>',
         "</tr><tr><td>",
+        "用戶名稱</td><td>$uid</td></tr>",
+        "</tr><tr><td>",
         "隊伍名稱</td><td>$str_sec[1]</td></tr>",
     print_r($str_sec);
     if ($str_sec[0] == 1) {
