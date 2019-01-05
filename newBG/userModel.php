@@ -91,16 +91,15 @@ function getCurrentUser()
 function pic_upload($name){
     if($_FILES['upload']['name']!=""){
         $target_path = "uploadfiles/"; //指定上傳資料夾
-        $target_path = $name.".png"; //上傳檔案名稱
+        $target_path .= $name.".png"; //上傳檔案名稱
 
-        if(move_uploaded_file($_FILES['upload']['name'],iconv("UTF-8", "big5", $target_path ))) {
+        if(move_uploaded_file($_FILES['upload']['tmp_name'],iconv("UTF-8", "big5", $target_path ))) {
             return "檔案：上傳成功!";
             } else{
             return "檔案上傳失敗，請再試一次!";
         }
     } 
 }
-
 function pic_name($name){
     if(file_exists("uploadfiles/".$name.".png")){
         return $name;
