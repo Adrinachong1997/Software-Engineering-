@@ -6,6 +6,16 @@
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
         <title>註冊帳號</title>
+        <style type="text/css">
+            #main {
+                width: 500px;
+                margin: 70px auto;
+            }
+            table {
+                width: 500px;
+                height: 400px;
+            }
+            </style>
         <script type="text/javascript">
             function Name(form){
                 var Email=form.mail.value;
@@ -24,47 +34,56 @@
             <table id="main">
                 <form id="team" method="post" action = "enroll.php" enctype="multipart/form-data" onSubmit="return Name(this);">
                     <tr>
+                            <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                            </td>
+                        </tr>
+                    <tr>
                         <td colspan="2" id="background"><font size="6">註冊帳號</font></td>
                     </tr>
                     <tr>
-                        <td>
-                            <span>User ID：</span>
+                        <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                         </td>
-                        <td>
-                            <input type = "text" name = "id" required placeholder = "Enter your ID here."></input> *
+                    </tr>
+                    <tr>                     
+                        <td colspan="2">
+                            <input type = "text" name = "id" required placeholder = "請輸入帳號"></input> *
+                        </td>
+                    </tr>
+                    <tr>                  
+                        <td colspan="2">
+                            <input type = "password" name = "pwd" required placeholder = "請輸入密碼"></input> *
+                        </td>
+                    </tr>
+                    <tr>              
+                        <td colspan="2">
+                            <input type = "e-mail" name = "mail" placeholder = "請輸入EMAIL"></input> *
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <span>Password：</span>
-                        </td>
-                        <td>
-                            <input type = "password" name = "pwd" required></input> *
+                        <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<hr>
                         </td>
                     </tr>
                     <tr>
-                        <td>
-                            <span>E-mail：</span>
-                        </td>
-                        <td>
-                            <input type = "e-mail" name = "mail"></input> *
-                        </td>
+                        <td colspan="2">上傳大頭貼 (限gif, jpeg, pjpeg, png)</td>
                     </tr>
                     <tr>
-                        <td>上傳頭貼照片檔案</br>(gif, jpeg, pjpeg, png)：</td>
-                        <td>    
-                            <input type="file" name="upload" id="upload" accept=".gif,.jpeg,.pjpeg,.png"/>
+                        <td colspan="2">    
+                            <input id="file" type="file" name="upload" accept=".gif,.jpeg,.pjpeg,.png" />
+                            <hr></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input id="button" type = "submit" value = "新增資料"></input>
+                            <a id="button" href="preView.php">返回主頁</a>
                             <input id="button" type = "reset" value = "重新填寫"></input>
+                            <input id="button" type = "submit" value = "建立帳號"></input>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                            <a id="button" href="preView.php">上一頁</a>
+                        <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                         </td>
                     </tr>
                 </form>
