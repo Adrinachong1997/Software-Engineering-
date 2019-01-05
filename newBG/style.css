@@ -1,15 +1,16 @@
 body {
     background-image: url(1.jpg);
     background-attachment:fixed;
+    background-size: cover;
     font-size:20px;
     color:#080c0f;  
 }
 #main {
     width: 800px;
     margin: 50px auto;
-    border: 10px #f0f8ff solid ;
+    border: 10px #37322f86 solid ;
     padding: 13px;            
-    background: #37322f86
+    background: #372f2f79;
 }
 table {
     width: 300px;
@@ -24,7 +25,7 @@ th ,td {
 input{           
     font-size: 20px;
     text-align: center;
-    color:#666666; 
+    color:#000000; 
 }
 select{
     width: 200px;
@@ -53,7 +54,7 @@ a{
 }
 
 #game{
-    background-color:#37322f86;  
+    background-color:#37322f00;  
     color:#f0f8ff; 
     padding: 1px 1px;
     text-align: center;
