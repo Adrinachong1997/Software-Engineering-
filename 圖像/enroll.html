@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta charset="UTF-8" />
+        <meta name="keywords" content=" " />
+        <meta name="description" content=" " />
+        <title>註冊帳號</title>
+        <script type="text/javascript">
+            function Name(form){
+                var Email=form.mail.value;
+                if(Email.search("@")==-1){
+                    alert("信箱格式錯誤");
+                    form.mail.focus();
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div id = "content">
+            <table id="main">
+                <form id="team" method="post" action = "enroll.php" enctype="multipart/form-data" onSubmit="return Name(this);">
+                    <tr>
+                        <td colspan="2" id="background"><font size="6">註冊帳號</font></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>User ID：</span>
+                        </td>
+                        <td>
+                            <input type = "text" name = "id" required placeholder = "Enter your ID here."></input> *
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>Password：</span>
+                        </td>
+                        <td>
+                            <input type = "password" name = "pwd" required></input> *
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span>E-mail：</span>
+                        </td>
+                        <td>
+                            <input type = "e-mail" name = "mail"></input> *
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>上傳頭貼照片檔案</br>(jpg, gif, jpeg, pjpeg, png)：</td>
+                        <td>
+                            <input type="file" name="upload" id="upload" accept=".jpg,.gif,.jpeg,.pjpeg,.png"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input id="button" type = "submit" value = "新增資料"></input>
+                            <input id="button" type = "reset" value = "重新填寫"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a id="button" href="preView.php">上一頁</a>
+                        </td>
+                    </tr>
+                </form>
+            </table>
+        </div>
+    </body>
+</html>
