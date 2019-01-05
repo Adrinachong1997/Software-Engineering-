@@ -222,16 +222,16 @@ function gameStart(){
             mysqli_stmt_execute($stmt);
 
             if ($str_sec[0] == 1) {
-                header('Location: r1.php');
+                header('Location: ../Factory.php');
             }
             else if ($str_sec[0] == 2) {
-                header('Location: r2.php');
+                header('Location: ../Distributer.php');
             }
             else if ($str_sec[0] == 3) {
-                header('Location: r3.php');
+                header('Location: ../wholesaler.php');
             }
             else if ($str_sec[0] == 4) {
-                header('Location: r4.php');
+                header('Location: ../retailer.php');
             }
         }
     }
