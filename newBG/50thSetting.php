@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
-        <title>五十期資料設定</title>    
+        <title>五十期需求設定</title>    
         <script type="text/javascript">
             //隨機設定50期需求的函式
             function random() {
@@ -20,7 +20,7 @@
         </script>
         <style type="text/css">
         #main {
-            width: 500px;
+            width: 900px;
             margin: 20px auto;
         }
         table {
@@ -28,7 +28,7 @@
             height: 300px;
         }
         input {
-        font-size: 10px;
+        font-size: 12px;
         }
         </style>
     </head>
@@ -36,114 +36,103 @@
     <table id="main">
             <form id="demand" method="post" action="50thUpdate.php" accept-charset="utf-8">
                 <tr>
-                    <td colspan="5" id="background"><font size="6">五十期資料設定</font></td>
+                    <td colspan="5"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr> 
+                <tr>
+                    <td colspan="5" id="background"><font size="6">五十期需求設定</font></td>
+                </tr> 
+                <tr>
+                    <td colspan="5"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
                 </tr>       
                 <tr>                   
-                    <td colspan="1">1<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">2<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">3<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">4<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">5<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>1</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>2</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>3</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>4</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>5</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">6<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">7<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">8<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">9<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">10<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>6</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>7</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>8</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>9</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>10</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">11<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">12<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">13<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">14<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">15<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>11</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>12</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>13</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>14</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>15</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">16<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">17<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">18<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">19<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">20<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>16</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>17</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>18</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>19</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>20</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">21<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">22<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">23<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">24<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">25<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>21</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>22</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>23</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>24</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>25</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">26<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">27<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">28<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">29<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">30<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>26</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>27</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>28</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>29</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>30</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">31<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">32<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">33<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">34<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">35<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>31</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>32</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>33</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>34</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>35</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">36<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">37<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">38<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">39<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">40<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>36</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>37</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>38</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>39</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>40</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">41<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">42<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">43<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">44<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">45<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                <tr>
+                    <td>41</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>42</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>43</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>44</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>45</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>                   
-                    <td colspan="1">46<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
-                    <td colspan="1">47<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">48<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
-                    <td colspan="1">49<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
-                    <td colspan="1">50<input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
-                </tr>
-                
-
-                <tr>
-                    <td colspan="5"><input id="button" type="submit" value="儲存" /></td>
-                </tr>     
-                <tr>
-                    <td colspan="5"><input id="button" type="button" value="一鍵隨機" onClick='random()' /></td>
+                    <td>46</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>       
+                    <td>47</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>48</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>                
+                    <td>49</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>         
+                    <td>50</br><input type="demand" id="demand" name="demand[]" min="0" max="50" value="0" ></td>
                 </tr>
                 <tr>
-                    <td colspan="5"><input id="button" type="reset" value="重新填寫" /></td>
+                    <td colspan="5"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="5"><a id="button" href="50thDelete.php">刪除資料表資料</a></td>;
-                    
+                    <td colspan="5">
+                        <a id="button" href="50thDelete.php">刪除資料表資料</a>
+                        <input id="button" type="reset" value="重新填寫" />
+                        <input id="button" type="button" value="一鍵隨機" onClick='random()' />
+                        <input id="button" type="submit" value="儲存" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
                 </tr>
             </form>
-  
-        </table>
-        
+        </table>   
     </body>
 </html>
