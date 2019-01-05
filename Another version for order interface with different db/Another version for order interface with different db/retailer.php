@@ -14,7 +14,7 @@ $tname=1;
 </head>
 
 <body>
-    <H1>Retailer</H1>
+    <H1>4.Retailer</H1>
 	<?php include("formTemplate.php"); ?>
 	
 	<hr>
@@ -27,7 +27,6 @@ $tname=1;
 		    <td>前期訂貨正在路上的訂單</td>
 			<td>準備進貨</td>
 			<td>下游訂單</td>
-			<td>欠貨</td>
 			<td>累計成本</td>
            <td>實際出貨</td>
 	    	</tr>
@@ -44,7 +43,6 @@ $tname=1;
 					"<td>" , $rs['ontheway'], "</td>",
 					"<td>" , $rs['readyin'], "</td>",
 					"<td>" , $rs['ordered'], "</td>",
-					"<td>" , $rs['outofstock'], "</td>",
 					"<td>" , $rs['cost'], "</td>",
 					"<td>" , $rs['actual_shipment'], "</td>",
 					"</tr>";
