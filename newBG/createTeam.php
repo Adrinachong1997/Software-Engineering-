@@ -27,7 +27,7 @@
         <table id="main">
             <form id="team" method="post" action="createTeamUpdate.php" accept-charset="utf-8">
                 <tr>
-                    <td colspan="5" id="background"><font size="6">隊伍配對</font></td>
+                    <td colspan="5" id="background"><font size="6">建立隊伍</font></td>
                 </tr>       
                 <tr>
                     <td>你的團隊名稱</td>
