@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="createTeam.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
         <title>建立隊伍</title>
         <style type="text/css">
+        #main {
+            width: 500px;
+            margin: 130px auto;
+        }
+        table {
+            width: 300px;
+            height: 300px;
+        }
         </style>
     </head>
     <?php

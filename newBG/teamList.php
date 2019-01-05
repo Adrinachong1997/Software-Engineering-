@@ -7,6 +7,14 @@
         <meta name="description" content=" " />
         <title>加入遊戲</title>
         <style type="text/css">
+        #main {
+            width: 900px;
+            margin: 90px auto;
+        }
+        table {
+            width: 500px;
+            height: 400px;
+        }
         </style>
         <meta http-equiv="refresh" content="5">
     </head>

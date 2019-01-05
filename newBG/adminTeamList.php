@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="adminTeamList.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
         <title>管理員界面</title>
         <style type="text/css">
+        #main {
+            width: 1000px;
+            margin: 90px auto;
+        }
+        table {
+            width: 500px;
+            height: 400px;
+        }
         </style>
     </head>
     <body>
         <table id="main">
             <form id="team" method="post" action="?.php" accept-charset="utf-8">
                 <tr>
-                    <td colspan="7" id="background"><font size="6">已存在的房間</font></td>
+                    <td colspan="7" id="background"><font size="6">房間列表管理</font></td>
                 </tr>  
                 <tr>
                     <td colspan="7" id="background"><font size="4">
