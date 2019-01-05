@@ -229,16 +229,16 @@ function gameStart(){
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_bind_param($stmt, "si", $str_sec[1],$str_sec[0]);
             mysqli_stmt_execute($stmt);
-            $sql = "insert into `test`
+            /*$sql = "insert into `test`
             (tname,pid,week,stock,demand,ontheway,readyin,ordered,outofstock,cost,actual_shipment) 
             values (?,?,0,15,0,0,0,0,0,15,0)";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_bind_param($stmt, "si", $str_sec[1],$str_sec[0]);
-            mysqli_stmt_execute($stmt);
+            mysqli_stmt_execute($stmt);*/
             if ($str_sec[0] == 1) {
                 $sql = "insert into `test`
-                (tname,pid,week,stock,demand,ontheway,readyin,ordered,outofstock,cost,actual_shipment) 
-                values (?,?,0,15,0,0,0,0,0,15,0)";
+                (tname,pid,week,stock,demand,ontheway,readyin,ordered,cost,actual_shipment) 
+                values (?,?,0,15,0,0,0,0,15,0)";
                 $stmt = mysqli_prepare($db, $sql);
                 mysqli_stmt_bind_param($stmt, "si", $str_sec[1],$str_sec[0]);
                 mysqli_stmt_execute($stmt);
@@ -246,8 +246,8 @@ function gameStart(){
             }
             else if ($str_sec[0] == 2) {
                 $sql = "insert into `test`
-                (tname,pid,week,stock,demand,ontheway,readyin,ordered,outofstock,cost,actual_shipment) 
-                values (?,?,0,15,0,0,0,0,0,15,0)";
+                (tname,pid,week,stock,demand,ontheway,readyin,ordered,cost,actual_shipment) 
+                values (?,?,0,15,0,0,0,0,15,0)";
                 $stmt = mysqli_prepare($db, $sql);
                 mysqli_stmt_bind_param($stmt, "si", $str_sec[1],$str_sec[0]);
                 mysqli_stmt_execute($stmt);
@@ -255,8 +255,8 @@ function gameStart(){
             }
             else if ($str_sec[0] == 3) {
                 $sql = "insert into `test`
-                (tname,pid,week,stock,demand,ontheway,readyin,ordered,outofstock,cost,actual_shipment) 
-                values (?,?,0,15,0,0,0,0,0,15,0)";
+                (tname,pid,week,stock,demand,ontheway,readyin,ordered,cost,actual_shipment) 
+                values (?,?,0,15,0,0,0,0,15,0)";
                 $stmt = mysqli_prepare($db, $sql);
                 mysqli_stmt_bind_param($stmt, "si", $str_sec[1],$str_sec[0]);
                 mysqli_stmt_execute($stmt);
@@ -264,8 +264,8 @@ function gameStart(){
             }
             else if ($str_sec[0] == 4) {
                 $sql = "insert into `test`
-                (tname,pid,week,stock,demand,ontheway,readyin,ordered,outofstock,cost,actual_shipment) 
-                values (?,?,0,15,0,0,0,0,0,15,0)";
+                (tname,pid,week,stock,demand,ontheway,readyin,ordered,cost,actual_shipment) 
+                values (?,?,0,15,0,0,0,0,15,0)";
                 $stmt = mysqli_prepare($db, $sql);
                 mysqli_stmt_bind_param($stmt, "si", $str_sec[1],$str_sec[0]);
                 mysqli_stmt_execute($stmt);

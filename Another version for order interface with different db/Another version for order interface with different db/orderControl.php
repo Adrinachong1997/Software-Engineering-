@@ -19,10 +19,10 @@
     r_status($tname,$currWeek);
     break;*/
     case "update":
-    insertOrder($tname,$pid,$order,$currWeek);
+    insertOrder($tname,$pid,$order,$currWeek); // insert into 資料庫
     //getCurrentDemand($pid,$currWeek);
-    updateStatus($tname,$pid);
-    waitStatus($tname,$currWeek);
+    updateStatus($tname,$pid); // 回傳狀態(是否已下單)
+    waitStatus($tname,$currWeek); // 確認四個角色都下單(否則轉向等待畫面(未完成) 是則重整頁面)
     break;
 }
 if($pid != ''){
