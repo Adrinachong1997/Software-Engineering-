@@ -1,3 +1,6 @@
+<?php 
+    require("dbconfig.php"); 
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,7 +12,7 @@
         <style type="text/css">
         #main {
             width: 900px;
-            margin: 90px auto;
+            margin: 60px auto;
         }
         table {
             width: 500px;
@@ -22,14 +25,20 @@
         <table id="main">
             <form id="team" method="post" action="teamUpdate.php" accept-charset="utf-8">
                 <tr>
-                    <td colspan="6" id="background"><font size="6">房間列表</font></td>
-                </tr>
+                    <td colspan="6"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr> 
                 <tr>
-                    <td colspan="6" id="background"><font size="4">
-                        用戶名 : <?php require("dbconfig.php");
-                                echo $_SESSION['id'];?></font>
+                    <td colspan="4" id="background"><font size="6">房間列表</font></td>
+                    <td colspan="2" rowspan="1">用戶名 : <?php echo $_SESSION['id'];?></br>
+                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50"/>
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="6"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr>
+               
                 <tr>
                     <td width="20px">房間名稱</td>
                     <td width="20px">工廠</br>Factory</td>
@@ -43,20 +52,25 @@
                     require('gameModel.php');
                     showTeam();
                 ?>
-                <tr><td colspan="6"></td></tr>
                 <tr>
-                    <td colspan="6">
-                        <a id="button" href="createTeam.php">建立隊伍</a>
-                        <input id="button" type="submit" name="Submit" value="送出" />
+                    <td colspan="6"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     </td>
-                </tr>
+                </tr> 
                 <tr>
                     <td colspan="6">
-                        <a id="button" href="edit.php">編輯個人資料</a>
                         <a id="button" href="loginOut.php">登出</a>
+                        <a id="button" href="edit.php">編輯個人資料</a>
+                        <a id="button" href="createTeam.php">建立隊伍</a>
+                        <input id="button" type="submit" name="Submit" value="加入隊伍" />
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="6"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+
+                </tr> 
             </form>
+            
         </table>
     </body>
 </html>

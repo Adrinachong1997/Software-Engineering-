@@ -5,6 +5,14 @@
 			<meta charset="UTF-8"/>
 			<title>更新資料成功</title>
 			<style type="text/css">
+			#main {
+            width: 500px;
+            margin: 150px auto;
+			}
+			table {
+				width: 300px;
+				height: 150px;
+			}
 			</style>
 			<script type="text/javascript">
 			</script>
@@ -13,7 +21,7 @@
         <table id="main">
             <form id="team" method="post" action="loginControl.php">
                 <tr>
-                    <td colspan="2" id="background"><font size="6">更新資料成功</font></td>
+                    <td id="background"><font size="6">更新資料成功</font></td>
                 </tr>
 				<?php
 				require("dbconfig.php");
