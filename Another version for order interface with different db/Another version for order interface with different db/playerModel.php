@@ -1,7 +1,7 @@
 <?php
 require("dbconfig.php");
 
-function getCurrentDemand($pid,$currWeek) 
+function getCurrentDemand($pid,$currWeek) //取得前期訂單需求
 {
     global $db;
     switch($pid){
@@ -12,19 +12,19 @@ function getCurrentDemand($pid,$currWeek)
             $result = mysqli_stmt_get_result($stmt); 
             break;
         case '3':
-            $sql = "SELECT ordered AS demand FROM test WHERE pid=3 AND week = $currWeek";
+            $sql = "SELECT ordered AS demand FROM test WHERE pid=3 AND week = $currWeek-1";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
             break;
         case '2':
-            $sql = "SELECT ordered AS demand FROM test WHERE pid=2 AND week = $currWeek";
+            $sql = "SELECT ordered AS demand FROM test WHERE pid=2 AND week = $currWeek-1";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
             break;
         case '1':
-            $sql = "SELECT ordered AS demand FROM test WHERE pid=1 AND week = $currWeek";
+            $sql = "SELECT ordered AS demand FROM test WHERE pid=1 AND week = $currWeek-1";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
