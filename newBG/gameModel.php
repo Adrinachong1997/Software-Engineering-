@@ -206,14 +206,14 @@ function roomDelete(){
 
 function gameStart(){
     $str_sec = explode(";",$_SESSION['role']);
-    print_r($str_sec);
+    //print_r($str_sec);
     global $db;
     $sql = "select r1,r2,r3,r4 from tgame where tname = ?";
     $stmt = mysqli_prepare($db, $sql );
     mysqli_stmt_bind_param($stmt, "s", $str_sec[1]);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-    print_r($result);
+    //print_r($result);
     while (	$rs = mysqli_fetch_assoc($result)) {
         if ($rs['r1']!= NULL&&$rs['r2']!= NULL&&$rs['r3']!= NULL&&$rs['r4']!= NULL){
             $sql = "update tgame set go = 1 where tname = ?";
