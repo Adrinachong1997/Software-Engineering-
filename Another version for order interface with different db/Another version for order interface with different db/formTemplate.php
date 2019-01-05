@@ -1,0 +1,32 @@
+<form method="post" action="orderControl.php">
+    <input type = "hidden" name="pid" value=<?php echo $pid ?>/>
+    <input type = "hidden" name="tname" value=<?php echo $tname ?>/>
+    <input type = "hidden" name="operation" value="update"/>
+    <p>目前是第
+    <?php
+        $tname = 1;
+        $currWeek = countOrder($tname,$pid);
+        echo $currWeek;
+    ?>
+    周
+    </p>
+    <p>消費者上週要求的啤酒數量：
+    <?php //從gamecycle撈目前的消費者要求
+        $result= getCurrentDemand($pid,$currWeek);
+        if($rs=mysqli_fetch_assoc($result)){
+            echo $rs['demand'];
+        }
+    ?>
+    </p>
+    請輸入本週訂購的啤酒數量:<?php ?>
+    <input type = "hidden" name="week" value="<?php echo $currWeek ?>"/>
+    <input type ="text" name="order">
+    <input type ="submit" value=" 下單 " />
+</form>
+<!--
+<form method="post" action="orderControl.php">
+    <input type = "hidden" name="tname" value=<?php echo $tname ?>/>
+    <input type = "hidden" name="pid" value=<?php echo $pid ?>/>
+    <input type = "hidden" name="operation" value="reset"/>
+    <input type = "submit" value = "重置"> 
+</form > -->
