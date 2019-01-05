@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="50thstyle.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <meta charset="UTF-8" />
         <meta name="keywords" content=" " />
         <meta name="description" content=" " />
@@ -19,6 +19,17 @@
             }          
         </script>
         <style type="text/css">
+        #main {
+            width: 500px;
+            margin: 20px auto;
+        }
+        table {
+            width: 500px;
+            height: 300px;
+        }
+        input {
+        font-size: 10px;
+        }
         </style>
     </head>
     <body>
@@ -127,7 +138,7 @@
                     <td colspan="5"><input id="button" type="reset" value="重新填寫" /></td>
                 </tr>
                 <tr>
-                    <td colspan="5"><a id="button" href="50thDelete.php">刪除</a></td>;
+                    <td colspan="5"><a id="button" href="50thDelete.php">刪除資料表資料</a></td>;
                     
                 </tr>
             </form>
