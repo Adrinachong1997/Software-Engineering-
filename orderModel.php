@@ -80,21 +80,20 @@ function insertOrder($tname,$pid,$order,$currWeek){
     if($currWeek > 1){
         $original_stock = getOriginalStock($pid,$currWeek);
         if ($currWeek > 2){
-            $expected_arrival=countexpected_arrival($tname,$pid,$currWeek);
-            $actual_arrival=countactual_arrival($tname,$pid,$currWeek);
+            $expected_arrival=countexpected_arrival($pid,$currWeek);
+            $actual_arrival=countactual_arrival($pid,$currWeek);
             $original_stock = $original_stock + $actual_arrival;
         }
     }
 
     $demand = getDemand($pid,$currWeek);
-
     if((int)$original_stock < 0) {
         $cost = $cost+$original_stock*(-2);
         // echo $cost = "SELECT (cost+original_stock*(-2)) FROM player_record WHERE pid = $pid AND tname = $tname AND week =$currWeek";
     } else {
         $cost = $original_stock;
     }
-    $acc_cost = getAccCost($pid);
+    $acc_cost = getAccCost($pid,$tname);
 
     // echo "<h4>original_stock：".$original_stock."</h4>";
     // echo "<h4>int:original_stock：".(int)$original_stock."</h4>";
@@ -125,8 +124,8 @@ function insertOrder($tname,$pid,$order,$currWeek){
                     pid = '$pid'
                     AND tname = '$tname'";
     } else {
-        $acc_cost = getAccCost($pid)+$cost;
-        $sql = "INSERT INTO `player_record`
+        $acc_cost = getAccCost($pid,$tname)+$cost;
+       echo $sql = "INSERT INTO `player_record`
                         (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
                     VALUES
                         ('$tname',$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,($cost),($acc_cost),($demand),$actual_shipment)";
@@ -171,7 +170,7 @@ function validateStatus($tname,$week,$pid){
     $rs = mysqli_fetch_assoc($result);
     return $rs['result'];
 }
-function countexpected_arrival($tname,$pid,$currWeek){
+function countexpected_arrival($pid,$currWeek){
     global $db;
     switch ($pid){
         case '4':
@@ -193,7 +192,7 @@ function countexpected_arrival($tname,$pid,$currWeek){
     $rs = mysqli_fetch_assoc($result);
     return $rs['orders'];
 }
-function countactual_arrival($tname,$pid,$currWeek){
+function countactual_arrival($pid,$currWeek){
     global $db;
     switch ($pid){
         case '4':
@@ -215,10 +214,11 @@ function countactual_arrival($tname,$pid,$currWeek){
     $rs = mysqli_fetch_assoc($result);
     return $rs['actual_shipment'];
 }
-function getAccCost($pid){
+function getAccCost($pid,$tname){
     global $db;
-    $sql = "SELECT SUM(cost) AS result FROM player_record WHERE pid= $pid ";
+    echo $sql = "SELECT SUM(cost) AS result FROM player_record WHERE pid= ? AND tname = ?";
     $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "is",$pid,$tname);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
     $rs = mysqli_fetch_assoc($result);
@@ -250,7 +250,7 @@ function getOrderList($tname,$pid) {
     global $db;
     $sql = "SELECT * FROM player_record WHERE pid=? AND tname =?";
     $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_bind_param($stmt, "ii", $pid, $tname);
+    mysqli_stmt_bind_param($stmt, "is", $pid, $tname);
     mysqli_stmt_execute($stmt); //執行SQL
     $result = mysqli_stmt_get_result($stmt); 
     return $result;
@@ -279,22 +279,24 @@ function getTeamName(){
     }
     return $arr;
 }
-
 /*---------- TRUNCATE AND INSERT ----------*/
 function r_status($tname,$week) {
     global $db;
     $sql = "TRUNCATE TABLE player_status";
     $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt); 
-    $sql = "INSERT INTO player_status 
-                (id,tname,week,p1,p2,p3,p4,`status`)
-            VALUES 
-                (1,?,?,0,0,0,0,0)";
-    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $team = getTeamAmount(); 
+    $arr = getTeamName();
     $tmp = $week+1;
-    mysqli_stmt_bind_param($stmt, "si",$tname,$tmp);
-    mysqli_stmt_execute($stmt);  
-    return;
+    for($j = 0; $j < $team ; $j++) {
+        $sql = "INSERT INTO player_status 
+                    (tname,week,p1,p2,p3,p4,`status`)
+                VALUES 
+                    ('$arr[$j]',?,0,0,0,0,0)";
+        $stmt = mysqli_prepare($db, $sql);
+        mysqli_stmt_bind_param($stmt, "i",$tmp);
+        mysqli_stmt_execute($stmt); 
+    }
 }
 
 function r_playerrecord($tname){ //清除playerrecord資料庫
