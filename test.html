@@ -1,0 +1,21 @@
+<html lang="zh-TW">
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<script>
+	function init() {
+		var es = new EventSource('check.php');
+		es.addEventListener('message', function(e) {
+			var str =  e.data 
+			if(str === '2323'){
+				document.getElementById('msg1').innerHTML = 'str';
+			}
+		}, false);
+	}
+</script>
+
+
+<div id="msg1" class="msg"></div>
+
+
+<script>
+init();
+</script>
