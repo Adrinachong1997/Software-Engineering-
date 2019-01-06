@@ -104,7 +104,6 @@ function insertOrder($tname,$pid,$order,$currWeek){
     //     $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
     // $actual_shipment=countactual_shipment($tname,$pid);
 
-    
     echo $demand = getDemand($pid,$currWeek);
     // if($original_stock < 0){
     //      $cost = $cost+$original_stock*(-2);
