@@ -1,9 +1,11 @@
+
 <form method="post" action="orderControl.php">
-    <input type = "hidden" name="pid" value=<?php echo $pid ?>/>
-    <input type = "hidden" name="tname" value=<?php echo $tname ?>/>
+    <input type = "hidden" name="pid" value="<?php echo $pid ?>"/>
+    <input type = "hidden" name="tname" value="<?php echo $tname ?>"/>
     <input type = "hidden" name="operation" value="update"/>
     <p>目前是第
     <?php //從period撈目前週次
+    
         // $result = getCurrentPeriod();
         // // 判断四个同时一起按submit，TODO
         // while($rs=mysqli_fetch_assoc($result)){
@@ -30,8 +32,8 @@
     <input type ="submit" value=" 下單 " />
 </form>
 <form method="post" action="orderControl.php">
-    <input type = "hidden" name="tname" value=<?php echo $tname ?>/>
-    <input type = "hidden" name="pid" value=<?php echo $pid ?>/>
+    <input type = "hidden" name="tname" value="<?php echo $tname; ?>"/>
+    <input type = "hidden" name="pid" value="<?php echo $pid ?>"/>
     <input type = "hidden" name="operation" value="reset"/>
     <input type = "submit" value = "重置"> 
 </form>
