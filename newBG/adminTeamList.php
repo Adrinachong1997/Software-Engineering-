@@ -18,6 +18,7 @@
         </style>
     </head>
     <body>
+        <div class="admin">
         <table id="main">
             <form id="team" method="post" action="?.php" accept-charset="utf-8">
                 <tr>
@@ -67,5 +68,6 @@
                 </tr>
             </form>
         </table>
+    </div>
     </body>
 </html>
