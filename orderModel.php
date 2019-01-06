@@ -71,6 +71,7 @@ function updataWeek($order,$tname,$week,$pid){
 function insertOrder($tname,$pid,$order,$currWeek){
     global $db;
     $acc_cost = getAccCost($pid);
+    // echo $actual_shipment= countactual_shipment($tname,$pid,$currWeek);
     $original_stock = "15";
     $expected_arrival = "0";
     $actual_arrival = "0";
@@ -101,13 +102,17 @@ function insertOrder($tname,$pid,$order,$currWeek){
     //     }
     //     echo $expected_arrival = "SELECT orders FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
     //     $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
+    // $actual_shipment=countactual_shipment($tname,$pid);
+
+    
+    echo $demand = getDemand($pid,$currWeek);
+    // if($original_stock < 0){
+    //      $cost = $cost+$original_stock*(-2);
+    //     // echo $cost = "SELECT (cost+original_stock*(-2)) FROM player_record WHERE pid = $pid AND tname = $tname AND week =$currWeek";
     // }
-    $demand = getDemand($pid,$currWeek);
-    if($original_stock > 0){
-        $cost = $original_stock;
-    } else {
-        $cost = 0;
-    }
+    // else if($original_stock > 0){
+    //  $cost = $original_stock;
+    // }
     if($original_stock >= $demand) {    //有足夠的貨
         $actual_shipment = $demand;
     } else if ($original_stock > 0) {    //有多少給多少
@@ -115,8 +120,9 @@ function insertOrder($tname,$pid,$order,$currWeek){
     } else {    //沒有貨
         $actual_shipment = 0;
     }
+    // echo $actual_shipment;
     if($currWeek == 1){
-        $sql = "UPDATE 
+        echo $sql = "UPDATE 
                     `player_record`
                 SET 
                     tname = ($tname),
@@ -132,9 +138,10 @@ function insertOrder($tname,$pid,$order,$currWeek){
                 WHERE 
                     pid = '$pid'";
     } else {
-        if(validateStatus($tname,$currWeek,$pid)!=$currWeek){
-            echo "asdasd";
-            // $sql = "INSERT INTO `player_record` (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment) VALUES ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
+        
+        // if(validateStatus($tname,$currWeek,$pid)!=$currWeek){
+        //     echo "asdasd";
+         $sql = "INSERT INTO `player_record` (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment) VALUES ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
             
             $sql = "INSERT INTO `player_record`
                         (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
@@ -142,7 +149,7 @@ function insertOrder($tname,$pid,$order,$currWeek){
                         ($tname,$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,$cost,($acc_cost),($demand),$actual_shipment)";
             // $sql = "asd";
             // echo $sql;
-        }
+        // }
     }
     // echo validateStatus($tname,$currWeek,$pid);
     // echo $sql;
