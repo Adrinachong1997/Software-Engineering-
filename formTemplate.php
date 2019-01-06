@@ -11,6 +11,7 @@
         //     echo $currWeek;
         // }
         $currWeek = countOrder($tname,$pid);
+        echo $currWeek;
     ?>
     周
     </p>
