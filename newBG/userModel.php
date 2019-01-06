@@ -107,4 +107,17 @@ function pic_name($name){
         return '0';
     }
 }
+
+//取得玩家遊戲積分
+function get_score($id){
+    global $db;
+    
+    $sql = "select score from user where id=?";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $id);
+    mysqli_stmt_execute($stmt); //執行SQL
+    $result = mysqli_stmt_get_result($stmt);
+    
+    return $result;
+}
 ?>
