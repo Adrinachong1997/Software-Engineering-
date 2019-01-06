@@ -33,6 +33,13 @@
                     <td colspan="2" rowspan="1">
                         用戶名 : <?php echo $_SESSION['id'];?></br>
                         <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50%"/>
+                        遊戲積分: <?php
+                                require_once("userMOdel.php");
+                                $result=get_score($_SESSION['id']);
+                                while($rs =mysqli_fetch_assoc($result)){
+                                    $score=$rs['score'];
+                                } 
+                               echo $score ?>
                     </td>
                 </tr>
                 <tr>
