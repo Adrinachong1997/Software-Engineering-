@@ -2,8 +2,10 @@
 require("orderModel.php");
 header("Content-Type: text/event-stream");
 header('Cache-Control: no-cache');
+$test = $_GET['player'];
 while(true) {
-    echo "data: " . validateStatusState(1,1) . "\n\n";
+    echo "data: " . getAccCost($test) . "\n\n";
+    // echo "data: " . $test . "\n\n";
 	flush();
 }
 ?>
