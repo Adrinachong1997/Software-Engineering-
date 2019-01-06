@@ -1,9 +1,10 @@
 body {
-    background-image: url(../newBG/image/1.jpg);
+    background-image: url(../newBG/image/bg.gif);
     background-attachment:fixed;
     background-size: cover;
     font-size:20px;
-    color:#080c0f;  
+    color:#080c0f;
+    font-family: "微軟正黑體";  
 }
 #main {
     width: 800px;
@@ -77,4 +78,24 @@ a{
 }
 #r{
     text-align:right;
+}
+.logo {
+    position:absolute;
+    top: 30px;
+    left: 890px;
+}
+.logo1 {  
+    position:absolute;
+    top: 180px;
+    left: 800px;
+}
+.logo2 {  
+    position:absolute;
+    top: 270px;
+    left: 930px;
+}
+.bt {  
+    position:absolute;
+    top: 330px;
+    left: 915px;
 }

@@ -26,7 +26,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" id="background"><img src="../newBG/image/beer.png" width="220" height="200"/></td>
+                    <td colspan="2" id="background"><img src="../newBG/image/logo.png" width="400" height="100"/></br><img src="../newBG/image/logo2.png" width="140" height="50"/></td>
                 </tr>
                 <tr>
                     <td colspan="2" id="background"><font size="6">登入遊戲</font></td>
