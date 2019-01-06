@@ -1,10 +1,12 @@
 <?php
+session_start();
 require("dbconfig.php");
 require("orderModel.php");
 require("playerModel.php");
+$_SESSION["tname"] = "uuu"; 
 global $db;
 $pid=4;
-$tname=1;
+$tname = $_SESSION["tname"];
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +15,8 @@ $tname=1;
 </head>
 
 <body>
-    <H1>Retailer</H1>
+	<H1>Retailer</H1>
+	
 	<?php include("formTemplate.php"); ?>
 	
 	<hr>
