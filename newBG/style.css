@@ -99,3 +99,8 @@ a{
     top: 330px;
     left: 915px;
 }
+.admin {  
+    position:absolute;
+    top: 10px;
+    left: 11%;
+}

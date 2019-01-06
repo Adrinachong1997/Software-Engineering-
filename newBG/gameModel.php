@@ -135,6 +135,7 @@ function createTeam(){
     global $db;
     //$role=$_POST['role'];
     $tname=$_POST['tname'];
+
     if ($tname) {
         //$sql1 = "insert into tgame (tname,r$role) values (?,?);";
         $sql1 = "insert into tgame (tname) values (?);";
@@ -272,4 +273,22 @@ function showIcon(){
     if ($rs=mysqli_fetch_array($result)) {
     echo $img_name;}
 }
+
+function teamcheck($tname){
+    global $db;
+        $tname=$_POST['tname'];
+        $sql = "select * from tgame where tname=?";
+        $stmt = mysqli_prepare($db, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $tname);
+        mysqli_stmt_execute($stmt); //執行SQL
+        $result = mysqli_stmt_get_result($stmt); 
+        $r=mysqli_fetch_assoc($result);
+        if($r) {
+            return 0;
+        } else {
+            return 1;
+        } 
+
+}
+
 ?>
