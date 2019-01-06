@@ -3,5 +3,5 @@
     session_destroy();
     unset($_SESSION['id']);
     loginout();
-    header("Location:preView.php");
+    header("Location:index.php");
 ?>
