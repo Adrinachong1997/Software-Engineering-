@@ -1,14 +1,16 @@
 <?php
 require("dbconfig.php");
-function updatePeriod($week) 
-{
+
+/*---------- UPDATE ----------*/
+function updatePeriod($week) {
     global $db;
     $sql = " UPDATE `period` SET `week` = $week where id = 1";
 	$stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt); 
 }
-function getCurrentPeriod() 
-{
+
+/*---------- SELECT ----------*/
+function getCurrentPeriod() {
     global $db;
     $sql = "select * from period";
     $stmt = mysqli_prepare($db, $sql);
@@ -17,19 +19,8 @@ function getCurrentPeriod()
     $result = mysqli_stmt_get_result($stmt); 
     return $result;
 }
-function r_period()
-{
-    global $db;
-    $sql = "TRUNCATE TABLE period";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt); 
-    $sql = "INSERT INTO period(`id`,`week`) values (1,0);";
-	$stmt = mysqli_prepare($db, $sql);
-	mysqli_stmt_execute($stmt); 
-	return;
-}
-function getCurrentDemand($pid,$currWeek) 
-{
+
+function getCurrentDemand($pid,$currWeek) {
     global $db;
     switch($pid){
         case '4':
@@ -59,4 +50,15 @@ function getCurrentDemand($pid,$currWeek)
     }
     
     return $result;
+}
+
+/*---------- TRUNCATE AND INSERT ----------*/
+function r_period() {
+    global $db;
+    $sql = "TRUNCATE TABLE period";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt); 
+    $sql = "INSERT INTO period(`id`,`week`) values (1,0);";
+	$stmt = mysqli_prepare($db, $sql);
+	mysqli_stmt_execute($stmt); 
 }

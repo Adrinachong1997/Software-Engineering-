@@ -1,5 +1,6 @@
 <?php
 require("dbconfig.php");
+/*---------- UPDATE OR INSERT ----------*/
 function updateStatus($tname,$order,$pid,$week){
     global $db;
     switch($pid){
@@ -7,13 +8,7 @@ function updateStatus($tname,$order,$pid,$week){
             $sql = "UPDATE 
                         `player_status`
                     SET 
-                        -- tname   = ($tname),
-                        -- week    = ($week),
-                        -- p1      = (0),
-                        -- p2      = (0),
-                        -- p3      = p3+1
                         p4         = $week
-                    -- `status`    = (0)
                     WHERE 
                         tname = '$tname'";
             $stmt = mysqli_prepare($db, $sql);
@@ -24,13 +19,7 @@ function updateStatus($tname,$order,$pid,$week){
             $sql = "UPDATE 
                         `player_status`
                     SET 
-                        -- tname   = ($tname),
-                        -- week    = ($week),
-                        -- p1      = (0),
-                        -- p2      = (0),
-                        -- p3      = p3+1
                         p3         = $week
-                    -- `status`    = (0)
                     WHERE 
                         tname = '$tname'";
             $stmt = mysqli_prepare($db, $sql);
@@ -41,12 +30,7 @@ function updateStatus($tname,$order,$pid,$week){
             $sql = "UPDATE 
                         `player_status`
                     SET 
-                        -- tname   = ($tname),
-                        -- week    = ($week),
-                        -- p1      = (0),
                         p2      = $week
-
-                    -- `status`    = (0)
                     WHERE 
                         tname = '$tname'";
             $stmt = mysqli_prepare($db, $sql);
@@ -57,32 +41,24 @@ function updateStatus($tname,$order,$pid,$week){
             $sql = "UPDATE 
                         `player_status`
                     SET 
-                        -- tname   = ($tname),
-                        -- week    = ($week),
                         p1      = $week
-                        -- p2      = (1),
-                        -- p3      = (1),
-                        -- p4      = (1),
-                    -- `status`    = `status` +1 
-                     WHERE 
+                    WHERE 
                         tname = '$tname'";
             $stmt = mysqli_prepare($db, $sql);
             mysqli_stmt_execute($stmt); //執行SQL
             $result = mysqli_stmt_get_result($stmt); 
             break;
     }
-    // if($week==1){
-        $sql = "UPDATE player_status
-        SET `STATUS` =
-        (SELECT b.C 
-         FROM  (SELECT 
+    $sql = "UPDATE player_status
+    SET `STATUS` =
+    (SELECT b.C 
+        FROM  (SELECT 
                 IF((p4 = week AND p3 = week AND p2 = week AND p1 = week),$week,`status`) C 
-            FROM `player_status` 
-            WHERE tname = '$tname')`b` 
-        WHERE tname=$tname)";
-        $stmt = mysqli_prepare($db, $sql);
-        mysqli_stmt_execute($stmt); //執行SQL
-    // }
+                FROM `player_status` 
+                WHERE tname = '$tname')`b` 
+    WHERE tname=$tname)";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt); //執行SQL
 }
 function updataWeek($order,$tname,$week,$pid){
     global $db;
@@ -91,71 +67,6 @@ function updataWeek($order,$tname,$week,$pid){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
     return $result;
-}
-function countOrder($tname,$pid){
-    global $db;
-    $sql = "SELECT week AS result FROM player_status WHERE  tname = $tname";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    $rs = mysqli_fetch_assoc($result);
-    return $rs['result'];
-    // SELECT (week) AS result FROM player_status WHERE   tname = $tname
-}
-function validateStatus($tname,$week,$pid){
-    global $db;
-    $player = 'p'.$pid;
-    $sql = "SELECT $player AS result FROM player_status WHERE  tname = ? AND week = ?";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_bind_param($stmt, "ii",$tname,$week);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    $rs = mysqli_fetch_assoc($result);
-    return $rs['result'];
-}
-function countexpected_arrival($tname,$pid,$currWeek){
-    global $db;
-    switch ($pid){
-        case '4':
-            echo $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
-            break;
-        case '3':
-            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
-            break;
-        case '2':
-            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
-            break;
-        case '1':
-            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
-            break;
-    }
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    $rs = mysqli_fetch_assoc($result);
-    return $rs['orders'];
-}
-function countactual_arrival($tname,$pid,$currWeek){
-    global $db;
-    switch ($pid){
-        case '4':
-            echo $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
-            break;
-        case '3':
-            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
-            break;
-        case '2':
-            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
-            break;
-        case '1':
-            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid) AND week =$currWeek-2";
-            break;
-    }
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    $rs = mysqli_fetch_assoc($result);
-    return $rs['orders'];
 }
 function insertOrder($tname,$pid,$order,$currWeek){
     global $db;
@@ -234,6 +145,73 @@ function insertOrder($tname,$pid,$order,$currWeek){
 	mysqli_stmt_bind_param($stmt, "iii",$tname,$pid,$order);
     mysqli_stmt_execute($stmt); 
 }
+
+/*---------- SELECT ----------*/
+function countOrder($tname,$pid){
+    global $db;
+    $sql = "SELECT week AS result FROM player_status WHERE  tname = $tname";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['result'];
+    // SELECT (week) AS result FROM player_status WHERE   tname = $tname
+}
+function validateStatus($tname,$week,$pid){
+    global $db;
+    $player = 'p'.$pid;
+    $sql = "SELECT $player AS result FROM player_status WHERE  tname = ? AND week = ?";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "ii",$tname,$week);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['result'];
+}
+function countexpected_arrival($tname,$pid,$currWeek){
+    global $db;
+    switch ($pid){
+        case '4':
+            echo $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+        case '3':
+            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+        case '2':
+            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+        case '1':
+            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            break;
+    }
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['orders'];
+}
+function countactual_arrival($tname,$pid,$currWeek){
+    global $db;
+    switch ($pid){
+        case '4':
+            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
+            break;
+        case '3':
+            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
+            break;
+        case '2':
+            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid-1) AND week =$currWeek-2";
+            break;
+        case '1':
+            $sql = "SELECT actual_shipment FROM player_record WHERE pid=($pid) AND week =$currWeek-2";
+            break;
+    }
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['orders'];
+}
 function getAccCost($pid){
     global $db;
     $sql = "SELECT SUM(cost) AS result FROM player_record WHERE pid= $pid ";
@@ -275,6 +253,20 @@ function getOrderList($tname,$pid) {
     $result = mysqli_stmt_get_result($stmt); 
     return $result;
 }
+
+/*---------- TRUNCATE AND INSERT ----------*/
+function r_status($tname,$week) {
+    global $db;
+    $sql = "TRUNCATE TABLE player_status";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt); 
+    $sql ="INSERT INTO player_status (id,tname,week,p1,p2,p3,p4,`status`)
+    VALUES (1,($tname),($week)+1,0,0,0,0,0)";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);  
+    return;
+}
+
 function r_playerrecord($tname){//清除playerrecord資料庫
     global $db;
     $sql = "TRUNCATE TABLE player_record";
@@ -294,18 +286,4 @@ function r_playerrecord($tname){//清除playerrecord資料庫
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_execute($stmt);  
     }
-    
-	// return;
-}
-function r_status($tname,$week)
-{
-    global $db;
-    $sql = "TRUNCATE TABLE player_status";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt); 
-    $sql ="INSERT INTO player_status (id,tname,week,p1,p2,p3,p4,`status`)
-    VALUES (1,($tname),($week)+1,0,0,0,0,0)";
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);  
-    return;
 }
