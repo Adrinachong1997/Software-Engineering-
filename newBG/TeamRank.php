@@ -34,7 +34,7 @@
     while ($rs = mysqli_fetch_assoc($result)) {
         $pid=$rs['pid'];
         $score--;
-        $result2=checkMember(4));//tname
+        $result2=checkMember(4);//tname
         while ($rs2 = mysqli_fetch_assoc($result2)){
             if($pid==1)
                 addscore($rs2['r1'],$score);
