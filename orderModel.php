@@ -81,9 +81,8 @@ function insertOrder($tname,$pid,$order,$currWeek){
     }
     if($currWeek>2){
         $expected_arrival=countexpected_arrival($tname,$pid,$currWeek);
-        $actual_arrival=countexpected_arrival($tname,$pid,$currWeek);
+        $actual_arrival=countactual_arrival($tname,$pid,$currWeek);
     }
-    
     echo $demand = getDemand($pid,$currWeek);
     // if($original_stock < 0){
     //      $cost = $cost+$original_stock*(-2);
