@@ -233,16 +233,16 @@ function gameStart(){
             mysqli_stmt_execute($stmt);
 
             if ($str_sec[0] == 1) {
-                header('Location: ../Factory.php');
+                header("Location: ../Factory.php?tname=$str_sec[1]");
             }
             else if ($str_sec[0] == 2) {
-                header('Location: ../Distributer.php');
+                header("Location: ../Distributer.php?tname=$str_sec[1]");
             }
             else if ($str_sec[0] == 3) {
-                header('Location: ../wholesaler.php');
+                header("Location: ../wholesaler.php?tname=$str_sec[1]");
             }
             else if ($str_sec[0] == 4) {
-                header('Location: ../retailer.php');
+                header("Location: ../retailer.php?tname=$str_sec[1]");
             }
         }
     }

@@ -164,7 +164,7 @@ function validateStatus($tname,$week,$pid){
     $player = 'p'.$pid;
     $sql = "SELECT $player AS result FROM player_status WHERE  tname = ? AND week = ?";
     $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_bind_param($stmt, "ii",$tname,$week);
+    mysqli_stmt_bind_param($stmt, "si",$tname,$week);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
     $rs = mysqli_fetch_assoc($result);
@@ -271,7 +271,7 @@ function getTeamName(){
     $arr = array();
     $sql = "SELECT tname as result FROM tgame WHERE go='1'";
     $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_bind_param($stmt, "ii", $pid, $tname);
+    mysqli_stmt_bind_param($stmt, "is", $pid, $tname);
     mysqli_stmt_execute($stmt); //執行SQL
     $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {

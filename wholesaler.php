@@ -1,10 +1,22 @@
 <?php
+//$tname = $_GET['tname'];
 require("dbconfig.php");
 require("orderModel.php");
 require("playerModel.php");
+require("newBG/gameModel.php");
 global $db;
+//setTeamName($tname,$pid);
+session_start();
+if(isset($_GET['tname'])){
+	//session_start();
+	$_SESSION['tname']=$_GET['tname'];
+	$tname = $_GET['tname'];
+}else if (isset($_SESSION['tname'])){
+	$tname = $_SESSION['tname'];
+}
+echo "你現在的隊伍是:$tname";
+$tname = $_SESSION['tname'];
 $pid=3;
-$tname=1;
 ?>
 <!DOCTYPE html>
 <html>
