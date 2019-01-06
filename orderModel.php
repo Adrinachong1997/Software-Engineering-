@@ -70,7 +70,7 @@ function updataWeek($order,$tname,$week,$pid){
 }
 function insertOrder($tname,$pid,$order,$currWeek){
     global $db;
-    $acc_cost = getAccCost($pid);
+    
     // echo $actual_shipment= countactual_shipment($tname,$pid,$currWeek);
     $original_stock = "15";
     $expected_arrival = "0";
@@ -78,50 +78,37 @@ function insertOrder($tname,$pid,$order,$currWeek){
         
     
     if($currWeek > 1){
-        echo "<br> curreweek > 1<br>";
-        echo $currWeek;
-        echo $original_stock = "SELECT (abc.original_stock - abc.demand) 
-                                FROM (  SELECT original_stock,demand 
-                                        FROM `player_record` 
-                                        WHERE pid = $pid AND week = $currWeek - 1) as abc ";
+        $original_stock = getOriginalStock($pid,$currWeek);
         if ($currWeek > 2){
-            echo $expected_arrival=countexpected_arrival($tname,$pid,$currWeek);
-            echo $actual_arrival=countactual_arrival($tname,$pid,$currWeek);
+            $expected_arrival=countexpected_arrival($tname,$pid,$currWeek);
+            $actual_arrival=countactual_arrival($tname,$pid,$currWeek);
+            $original_stock = $original_stock + $actual_arrival;
         }
     }
-    
-    
-    // else if($currWeek > 2){
-    //     echo $currWeek;
-    //     echo $pid;
-    //     if($pid == 1){
-    //         // echo $sql = "UPDATE player_record SET expected_arrival=(SELECT a.orders FROM(SELECT orders FROM player_record WHERE pid = 4 AND week = 3 - 2)`a` WHERE week=3)";
-    //         echo $expected_arrival = "SELECT orders FROM player_record WHERE pid = $pid AND week = $currWeek - 2";
-    //         echo $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = $pid AND week = $currWeek - 2";
-            
-    //     }
-    //     echo $expected_arrival = "SELECT orders FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
-    //     $actual_arrival = "SELECT actual_shipment FROM player_record WHERE pid = ($pid-1) AND week = $currWeek - 2";
-    // $actual_shipment=countactual_shipment($tname,$pid);
 
-    echo $demand = getDemand($pid,$currWeek);
-    // if($original_stock < 0){
-    //      $cost = $cost+$original_stock*(-2);
-    //     // echo $cost = "SELECT (cost+original_stock*(-2)) FROM player_record WHERE pid = $pid AND tname = $tname AND week =$currWeek";
-    // }
-    // else if($original_stock > 0){
-    //  $cost = $original_stock;
-    // }
-    if($original_stock >= $demand) {    //有足夠的貨
+    $demand = getDemand($pid,$currWeek);
+
+    if((int)$original_stock < 0) {
+        $cost = $cost+$original_stock*(-2);
+        // echo $cost = "SELECT (cost+original_stock*(-2)) FROM player_record WHERE pid = $pid AND tname = $tname AND week =$currWeek";
+    } else {
+        $cost = $original_stock;
+    }
+    $acc_cost = getAccCost($pid);
+
+    // echo "<h4>original_stock：".$original_stock."</h4>";
+    // echo "<h4>int:original_stock：".(int)$original_stock."</h4>";
+    // echo "<h4>demand".$demand."</h1>";
+    if($original_stock > $demand || $original_stock == $demand) {    //有足夠的貨
         $actual_shipment = $demand;
-    } else if ($original_stock > 0) {    //有多少給多少
-        $actual_shipment= $original_stock;    
+    } else if ($original_stock > 0 ) {    //有多少給多少//&& $original_stock < $demand
+        $actual_shipment = $original_stock;    
     } else {    //沒有貨
         $actual_shipment = 0;
     }
     // echo $actual_shipment;
     if($currWeek == 1){
-        echo $sql = "UPDATE 
+        $sql = "UPDATE 
                     `player_record`
                 SET 
                     tname = ($tname),
@@ -137,19 +124,13 @@ function insertOrder($tname,$pid,$order,$currWeek){
                 WHERE 
                     pid = '$pid'";
     } else {
-        
-        // if(validateStatus($tname,$currWeek,$pid)!=$currWeek){
-        //     echo "asdasd";
-         $sql = "INSERT INTO `player_record` (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment) VALUES ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
-            
-            $sql = "INSERT INTO `player_record`
+        $acc_cost = getAccCost($pid)+$cost;
+        $sql = "INSERT INTO `player_record`
                         (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
                     VALUES
-                        ($tname,$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,$cost,($acc_cost),($demand),$actual_shipment)";
-            // $sql = "asd";
-            // echo $sql;
-        // }
+                        ($tname,$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,($cost),($acc_cost),($demand),$actual_shipment)";
     }
+    echo "第".$currWeek."周，庫存：".$original_stock."到貨情形".$expected_arrival."/".$actual_arrival."訂單：".$order."成本：".$cost."累計成本：".$acc_cost."需求：".$demand."實際出貨".$actual_shipment;
     // echo validateStatus($tname,$currWeek,$pid);
     // echo $sql;
 	$stmt = mysqli_prepare($db, $sql);
@@ -158,6 +139,15 @@ function insertOrder($tname,$pid,$order,$currWeek){
 }
 
 /*---------- SELECT ----------*/
+function getOriginalStock($pid,$currWeek){
+    global $db;
+    $sql = "SELECT original_stock - demand AS result FROM `player_record` WHERE pid = $pid AND week = $currWeek - 1";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt); 
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['result'];
+}
 function countOrder($tname,$pid){
     global $db;
     $sql = "SELECT week AS result FROM player_status WHERE  tname = $tname";
@@ -183,7 +173,7 @@ function countexpected_arrival($tname,$pid,$currWeek){
     global $db;
     switch ($pid){
         case '4':
-            echo $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
+            $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
             break;
         case '3':
             $sql = "SELECT orders FROM player_record WHERE pid=$pid AND week =$currWeek-2";
@@ -236,8 +226,7 @@ function getDemand($pid,$currWeek){
     global $db;
     switch ($pid){
         case '4':
-            // $dynamicSql = "SELECT demand FROM gamecycle WHERE week=(SELECT MAX(week) FROM period) ";
-            $sql = "SELECT demand AS result FROM gamecycle WHERE week= $currWeek ";
+            $sql = "SELECT demand AS result FROM gamecycle WHERE week = $currWeek ";
             break;
         case '3':
             $sql = "SELECT orders AS result FROM player_record WHERE pid=4 AND week = $currWeek";
@@ -265,36 +254,60 @@ function getOrderList($tname,$pid) {
     return $result;
 }
 
+function getTeamAmount(){
+    global $db;
+    $sql = "SELECT count(*) as result FROM tgame WHERE go='1'";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $pid, $tname);
+    mysqli_stmt_execute($stmt); //執行SQL
+    $result = mysqli_stmt_get_result($stmt); 
+    return $result;
+}
+
+function getTeamName(){
+    global $db;
+    $arr = array();
+    $sql = "SELECT tname as result FROM tgame WHERE go='1'";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "ii", $pid, $tname);
+    mysqli_stmt_execute($stmt); //執行SQL
+    $result = mysqli_stmt_get_result($stmt);
+    while (	$rs = mysqli_fetch_assoc($result)) {
+        array_push($arr,$rs['result']);
+    }
+    return $arr;
+}
+
 /*---------- TRUNCATE AND INSERT ----------*/
 function r_status($tname,$week) {
     global $db;
     $sql = "TRUNCATE TABLE player_status";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt); 
-    $sql ="INSERT INTO player_status (id,tname,week,p1,p2,p3,p4,`status`)
-    VALUES (1,($tname),($week)+1,0,0,0,0,0)";
+    $sql = "INSERT INTO player_status 
+                (id,tname,week,p1,p2,p3,p4,`status`)
+            VALUES 
+                (1,($tname),($week)+1,0,0,0,0,0)";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);  
     return;
 }
 
-function r_playerrecord($tname){//清除playerrecord資料庫
+function r_playerrecord($tname){ //清除playerrecord資料庫
     global $db;
     $sql = "TRUNCATE TABLE player_record";
     $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);  
-    // $sql = "INSERT INTO player_record 
-    //     (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
-    //     values
-    //     ($tname,4,0,15,0,0,0,15,15,0,0)";
-    //     $stmt = mysqli_prepare($db, $sql);
-    //     mysqli_stmt_execute($stmt);  
-    for($i = 4; $i > 0; $i--){
-        $sql = "INSERT INTO player_record 
-        (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
-        values
-        ($tname,($i),0,15,0,0,0,15,15,0,0)";
-        $stmt = mysqli_prepare($db, $sql);
-        mysqli_stmt_execute($stmt);  
+    mysqli_stmt_execute($stmt); 
+    $team = getTeamAmount(); 
+    $arr = getTeamName();
+    for($j = 0; $j <= $team ; $j++) {
+        for($i = 4; $i > 0; $i--){
+            $sql = "INSERT INTO player_record 
+                        (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+                    values
+                        ('$arr[$j]',($i),0,15,0,0,0,15,15,0,0)";
+            $stmt = mysqli_prepare($db, $sql);
+            mysqli_stmt_execute($stmt);  
+        }
     }
 }
