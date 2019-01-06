@@ -32,7 +32,7 @@
                     <td colspan="4" id="background"><font size="6">房間列表</font></td>
                     <td colspan="2" rowspan="1">
                         用戶名 : <?php echo $_SESSION['id'];?></br>
-                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50"/>
+                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50%"/>
                     </td>
                 </tr>
                 <tr>

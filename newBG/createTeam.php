@@ -26,6 +26,9 @@
         <!-- 建立隊伍的介面-->
         <table id="main">
             <form id="team" method="post" action="createTeamUpdate.php" accept-charset="utf-8">
+            
+                
+               
                 <tr>
                     <td id="background"><font size="6">建立隊伍</font></td>
                 </tr>       

@@ -15,8 +15,6 @@ function ftyUpdate() {
                 '<a id="button" href="adminTeamList.php">返回主頁</a>',
             '</td></tr>';
             echo"<tr><td> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</td></tr> ";
-
-
             for($i = 0 ; $i < 50 ; $i++) {
                 $sqlData = $demand[$i];
                 $no = $i + 1;
@@ -32,9 +30,9 @@ function ftyUpdate() {
 
 function ftyDelete(){
     global $db;
-	$sql = "delete from gamecycle where demand";
+	$sql = "delete from gamecycle where week";
 	$stmt = mysqli_prepare($db, $sql );
-	mysqli_stmt_bind_param($stmt, "i", $demand);
+	mysqli_stmt_bind_param($stmt, "i", $week);
 	mysqli_stmt_execute($stmt);
 	header('Location: 50thSetting.php');
 }
