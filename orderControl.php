@@ -7,10 +7,10 @@ $pname = array(
     '2' => "Distributer.php",
     '3' => "wholesaler.php",
     '4' => "retailer.php");
-$tname = (int)$_POST["tname"];
+$tname = $_POST["tname"];
 $pid = (int)$_POST["pid"];
 $order = (int)$_POST["order"];
-$week = (int)$_REQUEST["week"];
+$week = (int)$_REQUEST["week"]; //REQUEST = GET or POST, POST = only POST, GET = only GET
 $operation = $_POST["operation"];
 switch($operation){
     case "reset":
