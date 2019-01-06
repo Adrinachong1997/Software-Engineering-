@@ -108,10 +108,10 @@ function insertOrder($tname,$pid,$order,$currWeek){
     }
     // echo $actual_shipment;
     if($currWeek == 1){
-        $sql = "UPDATE 
+        echo $sql = "UPDATE 
                     `player_record`
                 SET 
-                    tname = ($tname),
+                    tname = '$tname',
                     original_stock = ($original_stock),
                     expected_arrival = ($expected_arrival),
                     actual_arrival = ($actual_arrival),
@@ -122,13 +122,14 @@ function insertOrder($tname,$pid,$order,$currWeek){
                     actual_shipment = ($actual_shipment),
                     week = ($currWeek)
                 WHERE 
-                    pid = '$pid'";
+                    pid = '$pid'
+                    AND tname = '$tname'";
     } else {
         $acc_cost = getAccCost($pid)+$cost;
         $sql = "INSERT INTO `player_record`
                         (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
                     VALUES
-                        ($tname,$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,($cost),($acc_cost),($demand),$actual_shipment)";
+                        ('$tname',$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,($cost),($acc_cost),($demand),$actual_shipment)";
     }
     echo "第".$currWeek."周，庫存：".$original_stock."到貨情形".$expected_arrival."/".$actual_arrival."訂單：".$order."成本：".$cost."累計成本：".$acc_cost."需求：".$demand."實際出貨".$actual_shipment;
     // echo validateStatus($tname,$currWeek,$pid);
@@ -150,8 +151,9 @@ function getOriginalStock($pid,$currWeek){
 }
 function countOrder($tname,$pid){
     global $db;
-    $sql = "SELECT week AS result FROM player_status WHERE  tname = $tname";
+    $sql = "SELECT week AS result FROM player_status WHERE  tname = ?";
     $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "s",$tname);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
     $rs = mysqli_fetch_assoc($result);
@@ -258,12 +260,12 @@ function getTeamAmount(){
     global $db;
     $sql = "SELECT count(*) as result FROM tgame WHERE go='1'";
     $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_bind_param($stmt, "ii", $pid, $tname);
+    // mysqli_stmt_bind_param($stmt, "ii", $pid, $tname);
     mysqli_stmt_execute($stmt); //執行SQL
     $result = mysqli_stmt_get_result($stmt); 
-    return $result;
+    $rs = mysqli_fetch_assoc($result);
+    return $rs['result'];
 }
-
 function getTeamName(){
     global $db;
     $arr = array();
@@ -287,8 +289,10 @@ function r_status($tname,$week) {
     $sql = "INSERT INTO player_status 
                 (id,tname,week,p1,p2,p3,p4,`status`)
             VALUES 
-                (1,($tname),($week)+1,0,0,0,0,0)";
+                (1,?,?,0,0,0,0,0)";
     $stmt = mysqli_prepare($db, $sql);
+    $tmp = $week+1;
+    mysqli_stmt_bind_param($stmt, "si",$tname,$tmp);
     mysqli_stmt_execute($stmt);  
     return;
 }
@@ -300,7 +304,8 @@ function r_playerrecord($tname){ //清除playerrecord資料庫
     mysqli_stmt_execute($stmt); 
     $team = getTeamAmount(); 
     $arr = getTeamName();
-    for($j = 0; $j <= $team ; $j++) {
+    // echo $team;
+    for($j = 0; $j < $team ; $j++) {
         for($i = 4; $i > 0; $i--){
             $sql = "INSERT INTO player_record 
                         (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
