@@ -10,10 +10,7 @@
         //     $currWeek = $rs['week']+1;
         //     echo $currWeek;
         // }
-        $result = countOrder($tname,$pid);
-        // if($result == 1)
-        $currWeek = $result;
-        echo $currWeek;
+        $currWeek = countOrder($tname,$pid);
     ?>
     周
     </p>

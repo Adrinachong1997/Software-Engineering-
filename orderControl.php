@@ -9,9 +9,9 @@ $pname = array(
     '4' => "retailer.php");
 $tname = (int)$_POST["tname"];
 $pid = (int)$_POST["pid"];
-$operation = $_POST["operation"];
 $order = (int)$_POST["order"];
 $week = (int)$_REQUEST["week"];
+$operation = $_POST["operation"];
 switch($operation){
     case "reset":
         r_period();
@@ -27,6 +27,7 @@ switch($operation){
         break;
     
 }
+
 if($pid != ''){
     header("Location: ".$pname[$pid]);
 } else {

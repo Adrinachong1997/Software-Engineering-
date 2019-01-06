@@ -74,15 +74,21 @@ function insertOrder($tname,$pid,$order,$currWeek){
     $original_stock = "15";
     $expected_arrival = "0";
     $actual_arrival = "0";
+        
+    
     if($currWeek > 1){
         echo "<br> curreweek > 1<br>";
         echo $currWeek;
-        echo $original_stock = "SELECT (abc.original_stock - abc.demand) FROM (SELECT original_stock,demand FROM `player_record` WHERE pid = $pid AND week = $currWeek - 1) as abc ";
+        echo $original_stock = "SELECT (abc.original_stock - abc.demand) 
+                                FROM (  SELECT original_stock,demand 
+                                        FROM `player_record` 
+                                        WHERE pid = $pid AND week = $currWeek - 1) as abc ";
+        if ($currWeek > 2){
+            echo $expected_arrival=countexpected_arrival($tname,$pid,$currWeek);
+            echo $actual_arrival=countactual_arrival($tname,$pid,$currWeek);
+        }
     }
-    if($currWeek>2){
-        echo $expected_arrival=countexpected_arrival($tname,$pid,$currWeek);
-        echo $actual_arrival=countexpected_arrival($tname,$pid,$currWeek);
-    }
+    
     
     // else if($currWeek > 2){
     //     echo $currWeek;
@@ -130,11 +136,10 @@ function insertOrder($tname,$pid,$order,$currWeek){
             echo "asdasd";
             // $sql = "INSERT INTO `player_record` (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment) VALUES ($tname,$pid,$currWeek,($original_stock),($expected_arrival),0,$order,$cost,($acc_cost),($demand),$actual_shipment)";
             
-            $sql = "INSERT INTO 
-                        `player_record`
-                    (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
+            $sql = "INSERT INTO `player_record`
+                        (tname,pid,week,original_stock,expected_arrival,actual_arrival,orders,cost,acc_cost,demand,actual_shipment)
                     VALUES
-                    ($tname,$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,$cost,($acc_cost),($demand),$actual_shipment)";
+                        ($tname,$pid,$currWeek,($original_stock),($expected_arrival),($actual_arrival),$order,$cost,($acc_cost),($demand),$actual_shipment)";
             // $sql = "asd";
             // echo $sql;
         }
@@ -210,7 +215,7 @@ function countactual_arrival($tname,$pid,$currWeek){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
     $rs = mysqli_fetch_assoc($result);
-    return $rs['orders'];
+    return $rs['actual_shipment'];
 }
 function getAccCost($pid){
     global $db;
