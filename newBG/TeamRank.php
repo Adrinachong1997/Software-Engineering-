@@ -1,7 +1,6 @@
 <?php
 //tgame.go =1 表示配對成功進入遊戲的隊伍;遊戲結束後應記為-1;另外遊戲開始後應將go=0的隊伍從資料庫中刪除
-    require_once("dbconfig.php"); 
-    //require("userModel.php");  
+    require("dbconfig.php");  
     $score=5;//獎勵積分+1           
     /*
     //排名模式: 團隊排行
@@ -28,14 +27,17 @@
     }*/
 
     //排名模式: 隊內排行
-    //$uid=$_SESSION['id'];
-    $tname=$_SESSION['tname'];//get_tname($uid);
+    $tname=_SESSION['tname'];
+    //$week=
+    $totalcost=0;
     $result=showMemberCost($tname,5);
     while ($rs = mysqli_fetch_assoc($result)) {
+        $totalcost+=$rs['acc_cost'];
         $pid=$rs['pid'];
         $score--;
         $result2=checkMember($tname);//tname
         while ($rs2 = mysqli_fetch_assoc($result2)){
+            
             if($pid==1)
                 addscore($rs2['r1'],$score);
             if($pid==2)
@@ -44,10 +46,9 @@
                 addscore($rs2['r3'],$score);
             if($pid==4)
                 addscore($rs2['r4'],$score);
-            echo $score,"123";
         }
     }
-
+    setTotalcost($totalcost,$tname);
 function showMemberCost($tname,$week)
 {
     global $db;
@@ -62,13 +63,21 @@ function showMemberCost($tname,$week)
 function showTotalcost() 
 {
     global $db;
-    $sql = "SELECT tname,totalcost,rank FROM `tgame`  ORDER BY totalcost ASC";//WHERE tgame.go=1
+    $sql = "SELECT tname,r1,r2,r3,r4,totalcost,rank FROM `tgame`  ORDER BY totalcost ASC";//WHERE tgame.go=1
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     return $result;
 }
-
+//將隊伍總成本記錄到tgame中
+function setTotalcost($totalcost,$tname){
+    global $db;
+    $sql="update tgame set totalcost=? From `tgame` WHERE tname=?";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "is",$totalcost,$tname);
+    mysqli_stmt_execute($stmt);
+    return;
+}
 //設定隊伍名次
 function setRank($score,$tname)
 {
