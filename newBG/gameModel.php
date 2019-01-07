@@ -1,6 +1,7 @@
 <?php
 require_once("dbconfig.php");
 
+//五十期資料設定(admin功能)
 function ftyUpdate() {
         global $db;
         $demand=$_POST['demand'];
@@ -28,6 +29,7 @@ function ftyUpdate() {
         }
 }
 
+//五十期資料刪除(admin功能)
 function ftyDelete(){
     global $db;
 	$sql = "delete from gamecycle where week";
@@ -37,13 +39,15 @@ function ftyDelete(){
 	header('Location: 50thSetting.php');
 }
 
+//用戶介面
 function showTeam(){
     global $db;
     $sql = "select * from tgame Where go !=-1;";
     $stmt = mysqli_prepare($db, $sql );
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-    while (	$rs = mysqli_fetch_assoc($result)) {
+    while (	$rs = mysqli_fetch_assoc($result)) 
+    {
         echo"<tr><td colspan='6'><hr></td></tr> ";
         echo"<tr><td>" , "<input id='game' type='button' disabled='disabled' value='　".$rs['tname']."　' >" ,
             "</td><td>";
@@ -80,6 +84,7 @@ function showTeam(){
     }
 }
 
+//admin介面
 function adminShowTeam(){
     global $db;
     $sql = "select * from tgame;";
@@ -129,6 +134,7 @@ function adminShowTeam(){
     }
 }
 
+//創建隊伍
 function createTeam(){
     require("userModel.php");
     //header('refresh: 5;url=""');
@@ -151,6 +157,7 @@ function createTeam(){
     }
 }
 
+//判斷用戶所加入的隊伍
 function updateTeam(){
     global $db;
     require('userModel.php');
@@ -206,6 +213,7 @@ function updateTeam(){
     }
 }
 
+//房間刪除(admin功能)
 function roomDelete(){
     global $db;
 	$serno=(int)$_GET['serno'];
@@ -218,6 +226,7 @@ function roomDelete(){
 	header('Location: adminTeamList.php');
 }
 
+//判斷房間是否滿人，是的就轉跳各自介面開始遊戲
 function gameStart(){
     $str_sec = explode(";",$_SESSION['role']);
     //print_r($str_sec);
@@ -255,10 +264,7 @@ function creatrGameStart(){
     $str_sec = explode(";",$_SESSION['role']);
 }
 
-function hongpak(){
-    echo"<tr><td colspan='7'> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</td></tr> ";
-}
-
+//顯示大頭貼
 function showIcon(){
                         
     require("userModel.php");
@@ -274,6 +280,7 @@ function showIcon(){
     if ($rs=mysqli_fetch_array($result)) {
     echo $img_name;}
 }
+
 
 function teamcheck($tname){
     global $db;
@@ -291,6 +298,7 @@ function teamcheck($tname){
         } 
 }
 
+//遊戲結束計分
 function endGame($tname){
     global $db;
     $sql = "select week from player_status where tname = ?";
@@ -299,7 +307,7 @@ function endGame($tname){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {
-        if ($rs['week']==6){
+        if ($rs['week']==6){ //遊戲結束週期+1;
             $sql1 = "update tgame set go=-1 where tname = ?";
             $stmt1 = mysqli_prepare($db, $sql1 );
             mysqli_stmt_bind_param($stmt1, "s", $tname);
