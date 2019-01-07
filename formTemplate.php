@@ -3,7 +3,7 @@
 <style> 
 </style>
 </head>
-
+<meta http-equiv="refresh" content="5">
 </body>
 </html>
 <form method="post" action="orderControl.php">

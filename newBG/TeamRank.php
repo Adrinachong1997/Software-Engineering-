@@ -1,6 +1,6 @@
 <?php
 //tgame.go =1 表示配對成功進入遊戲的隊伍;遊戲結束後應記為-1;另外遊戲開始後應將go=0的隊伍從資料庫中刪除
-    require("dbconfig.php");  
+    require_once("dbconfig.php");  
     $score=5;//獎勵積分+1           
     /*
     //排名模式: 團隊排行
@@ -27,7 +27,7 @@
     }*/
 
     //排名模式: 隊內排行
-    $tname=_SESSION['tname'];
+    $tname=$_SESSION['tname'];
     //$week=
     $totalcost=0;
     $result=showMemberCost($tname,5);
@@ -72,7 +72,7 @@ function showTotalcost()
 //將隊伍總成本記錄到tgame中
 function setTotalcost($totalcost,$tname){
     global $db;
-    $sql="update tgame set totalcost=? From `tgame` WHERE tname=?";
+    $sql="update tgame set totalcost=? where tname=?";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_bind_param($stmt, "is",$totalcost,$tname);
     mysqli_stmt_execute($stmt);
