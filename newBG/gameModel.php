@@ -286,7 +286,19 @@ function teamcheck($tname){
         } else {
             return 1;
         } 
-
 }
 
+function endGame($tname){
+    global $db;
+    $sql = "select week from player_status where tname = ?";
+    $stmt = mysqli_prepare($db, $sql );
+    mysqli_stmt_bind_param($stmt, "s", $tname);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    while (	$rs = mysqli_fetch_assoc($result)) {
+        if ($rs['week']==51){
+            header("Location: newBG/EndGameView.php?tname=$tname");
+        }
+    }
+}
 ?>

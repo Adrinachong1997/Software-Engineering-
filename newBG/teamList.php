@@ -30,16 +30,19 @@
                 </tr> 
                 <tr>
                     <td colspan="4" id="background"><font size="6">房間列表</font></td>
-                    <td colspan="2" rowspan="1">
-                        用戶名 : <?php echo $_SESSION['id'];?></br>
-                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50%"/>
-                        遊戲積分: <?php
+                    <td id="l">
+                        用戶名稱 : <?php echo $_SESSION['id'];?></br>
+                        遊戲積分 : 
+                                <?php
                                 require_once("userMOdel.php");
                                 $result=get_score($_SESSION['id']);
                                 while($rs =mysqli_fetch_assoc($result)){
                                     $score=$rs['score'];
                                 } 
-                               echo $score ?>
+                                echo $score ?>
+                    </td>
+                    <td rowspan="1">
+                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50%"/>
                     </td>
                 </tr>
                 <tr>
@@ -68,6 +71,7 @@
                     <td colspan="6">
                         <a id="button" href="loginOut.php">登出</a>
                         <a id="button" href="edit.php">編輯個人資料</a>
+                        <a id="button" href="EndGameView.php">排行鎊</a>
                         <a id="button" href="createTeam.php">建立隊伍</a>
                         <input id="button" type="submit" name="Submit" value="加入隊伍" />
                     </td>
