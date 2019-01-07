@@ -10,7 +10,7 @@
     <input type = "hidden" name="pid" value="<?php echo $pid ?>"/>
     <input type = "hidden" name="tname" value="<?php echo $tname ?>"/>
     <input type = "hidden" name="operation" value="update"/>
-    <p>目前是第
+    <p>目前是第 
     <?php //從period撈目前週次
     
         // $result = getCurrentPeriod();
@@ -22,7 +22,7 @@
         $currWeek = countOrder($tname,$pid);
         echo $currWeek;
     ?>
-    周
+     周
     </p>
     
     <!-- <p>消費者上週要求的啤酒數量：
@@ -33,10 +33,10 @@
          } -->
     
     </p> 
-    請輸入本週訂購的啤酒數量:<?php ?>
+    請輸入本週訂購的啤酒數量：⠀<?php ?>
     <input type = "hidden" name="week" value="<?php echo $currWeek ?>"/>
-    <input type ="text" name="order" class="validate">
-    <input type ="submit" value=" 下單 " />
+    <input type ="text" name="order" class="validate">⠀
+    <input type ="submit" value="下單" />
 </form>
 <form method="post" action="orderControl.php">
     <input type = "hidden" name="tname" value="<?php echo $tname; ?>"/>
