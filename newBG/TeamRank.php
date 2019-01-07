@@ -27,6 +27,7 @@
     }*/
 
     //排名模式: 隊內排行
+    
     $tname=$_SESSION['tname'];
     //$week=
     $totalcost=0;

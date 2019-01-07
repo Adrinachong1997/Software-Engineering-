@@ -1,5 +1,5 @@
 <?php 
-require("TeamRank");
+require("newBG/TeamRank.php");
     $result=showTotalcost();
     $rnak=0;
     while($rs = mysqli_fetch_assoc($result)){
