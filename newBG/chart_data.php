@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 require_once("dbconfig.php");
 require_once("userModel.php");
 $uid=getCurrentUser();
-$tname=get_tname($uid);
+$tname=$_SESSION['tname'];//get_tname($uid);
 
     $sql = " SELECT pid,week,cost from player_record where tname=? ORDER BY week ASC,pid ASC ";
     $stmt = mysqli_prepare($db, $sql);
