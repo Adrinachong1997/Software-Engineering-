@@ -17,6 +17,7 @@ if(isset($_GET['tname'])){
 echo "你現在的隊伍是:$tname";
 $tname = $_SESSION['tname'];
 $pid=4;
+endGame($tname);
 ?>
 
 

@@ -17,6 +17,7 @@
 	echo "你現在的隊伍是:$tname";
 	$tname = $_SESSION['tname'];
 	$pid=1;
+	endGame($tname);
 ?>
 <!DOCTYPE html>
 <html>

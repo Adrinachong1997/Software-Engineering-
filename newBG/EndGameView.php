@@ -1,6 +1,6 @@
 <?php  
     require("dbconfig.php");
-    //require("TeamRank.php");
+    require("TeamRank.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -62,7 +62,7 @@
                     <td colspan="2">
                         <a id="button" href="loginOut.php">登出</a>
                         <a id="button" href="teamList.php">返回隊伍大廳</a>
-                        <!-- <a id="button" href="XXXXXX.php">遊戲報表</a>     我不知道報表的程式是哪一支-->
+                        <a id="button" href="printChart.html">遊戲報表</a>
                     </td>
                 </tr>
                 <tr>

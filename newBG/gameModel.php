@@ -39,7 +39,7 @@ function ftyDelete(){
 
 function showTeam(){
     global $db;
-    $sql = "select * from tgame;";
+    $sql = "select * from tgame Where go !=-1;";
     $stmt = mysqli_prepare($db, $sql );
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
@@ -116,7 +116,10 @@ function adminShowTeam(){
             echo "</td><td>";
             if($rs['go']==1){
                 echo "<input id='game' type='button' disabled='disabled' value='已開始遊戲'>";
-            }else {
+            }else if($rs['go']==-1){
+                echo "<input id='game' type='button' disabled='disabled' value='已完成遊戲'>";
+            }
+            else {
                 echo "<input id='game' type='button' disabled='disabled' value='可加入遊戲'>";
             }
             echo "</td><td>";
@@ -296,9 +299,15 @@ function endGame($tname){
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     while (	$rs = mysqli_fetch_assoc($result)) {
-        if ($rs['week']==51){
-            header("Location: newBG/EndGameView.php?tname=$tname");
+        if ($rs['week']==6){
+            $sql1 = "update tgame set go=-1 where tname = ?";
+            $stmt1 = mysqli_prepare($db, $sql1 );
+            mysqli_stmt_bind_param($stmt1, "s", $tname);
+            mysqli_stmt_execute($stmt1);
+            $week = $rs['week'];
+            header("Location: newBG/EndGameView.php?week=$week");
         }
     }
 }
+
 ?>
