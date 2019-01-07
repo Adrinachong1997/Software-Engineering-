@@ -1,15 +1,6 @@
 <html>
 <head>
 <style> 
-input[type=hidden], input[type=submit] {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
-}
 </style>
 </head>
 

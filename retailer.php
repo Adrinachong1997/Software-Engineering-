@@ -6,7 +6,7 @@ require("playerModel.php");
 require("newBG/gameModel.php");
 global $db;
 //setTeamName($tname,$pid);
-// session_start();
+session_start();
 if(isset($_GET['tname'])){
 	//session_start();
 	$_SESSION['tname']=$_GET['tname'];
