@@ -1,4 +1,20 @@
+<html>
+<head>
+<style> 
+input[type=hidden], input[type=submit] {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
 
+</body>
+</html>
 <form method="post" action="orderControl.php">
     <input type = "hidden" name="pid" value="<?php echo $pid ?>"/>
     <input type = "hidden" name="tname" value="<?php echo $tname ?>"/>
@@ -28,7 +44,7 @@
     </p> 
     請輸入本週訂購的啤酒數量:<?php ?>
     <input type = "hidden" name="week" value="<?php echo $currWeek ?>"/>
-    <input type ="text" name="order">
+    <input type ="text" name="order" class="validate">
     <input type ="submit" value=" 下單 " />
 </form>
 <form method="post" action="orderControl.php">

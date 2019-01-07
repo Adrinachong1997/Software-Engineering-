@@ -56,13 +56,13 @@ function updateStatus($tname,$order,$pid,$week){
                 IF((p4 = week AND p3 = week AND p2 = week AND p1 = week),$week,`status`) C 
                 FROM `player_status` 
                 WHERE tname = '$tname')`b` 
-    WHERE tname=$tname)";
+    WHERE tname='$tname')";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt); //執行SQL
 }
 function updataWeek($order,$tname,$week,$pid){
     global $db;
-    $sql ="UPDATE player_status SET `week` = (SELECT a.c FROM(SELECT IF((`status`=$week) ,$week+1,$week)c FROM player_status WHERE tname=$tname)`a` WHERE tname=$tname)";
+    $sql ="UPDATE player_status SET `week` = (SELECT a.c FROM(SELECT IF((`status`=$week) ,$week+1,$week)c FROM player_status WHERE tname='$tname')`a` WHERE tname='$tname')";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
@@ -216,7 +216,7 @@ function countactual_arrival($pid,$currWeek){
 }
 function getAccCost($pid,$tname){
     global $db;
-    echo $sql = "SELECT SUM(cost) AS result FROM player_record WHERE pid= ? AND tname = ?";
+    $sql = "SELECT SUM(cost) AS result FROM player_record WHERE pid= ? AND tname = ?";
     $stmt = mysqli_prepare($db, $sql);
     mysqli_stmt_bind_param($stmt, "is",$pid,$tname);
     mysqli_stmt_execute($stmt);
