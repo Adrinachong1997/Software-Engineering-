@@ -353,4 +353,28 @@ function showCost(){
     }
 }
 
+function history(){
+    require_once("dbconfig.php");  
+    require_once("userModel.php");  
+    $id=$_SESSION['id'];
+    $result=showHistory($id);
+    //echo "玩家參與紀錄<br/>";
+    while ($rs = mysqli_fetch_assoc($result)){
+        echo"<tr><td colspan='6'><hr></td></tr> ";
+        echo"<tr><td>";
+        echo $rs['tname'];
+        echo"</td><td>";
+        echo $rs['r1'];
+        echo"</td><td>";
+        echo $rs['r2'];
+        echo"</td><td>";
+        echo $rs['r3'];
+        echo"</td><td>";
+        echo $rs['r4'];
+        echo"</td><td>";
+        echo $rs['totalcost'];
+        echo"</td></tr>";
+    }
+}
+
 ?>

@@ -29,7 +29,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" id="background"><font size="6">遊戲成積</font></td>
+                    <td colspan="2" id="background"><font size="6">遊戲結束</font></td>
                 <tr>
                     <td id="r">
                         用戶名稱 : 
