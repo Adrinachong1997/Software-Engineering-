@@ -19,9 +19,9 @@ function ftyUpdate() {
             for($i = 0 ; $i < 50 ; $i++) {
                 $sqlData = $demand[$i];
                 $no = $i + 1;
-                $sql = "insert into gamecycle (week, demand) values (?,?)";
+                $sql = "update gamecycle set demand=? where week=?";
                 $stmt = mysqli_prepare($db, $sql); //prepare sql statement
-                mysqli_stmt_bind_param($stmt, "ii", $no, $sqlData); //bind parameters with variables
+                mysqli_stmt_bind_param($stmt, "ii", $sqlData, $no); //bind parameters with variables
                 mysqli_stmt_execute($stmt);  //執行SQL
             }
         } else {

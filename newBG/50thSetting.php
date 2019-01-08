@@ -122,7 +122,7 @@
                 </tr>
                 <tr>
                     <td colspan="5">
-                        <a id="button" href="50thDelete.php">刪除資料表資料</a>
+                        <!--<a id="button" href="50thDelete.php">刪除資料表資料</a>-->
                         <input id="button" type="reset" value="重新填寫" />
                         <input id="button" type="button" value="一鍵隨機" onClick='random()' />
                         <input id="button" type="submit" value="儲存" />
