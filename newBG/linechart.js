@@ -10,6 +10,7 @@ var getdatafromDB = function(){
 	$.ajax({
 		url : "http://localhost/Software-Engineering-/newBG/chart_data.php",
 		type : "GET",
+
 		success : function(data){
 			console.log(data);
 
@@ -67,8 +68,7 @@ var getdatafromDB = function(){
 						fill : false,
 						lineTension : 0,
 						pointRadius : 5
-					},
-					{
+					},{
 						label : "零售商",
 						data : cost.R4,
 						backgroundColor : "green",
@@ -86,12 +86,12 @@ var getdatafromDB = function(){
 					position : "top",
 					text : "組內成本折線圖",
 					fontSize : 18,
-					fontColor : "#111"
+					fontColor : "00000"
 				},
 				legend : {
 					display : true,
 					position : "bottom"
-				}
+				},
 			};
 
 			var chart = new Chart( ctx, {

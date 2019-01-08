@@ -47,7 +47,7 @@
                 require("newBG/gameModel.php");
                 showCost();
             ?>
-            </tr>
+            <tr>
                 <td colspan="7"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 </td>
             </tr>
@@ -56,7 +56,7 @@
                     <a id="button" href="newBG/teamList.php">返回主頁</a>
                 </td>
             <tr>
-            </tr>
+            <tr>
                 <td colspan="7"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                 </td>
             </tr>
