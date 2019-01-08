@@ -1,7 +1,4 @@
-<?php  
-    require("dbconfig.php");
-    require("TeamRank.php");
-?>
+<?php require("dbconfig.php"); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,6 +27,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" id="background"><font size="6">遊戲結束</font></td>
+                </tr>
                 <tr>
                     <td id="r">
                         用戶名稱 : 
@@ -38,6 +36,9 @@
                     ⠀⠀<?php echo $_SESSION['id'];?>
                     </td>
                 </tr>
+                <?php  
+                    require("TeamRank.php");
+                ?>
                 <tr>
                     <td id="r">
                         遊戲積分 : 
@@ -49,7 +50,7 @@
                             while($rs =mysqli_fetch_assoc($result)){
                                 $score=$rs['score'];
                             } 
-                            echo $score 
+                            echo $score ;
                         ?>
                     </td>
                 </tr>

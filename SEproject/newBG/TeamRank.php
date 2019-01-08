@@ -31,14 +31,15 @@
     $tname=$_SESSION['tname'];
     $totalcost=0;
     $result=showMemberCost($tname,5);
-    echo "隊內成本排行 :  ";
+    echo "<tr><td id='r'>隊內成本排行 :  </td><td>";
     while ($rs = mysqli_fetch_assoc($result)) {
         $totalcost+=$rs['acc_cost'];
         $pid=$rs['pid'];
         $score--;
         $result2=checkMember($tname);
         
-        echo "r",$pid,":  " ,$rs['acc_cost']," ";
+        echo "r",$pid," : " ,$rs['acc_cost']," ";
+        echo "</tr>";
         while ($rs2 = mysqli_fetch_assoc($result2)){
             
             if($pid==1)
