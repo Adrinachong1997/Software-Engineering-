@@ -29,14 +29,16 @@
     //排名模式: 隊內排行
     // session_start();
     $tname=$_SESSION['tname'];
-    //$week=
     $totalcost=0;
     $result=showMemberCost($tname,5);
+    echo "隊內成本排行 :  ";
     while ($rs = mysqli_fetch_assoc($result)) {
         $totalcost+=$rs['acc_cost'];
         $pid=$rs['pid'];
         $score--;
-        $result2=checkMember($tname);//tname
+        $result2=checkMember($tname);
+        
+        echo "r",$pid,":  " ,$rs['acc_cost']," ";
         while ($rs2 = mysqli_fetch_assoc($result2)){
             
             if($pid==1)

@@ -72,6 +72,7 @@
                         <a id="button" href="loginOut.php">登出</a>
                         <a id="button" href="edit.php">編輯個人資料</a>
                         <a id="button" href="../Leaderboard.php">排行鎊</a>
+                        <a id="button" href="History.php">遊戲紀錄</a>
                         <a id="button" href="createTeam.php">建立隊伍</a>
                         <input id="button" type="submit" name="Submit" value="加入隊伍" />
                     </td>

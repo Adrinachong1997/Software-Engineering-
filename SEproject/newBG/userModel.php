@@ -120,4 +120,16 @@ function get_score($id){
     
     return $result;
 }
+
+// 玩家歷史遊戲紀錄
+function showHistory($id) 
+{
+    global $db;
+    $sql = "SELECT tname,r1,r2,r3,r4,totalcost FROM `tgame` WHERE tgame.go=-1 AND r1=? OR r2=? OR r3=? OR r4=? ORDER BY totalcost ASC";
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_bind_param($stmt, "ssss", $id,$id,$id,$id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return $result;
+}
 ?>
