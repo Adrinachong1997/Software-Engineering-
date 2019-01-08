@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta charset="UTF-8" />
+        <meta name="keywords" content=" " />
+        <meta name="description" content=" " />
+        <title>組內成本折線圖</title>
+        <style type="text/css">
+        #main {
+            width: 900px;
+            margin: 60px auto;
+            background: #ffffff93;
+            border: 10px #ffffff solid ;
+        }
+        table {
+            width: 500px;
+            height: 400px;
+        }
+        #background{
+            background-color:#ffffff;
+            color:#fdfdfd;         
+        }
+        .chart-container {
+            width: 600px;
+            height: auto;
+        }
+        th ,td {
+    border: 0px solid ;
+    color:#f0f8ff75;  
+    text-align:center;
+    background-color:#ffffff77;
+}
+        </style>
+    </head>
+    <body>
+        <table id="main">
+            <form id="team" method="post" action="teamUpdate.php" accept-charset="utf-8">
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+                <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+                <script  type="text/javascript" src="linechart.js"></script>
+                <div class="chart-container">
+                    <tr>
+                        <td>
+                            <canvas id="line-chartcanvas"></canvas>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a id="button" href="teamList.php" >回到遊戲開始畫面</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                        </td>
+                    </tr>
+                </div>    
+            </form>
+        </table>
+    </body>
+</html>

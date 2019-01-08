@@ -1,0 +1,108 @@
+body {
+    background-image: url(../newBG/image/bg.gif);
+    background-attachment:fixed;
+    background-size: cover;
+    font-size:20px;
+    color:#080c0f;
+    font-family: "微軟正黑體";  
+}
+#main {
+    width: 800px;
+    margin: 40px auto;
+    border: 10px #37322f86 solid ;
+    padding: 13px;            
+    background: #372f2f79;
+}
+table {
+    width: 300px;
+    height: 500px;
+    border-collapse: collapse;
+   	/*width: 770px; */	
+   	/*自動斷行*/
+   	word-wrap: break-word;
+   	table-layout: fixed;
+}
+th ,td {
+    border: 0px solid ;
+    color:#f0f8ff;  
+    text-align:center;
+    background-color:#37322f86;
+}
+input{           
+    font-size: 20px;
+    text-align: center;
+    color:#000000; 
+}
+select{
+    width: 200px;
+    height: 30px;
+}
+#background{
+    background-color:#37322f86;
+    color:#f0f8ff;         
+}
+#button{
+    background-color: #f8f4f4;   
+    padding: 1px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    transition-duration: 0.2s;
+    border: 0px solid ;
+}
+#button:hover{
+    background-color: #ffffff59;
+    color: #070707;
+}
+a{
+    text-decoration: none;
+    color: #000000;
+}
+
+#game{
+    background-color:#37322f00;  
+    color:#f0f8ff; 
+    padding: 1px 1px;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    transition-duration: 0.2s;
+    border: 0px solid ;
+}
+
+#file{
+    color:#f0f8ff; 
+}
+#l{
+    text-align:left;
+}
+#r{
+    text-align:right;
+}
+.logo {
+    position:absolute;
+    top: 30px;
+    left: 890px;
+}
+.logo1 {  
+    position:absolute;
+    top: 180px;
+    left: 800px;
+}
+.logo2 {  
+    position:absolute;
+    top: 270px;
+    left: 930px;
+}
+.bt {  
+    position:absolute;
+    top: 330px;
+    left: 915px;
+}
+.admin {  
+    position:absolute;
+    top: 10px;
+    left: 11%;
+}
+
+
