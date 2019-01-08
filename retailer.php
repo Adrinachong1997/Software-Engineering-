@@ -21,27 +21,28 @@
 	}else if (isset($_SESSION['id'])){
 		$uid = $_SESSION['id'];
 	}
-	echo "用戶名稱 : $uid</br>"; 
-	echo "隊伍 : $tname";
 	//$tname = $_SESSION['tname'];
 	$pid=4;
 	endGame($tname);
 ?>
 <!DOCTYPE html>
 <html>
-	<div class='game'>
 	<link rel="stylesheet" type="text/css" href="newBG/gameStyle.css" />
 	<head>
-		<title>零售商</title>
+		<title id="game">零售商</title>
 	</head>
 	<body>
-		<table id="main" style="width: 100%">
+		<table>
 		<tr>
-			<H1>零售商 Retailer</H1>
+			<h1>零售商 Retailer</h1>
+				<?php 
+					echo "用戶名稱 : $uid</br>"; 
+					echo "隊伍名稱 : $tname";
+				?>
 			<?php include("formTemplate.php"); ?>
 		</tr>
 		<hr>
-			<tbody><tr>
+			<tr>
 				<td>週次</td>
 				<td>庫存</td>
 				<td>預期到貨</td>
@@ -53,7 +54,7 @@
 				<td>實際出貨</td>
 			</tr>
 			<?php
-				$result = getOrderList($tname,$pid);
+				$result =getOrderList($tname,$pid);
 				while (	$rs = mysqli_fetch_assoc($result)) {
 					echo 
 					"<tr>",
@@ -71,5 +72,4 @@
 			?>
 		</table>
 	</body>
-	</div>
 </html>

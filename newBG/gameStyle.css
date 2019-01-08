@@ -1,48 +1,73 @@
 body {
-    background-image: url(../newBG/image/1.jpg);
-    background-attachment:fixed;
-    background-size: cover;
-    font-size:20px;
-    color:#ffffff;
-    font-family: "微軟正黑體";  
+  background-image: url(../newBG/image/bg_3.jpg);
+  background-attachment:fixed;
+  background-size: cover;
+  font-size:20px;
+  color:#ffffff;
+  font-family: "微軟正黑體";  
 }
-input[type=hidden], input[type=submit] {
-    background-color: rgba(76, 175, 79, 0.671);
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-    transition-duration: 0.2s;
+
+#main {
+  width: 10px;
+  margin: 0px auto;
+  border: 2px #37322f86 solid ;
+  padding: 2px;            
+  background: #372f2f79;
 }
-input:hover{
-    background-color: #ffffff1a;
-    color: #070707;
+input{           
+  font-size: 20px;
+  text-align: center;
+  color:#000000; 
 }
+
+#button{
+  background-color: rgba(73, 250, 3, 0.281);
+  border: none;
+  color: white;
+  padding: 2px 20px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+#button:hover{
+  background-color: #ffffff59;
+  color: #070707;
+}
+
 table, td, th {  
-    border: 1px solid #ddd;
-    text-align: left;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%
-    }
-    th, td {
-      padding: 15px;
-    }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th,td {
-      text-align: left;
-      padding: 10px;
-    }
-
-    
-tr:nth-child(even) {
-   
-
+  border: 0px dotted #ddd;
+  text-align: left;
+  table-layout: fixed;
+  padding: 10px;
+  border-collapse: collapse;
+  width: 100%
 }
+
+.game{
+  background-color:#37322f00;  
+  color:#f0f8ff; 
+  padding: 1px 1px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  transition-duration: 0.2s;
+  border: 0px solid ;
+}
+
+.icon {
+  position: relative;
+  top: 30px;
+  left: 500px;
+}
+
+tr:nth-child(even) {
+  background: rgba(10, 10, 10, 0.274)
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(15, 15, 15, 0.637);
+}
+
 

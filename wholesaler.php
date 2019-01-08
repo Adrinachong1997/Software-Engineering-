@@ -21,27 +21,28 @@
 	}else if (isset($_SESSION['id'])){
 		$uid = $_SESSION['id'];
 	}
-	echo "用戶名稱 : $uid</br>"; 
-	echo "隊伍 : $tname";
 	//$tname = $_SESSION['tname'];
 	$pid=3;
 	endGame($tname);
 ?>
 <!DOCTYPE html>
 <html>
-	<div class='game'>
 	<link rel="stylesheet" type="text/css" href="newBG/gameStyle.css" />
 	<head>
-		<title>批發商</title>
+		<title id="game">批發商</title>
 	</head>
 	<body>
-		<table id="main" style="width: 100%">
+		<table>
 		<tr>
-			<H1>批發商 Wholesaler</H1>
+			<h1>批發商 Wholesaler</h1>
+				<?php 
+					echo "用戶名稱 : $uid</br>"; 
+					echo "隊伍名稱 : $tname";
+				?>
 			<?php include("formTemplate.php"); ?>
 		</tr>
 		<hr>
-			<tbody><tr>
+			<tr>
 				<td>週次</td>
 				<td>庫存</td>
 				<td>預期到貨</td>
@@ -66,10 +67,9 @@
 					"<td>" , $rs['acc_cost'], "</td>",
 					"<td>" , $rs['demand'], "</td>",
 					"<td>" , $rs['actual_shipment'], "</td>",
-					"</tr>";
+					"</tr>";		
 				}
 			?>
 		</table>
 	</body>
-	</div>
 </html>

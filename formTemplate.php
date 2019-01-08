@@ -6,6 +6,7 @@
 <meta http-equiv="refresh" content="5">
 </body>
 </html>
+<link rel="stylesheet" type="text/css" href="newBG/gameStyle.css" />
 <form method="post" action="orderControl.php">
     <input type = "hidden" name="pid" value="<?php echo $pid ?>"/>
     <input type = "hidden" name="tname" value="<?php echo $tname ?>"/>
@@ -36,11 +37,11 @@
     請輸入本週訂購的啤酒數量：⠀<?php ?>
     <input type = "hidden" name="week" value="<?php echo $currWeek ?>"/>
     <input type ="text" name="order" class="validate">⠀
-    <input type ="submit" value="下單" />
+    <input id = "button" type ="submit" value="下單" />
 </form>
 <form method="post" action="orderControl.php">
     <input type = "hidden" name="tname" value="<?php echo $tname; ?>"/>
     <input type = "hidden" name="pid" value="<?php echo $pid ?>"/>
     <input type = "hidden" name="operation" value="reset"/>
-    <input type = "submit" value = "重置"> 
+    <input id = "button" type = "submit" value = "重置"> 
 </form>

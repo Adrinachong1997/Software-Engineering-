@@ -318,4 +318,39 @@ function endGame($tname){
     }
 }
 
+//列出所有隊伍及各自總成本
+function showTotalcost() 
+{
+    global $db;
+    $sql = "SELECT tname,r1,r2,r3,r4,totalcost FROM tgame  WHERE tgame.go =-1 ORDER BY totalcost DESC ";//WHERE tgame.go=1
+    $stmt = mysqli_prepare($db, $sql);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    return $result;
+}
+
+function showCost(){
+    $result=showTotalcost();
+    $rank=0;
+    while($rs = mysqli_fetch_assoc($result)){
+        $rank = $rank + 1;
+        echo"<tr><td colspan='7'><hr></td></tr> ";
+        echo"<tr><td>";
+        echo $rank;
+        echo"</td><td>";
+        echo $rs['tname'];
+        echo"</td><td>";
+        echo $rs['r1'];
+        echo"</td><td>";
+        echo $rs['r2'];
+        echo"</td><td>";
+        echo $rs['r3'];
+        echo"</td><td>";
+        echo $rs['r4'];
+        echo"</td><td>";
+        echo $rs['totalcost'];
+        echo"</td></tr>";
+    }
+}
+
 ?>

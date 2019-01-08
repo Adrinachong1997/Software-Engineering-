@@ -1,29 +1,42 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <title>組內成本折線圖</title>
-    
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
-    <style>
-      .chart-container {
-        width: 640px;
-        height: auto;
-      }
-    </style>
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js"></script>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
-
-    <script  type="text/javascript" src="linechart.js"></script>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <meta charset="UTF-8" />
+        <meta name="keywords" content=" " />
+        <meta name="description" content=" " />
+        <title>組內成本折線圖</title>
+        <style type="text/css">
+        #main {
+            width: 900px;
+            margin: 60px auto;
+        }
+        table {
+            width: 500px;
+            height: 400px;
+        }
+        .chart-container {
+            width: 600px;
+            height: auto;
+        }
+        </style>
     </head>
-<body>
-
-	<div class="chart-container">
-		<canvas id="line-chartcanvas"></canvas>
-	</div>
-		
-	
-    
-    <a id="button" href="teamList.php" >回到遊戲開始畫面</a>
-</body>
+    <body>
+        <table id="main">
+            <form id="team" method="post" action="teamUpdate.php" accept-charset="utf-8">
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+                <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.11.1.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+                <script  type="text/javascript" src="linechart.js"></script>
+                <div class="chart-container">
+                    <tr>
+                        <td>
+                            <canvas id="line-chartcanvas"></canvas>
+                        </td>
+                    </tr>
+                </div>    
+                <a id="button" href="teamList.php" >回到遊戲開始畫面</a>
+            </form>
+        </table>
+    </body>
 </html>

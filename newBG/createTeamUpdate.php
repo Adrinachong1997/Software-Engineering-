@@ -26,7 +26,7 @@
                     $tname=$_POST['tname'];
                     //gameStart();
                     if( teamcheck($tname)==0){
-                        echo '<tr><td>隊伍名稱重覆，請再重新建立隊伍。</td></tr>';
+                        echo '<tr><td>隊伍名稱重覆或已使用過，請再重新建立隊伍。</td></tr>';
                         echo '<meta http-equiv=REFRESH CONTENT=2;url=teamList.php>';
                     } else {
                         createTeam();

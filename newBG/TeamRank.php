@@ -27,7 +27,7 @@
     }*/
 
     //排名模式: 隊內排行
-    
+    session_start();
     $tname=$_SESSION['tname'];
     //$week=
     $totalcost=0;
@@ -60,16 +60,7 @@ function showMemberCost($tname,$week)
     $result = mysqli_stmt_get_result($stmt);
     return $result;
 }
-//列出所有隊伍及各自總成本
-function showTotalcost() 
-{
-    global $db;
-    $sql = "SELECT tname,r1,r2,r3,r4,totalcost,rank FROM `tgame`  ORDER BY totalcost ASC";//WHERE tgame.go=1
-    $stmt = mysqli_prepare($db, $sql);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    return $result;
-}
+
 //將隊伍總成本記錄到tgame中
 function setTotalcost($totalcost,$tname){
     global $db;
@@ -111,4 +102,5 @@ function addscore($id,$score){
     mysqli_stmt_execute($stmt);
     return;
 }
+
 ?>
