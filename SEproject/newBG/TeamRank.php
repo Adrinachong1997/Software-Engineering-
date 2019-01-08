@@ -31,25 +31,31 @@
     $tname=$_SESSION['tname'];
     $totalcost=0;
     $result=showMemberCost($tname,5);
-    echo "<tr><td id='r'>隊內成本排行 :  </td><td>";
+  //echo "<tr><td id='r'>隊內成本排行 :      </td><td id='l'>";
     while ($rs = mysqli_fetch_assoc($result)) {
         $totalcost+=$rs['acc_cost'];
         $pid=$rs['pid'];
         $score--;
         $result2=checkMember($tname);
-        
-        echo "r",$pid," : " ,$rs['acc_cost']," ";
-        echo "</tr>";
+        //echo "<tr><td id='r'>$pid 隊內成本 : </td>";
+        //echo "<td id='l'>  ","⠀⠀",$rs['acc_cost'],"</td></tr>";
         while ($rs2 = mysqli_fetch_assoc($result2)){
             
+            echo"<tr>";
             if($pid==1)
-                addscore($rs2['r1'],$score);
+                echo "<td id='r'>工廠累積成本 : </td>","<td id='l'>⠀⠀",$rs['acc_cost'],"</td>";
+                echo "</td>";
             if($pid==2)
-                addscore($rs2['r2'],$score);
+                echo "<td id='r'>大盤商累積成本 : </td>","<td id='l'>⠀⠀",$rs['acc_cost'],"</td>";
+                echo "</td>";
             if($pid==3)
-                addscore($rs2['r3'],$score);
+                echo "<td id='r'>批發商累積成本 : </td>","<td id='l'>⠀⠀",$rs['acc_cost'],"</td>";
+                echo "</td>";
             if($pid==4)
-                addscore($rs2['r4'],$score);
+                echo "<td id='r'>零售商累積成本 : </td>","<td id='l'>⠀⠀",$rs['acc_cost'],"</td>";
+                echo "</td>";
+
+            echo"</tr>";
         }
     }
     setTotalcost($totalcost,$tname);

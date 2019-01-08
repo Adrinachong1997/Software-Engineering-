@@ -10,7 +10,7 @@
         <style type="text/css">
         #main {
             width: 500px;
-            margin: 70px auto;
+            margin: 50px auto;
         }
         table {
             width: 500px;
@@ -29,6 +29,15 @@
                     <td colspan="2" id="background"><font size="6">遊戲結束</font></td>
                 </tr>
                 <tr>
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50%"/>
+                    </td>
+                </tr>
+                <tr>
                     <td id="r">
                         用戶名稱 : 
                     </td>
@@ -36,9 +45,6 @@
                     ⠀⠀<?php echo $_SESSION['id'];?>
                     </td>
                 </tr>
-                <?php  
-                    require("TeamRank.php");
-                ?>
                 <tr>
                     <td id="r">
                         遊戲積分 : 
@@ -55,8 +61,23 @@
                     </td>
                 </tr>
                 <tr>
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2">
-                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50%"/>
+                        <u>組內排名</u> 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                    </td>
+                </tr>
+                <?php  
+                    require("TeamRank.php");
+                ?>
+                <tr>
+                    <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     </td>
                 </tr>
                 <tr>
