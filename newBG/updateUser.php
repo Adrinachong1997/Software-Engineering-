@@ -35,7 +35,7 @@
 					$stmt = mysqli_prepare($db, $sql);
 					mysqli_stmt_bind_param($stmt, "ss", $password, $id);
 					mysqli_stmt_execute($stmt); //執行SQL
-					echo "data updated";
+					//echo "data updated";
 				} else echo "wrong.";
 				?>
 				<tr>

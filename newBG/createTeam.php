@@ -20,7 +20,7 @@
     <?php
         require("userModel.php");
         $id=getCurrentUser();
-        echo $id;
+        //echo $id;
     ?>
     <body>
         <!-- 建立隊伍的介面-->

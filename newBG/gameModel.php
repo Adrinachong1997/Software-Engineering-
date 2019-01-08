@@ -149,10 +149,10 @@ function createTeam(){
         $stmt1 = mysqli_prepare($db, $sql1);
         mysqli_stmt_bind_param($stmt1, "s",$tname);
         mysqli_stmt_execute($stmt1);
-        echo "room added.";
+        //echo "room added.";
         header('Location: teamList.php');
     } else {
-        echo "empty title, cannot insert.";
+        //echo "empty title, cannot insert.";
         header('Location: teamList.php');
     }
 }
@@ -174,8 +174,8 @@ function updateTeam(){
     echo"</tr><tr><td id='r'>",
         "用戶名稱→</td><td id='l'>⠀$uid</td></tr>",
         "</tr><tr><td id='r'>",
-        "隊伍名稱→</td><td id='l'>⠀$str_sec[1]</td></tr>",
-    print_r($str_sec);
+        "隊伍名稱→</td><td id='l'>⠀$str_sec[1]</td></tr>";
+    //print_r($str_sec);
     if ($str_sec[0] == 1) {
         echo '<tr><td id="r">所選角色→</td><td id="l">⠀工廠</td></tr>';
         $sql = "update tgame set r1 = ? where tname = ? ";
@@ -209,7 +209,7 @@ function updateTeam(){
         $result = mysqli_stmt_get_result($stmt);
     }
     else {
-        echo "cannot update!";
+        //echo "cannot update!";
     }
 }
 
