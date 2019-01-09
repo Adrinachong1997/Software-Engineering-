@@ -5,7 +5,6 @@ function login($id, $pwd)
 {
     global $db;
     $_SESSION['id']=0;
-    $_SESSION['sort']='';
     $_SESSION['admin']='';
     if ($id> " ") {
         $sql = "select * from user where id=? and password=?";
@@ -16,7 +15,7 @@ function login($id, $pwd)
         $r=mysqli_fetch_assoc($result);
      	if($r) {
 			$_SESSION['id'] = $r['id'];
-            $_SESSION['sort'] = $r['sort'];
+            $_SESSION['admin'] = $r['admin'];
             return 1;
         }  
         else {
