@@ -56,18 +56,23 @@
                     </td>
                 </tr> 
                 <tr>
-                    <td colspan="7"> 
+                <td colspan="7"> 
                         <a id="button" href="loginOut.php">登出</a>
                         <a id="button" href="edit.php">編輯個人資料</a>
                         <a id="button" href="50thSetting.php">設定五十期需求</a>
-                    </td>
+                    
                 </tr>
-                <tr>
+
                     <td colspan="7"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                    </td>
-                </tr>
-            </form>
+          </form>
+          <form method="post" action="../orderControl.php">
+          <input type = "hidden" name="tname" value="<?php echo $tname; ?>"/>
+          <input type = "hidden" name="pid" value="<?php echo $pid ?>"/>
+          <input type = "hidden" name="operation" value="reset"/>
+          <input id = "button" type = "submit" value = "重置"></form> 
+        </td>
         </table>
     </div>
     </body>
 </html>
+
