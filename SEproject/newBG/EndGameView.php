@@ -46,21 +46,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td id="r">
-                        遊戲積分 : 
-                    </td>
-                    <td id="l">
-                    ⠀⠀<?php
-                            require_once("userMOdel.php");
-                            $result=get_score($_SESSION['id']);
-                            while($rs =mysqli_fetch_assoc($result)){
-                                $score=$rs['score'];
-                            } 
-                            echo $score ;
-                        ?>
-                    </td>
-                </tr>
-                <tr>
                     <td colspan="2"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     </td>
                 </tr>
