@@ -8,7 +8,7 @@ var getdatafromDB = function(){
 
 
 	$.ajax({
-		url : "http://localhost/Software-Engineering-/newBG/chart_data.php",
+		url : "http://localhost/Software-Engineering-/SEproject/newBG/chart_data.php",
 		type : "GET",
 
 		success : function(data){
