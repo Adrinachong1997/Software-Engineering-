@@ -23,7 +23,7 @@
     </head>
     <body>
         <table id="main">
-            <form id="team" method="post" action="teamUpdate.php" accept-charset="utf-8">
+            <form id="team" method="post" action="teamUpdate.php" accept-charset="utf-8" >
                 <tr>
                     <td colspan="6"> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
                     </td>
@@ -34,15 +34,19 @@
                         用戶名稱 : <?php echo $_SESSION['id'];?></br>
                         遊戲積分 : 
                                 <?php
-                                require_once("userMOdel.php");
+                                require_once("userModel.php");
+                                $id=getCurrentUser();
+                                $img_name=pic_name($id);
                                 $result=get_score($_SESSION['id']);
                                 while($rs =mysqli_fetch_assoc($result)){
                                     $score=$rs['score'];
                                 } 
-                                echo $score ?>
+                                echo $score;
+                                ?>
                     </td>
                     <td rowspan="1">
-                        <img src="uploadfiles/<?php echo $_SESSION['id'];?>.png" width="50%"/>
+                        <img src="uploadfiles/<?php echo $img_name;?>.png" width="50%"/>
+                        
                     </td>
                 </tr>
                 <tr>
